@@ -1,4 +1,4 @@
 package com.gm.entity;
 
-public class Product extends SKU {
+public class Product extends Item {
 }
