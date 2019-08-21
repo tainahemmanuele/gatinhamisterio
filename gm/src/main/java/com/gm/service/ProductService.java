@@ -3,11 +3,13 @@ package com.gm.service;
 import com.gm.model.Product;
 import com.gm.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class ProductService {
 
     @Autowired
@@ -44,6 +46,30 @@ public class ProductService {
             return null; //posteriormente tratar isso com exceção
         }
     }
+
+
+    public Product getProductId(Long id){
+        Optional<Product> productSearch = productRepository.findById(id);
+        if(productSearch.isPresent()){
+            Product product = productSearch.get();
+            return product;
+        }else{
+            return null; //posteriormente tratar isso com exceção
+        }
+    }
+
+    public boolean deleteProductId(Long id){
+        Optional<Product> productSearch = productRepository.findById(id);
+        if (productSearch.isPresent()) {
+            productRepository.deleteById(id);
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+
 
 
 }
