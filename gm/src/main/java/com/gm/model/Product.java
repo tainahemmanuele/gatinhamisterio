@@ -1,6 +1,7 @@
 package com.gm.model;
 
 public class Product extends Item {
+    private Long id;
     private String brand;
     private String distributor;
     private String type;
@@ -35,4 +36,5 @@ public class Product extends Item {
     public void setType(String type) {
         this.type = type;
     }
+
 }
