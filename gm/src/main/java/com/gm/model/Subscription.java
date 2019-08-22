@@ -93,4 +93,3 @@ public class Subscription implements Serializable {
                 ", box=" + box +
                 '}';
     }
-}
