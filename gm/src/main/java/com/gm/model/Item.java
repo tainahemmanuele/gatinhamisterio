@@ -2,8 +2,6 @@ package com.gm.model;
 
 
 public abstract class Item {
-
-
     private String barcode;
     private String name;
     private float cost;

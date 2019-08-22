@@ -36,5 +36,4 @@ public class Product extends Item {
     public void setType(String type) {
         this.type = type;
     }
-
 }
