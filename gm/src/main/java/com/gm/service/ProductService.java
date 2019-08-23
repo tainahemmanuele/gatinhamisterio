@@ -30,9 +30,9 @@ public class ProductService {
     }
 
     public Product update(Long id, Product productUpdate){
-        Optional<Product> productSearch = productRepository.findById(id);
-        if(productSearch.isPresent()){
-            Product product = productSearch.get();
+        Optional<Product> productData = productRepository.findById(id);
+        if(productData.isPresent()){
+            Product product = productData.get();
             product.setName(productUpdate.getName());
             product.setBarcode(productUpdate.getBarcode());
             product.setBrand(productUpdate.getBrand());
@@ -49,9 +49,9 @@ public class ProductService {
 
 
     public Product getProductId(Long id){
-        Optional<Product> productSearch = productRepository.findById(id);
-        if(productSearch.isPresent()){
-            Product product = productSearch.get();
+        Optional<Product> productData = productRepository.findById(id);
+        if(productData.isPresent()){
+            Product product = productData.get();
             return product;
         }else{
             return null; //posteriormente tratar isso com exceção
@@ -59,8 +59,8 @@ public class ProductService {
     }
 
     public boolean deleteProductId(Long id){
-        Optional<Product> productSearch = productRepository.findById(id);
-        if (productSearch.isPresent()) {
+        Optional<Product> productData = productRepository.findById(id);
+        if (productData.isPresent()) {
             productRepository.deleteById(id);
             return true;
         }
