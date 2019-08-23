@@ -1,17 +1,24 @@
 package com.gm.model;
 
-public class Product extends Item {
-    private Long id;
-    private String brand;
-    private String distributor;
-    private String type;
+import com.gm.util.ProductType;
 
-    public Product(String barcode, String name, String brand, String distributor, String type,float cost, float price, int stock) {
-        super(barcode, name,  cost, price, stock);
-        this.brand = brand;
-        this.distributor = distributor;
-        this.type = type.toLowerCase();
-    }
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Entity
+public class Product extends Item implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+    @Column(name = "brand", nullable = false)
+    private String brand;
+    @Column(name = "distributor", nullable = false)
+    private String distributor;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type", nullable = false)
+    private ProductType type;
+
 
     public String getBrand() {
         return brand;
@@ -29,11 +36,19 @@ public class Product extends Item {
         this.distributor = distributor;
     }
 
-    public String getType() {
+    public ProductType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(ProductType type) {
         this.type = type;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

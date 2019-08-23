@@ -34,6 +34,7 @@ public class Subscription implements Serializable {
     public void setBox(Long box) {
         this.box = box;
     }
+
     public long getId() {
         return id;
     }
@@ -93,3 +94,4 @@ public class Subscription implements Serializable {
                 ", box=" + box +
                 '}';
     }
+}
