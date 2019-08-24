@@ -41,9 +41,9 @@ public class BoxController {
     @PutMapping("/box/{id}")
     public ResponseEntity<Box> update(@PathVariable("id") Long id, @RequestBody Box box) {
 
-        Box updatedUser = boxService.update(id, box);
-        if(updatedUser != null) {
-            return new ResponseEntity<Box>(updatedUser, HttpStatus.OK);
+        Box updatedBox = boxService.update(id, box);
+        if(updatedBox != null) {
+            return new ResponseEntity<Box>(updatedBox, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -51,12 +51,12 @@ public class BoxController {
 
     @DeleteMapping("/box/{id}")
     public ResponseEntity<String> delete(@PathVariable("id") Long id){
-        System.out.println("DELETE USER " + id + "...");
+        System.out.println("DELETE BOX " + id + "...");
 
         if (boxService.delete(id)) {
-            return new ResponseEntity<String>("User has been deleted.", HttpStatus.OK);
+            return new ResponseEntity<String>("Box has been deleted.", HttpStatus.OK);
         } else {
-            return new ResponseEntity<String>("Failed to delete.", HttpStatus.EXPECTATION_FAILED);
+            return new ResponseEntity<String>("Failed to delete. Box does not exist.", HttpStatus.EXPECTATION_FAILED);
         }
     }
 }
