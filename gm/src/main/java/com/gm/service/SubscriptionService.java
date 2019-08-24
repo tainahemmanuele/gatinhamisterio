@@ -15,7 +15,7 @@ public class SubscriptionService {
     @Autowired
     private SubscriptionRepository subscriptionRepository;
 
-    public Subscription getSubscriptionById(Long id) {
+    public Subscription getById(Long id) {
         Optional<Subscription> subscriptionData = subscriptionRepository.findById(id);
         if(subscriptionData.isPresent()) {
             return subscriptionData.get();
@@ -24,7 +24,7 @@ public class SubscriptionService {
         }
     }
 
-    public List<Subscription> getAllSubscription(){
+    public List<Subscription> getAll(){
         List<Subscription> subscriptionList = new ArrayList<>();
         Iterable<Subscription> subscriptions = subscriptionRepository.findAll();
         for (Subscription subscription : subscriptions) {
@@ -34,7 +34,7 @@ public class SubscriptionService {
     }
 
 
-    public boolean deleteSubscriptionById(Long id) {
+    public boolean delete(Long id) {
         try {
             subscriptionRepository.deleteById(id);
             return true;
@@ -42,7 +42,7 @@ public class SubscriptionService {
             return false;
         }
     }
-    public Subscription createSubscription(Subscription subscription) {
+    public Subscription create(Subscription subscription) {
         return subscriptionRepository.save(subscription);
     }
 

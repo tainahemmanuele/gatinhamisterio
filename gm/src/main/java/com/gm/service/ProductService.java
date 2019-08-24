@@ -15,7 +15,7 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public List<Product> getAllProducts(){
+    public List<Product> getAll(){
         List<Product> listProduct = new ArrayList<Product>();
         Iterable<Product> productsIterator = productRepository.findAll();
 
@@ -48,7 +48,7 @@ public class ProductService {
     }
 
 
-    public Product getProductId(Long id){
+    public Product getById(Long id){
         Optional<Product> productData = productRepository.findById(id);
         if(productData.isPresent()){
             Product product = productData.get();
@@ -58,7 +58,7 @@ public class ProductService {
         }
     }
 
-    public boolean deleteProductId(Long id){
+    public boolean delete(Long id){
         Optional<Product> productData = productRepository.findById(id);
         if (productData.isPresent()) {
             productRepository.deleteById(id);

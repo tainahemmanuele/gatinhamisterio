@@ -4,6 +4,7 @@ import com.gm.util.ProductType;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 public class Product extends Item implements Serializable {
@@ -18,7 +19,8 @@ public class Product extends Item implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false)
     private ProductType type;
-
+    @ManyToMany
+    private List<Box> boxes;
 
     public String getBrand() {
         return brand;
@@ -46,6 +48,14 @@ public class Product extends Item implements Serializable {
 
     public Long getId() {
         return id;
+    }
+
+    public List<Box> getBoxes() {
+        return boxes;
+    }
+
+    public void setBoxes(List<Box> boxes) {
+        this.boxes = boxes;
     }
 
     public void setId(Long id) {

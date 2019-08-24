@@ -5,14 +5,18 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
+@Table(name = "box")
 public class Box extends Item implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @ElementCollection
-    @CollectionTable(name="listProducts")
-    private List<Product> productsBox;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+        name = "box_has",
+        joinColumns = @JoinColumn(name = "box_id"),
+        inverseJoinColumns = @JoinColumn(name = "product_id"))
+    private List<Product> products;
 
     public Long getId() {
         return id;
@@ -22,11 +26,11 @@ public class Box extends Item implements Serializable {
         this.id = id;
     }
 
-    public List<Product> getProductsBox() {
-        return productsBox;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setProductsBox(List<Product> productsBox) {
-        this.productsBox = productsBox;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 }

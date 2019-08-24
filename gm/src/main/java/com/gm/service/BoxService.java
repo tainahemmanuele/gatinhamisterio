@@ -15,7 +15,7 @@ public class BoxService {
     @Autowired
     private BoxRepository boxRepository;
 
-    public List<Box> getAllBoxes(){
+    public List<Box> getAll(){
         List<Box> listBoxes = new ArrayList<Box>();
         Iterable<Box> boxesIterator = boxRepository.findAll();
 
@@ -23,6 +23,16 @@ public class BoxService {
             listBoxes.add(box);
         }
         return listBoxes;
+    }
+
+    public Box getById(Long id){
+        Optional<Box> boxData = boxRepository.findById(id);
+        if(boxData.isPresent()){
+            Box box  = boxData.get();
+            return box;
+        }else{
+            return null;
+        }
     }
 
     public Box create(Box box){
@@ -34,7 +44,7 @@ public class BoxService {
         if(boxData.isPresent()){
             Box box = boxData.get();
             box.setName(boxUpdate.getName());
-            box.setProductsBox(boxUpdate.getProductsBox());
+            box.setProducts(boxUpdate.getProducts());
             box.setBarcode(boxUpdate.getBarcode());
             box.setCost(box.getCost());
             box.setPrice(box.getPrice());
@@ -46,17 +56,7 @@ public class BoxService {
         }
     }
 
-    public Box getBoxId(Long id){
-        Optional<Box> boxData = boxRepository.findById(id);
-        if(boxData.isPresent()){
-            Box box  = boxData.get();
-            return box;
-        }else{
-            return null;
-        }
-    }
-
-    public boolean deleteBoxId(Long id){
+    public boolean delete(Long id){
         Optional<Box> boxData = boxRepository.findById(id);
         if(boxData.isPresent()){
             boxRepository.deleteById(id);
