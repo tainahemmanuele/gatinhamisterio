@@ -2,14 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2c03dd93-d31b-49ff-b8fd-8cf0f307d231" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/repository/UserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/service/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/util/UserRole.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/BoxController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/Admin.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/Client.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/SubscriptionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/SubscriptionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/Box.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/service/BoxService.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/service/BoxService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/service/SubscriptionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/service/SubscriptionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/service/UserService.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

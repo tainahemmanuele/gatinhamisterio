@@ -19,13 +19,13 @@ public class SubscriptionController {
     @GetMapping("/subscription")
     public List<Subscription> getAllSubscriptions() {
         System.out.println("GETTING ALL USERS...");
-        return subscriptionService.getAllSubscription();
+        return subscriptionService.getAll();
     }
 
     @GetMapping("/subscription/{id}")
     public ResponseEntity<Subscription> getSubscription(@PathVariable("id") Long id) {
         System.out.println("GET Subscription BY ID " + id + "...");
-        Subscription subscription = subscriptionService.getSubscriptionById(id);
+        Subscription subscription = subscriptionService.getById(id);
         return (subscription != null)?
                 new ResponseEntity<Subscription>(subscription, HttpStatus.OK):
                 new ResponseEntity<Subscription>(HttpStatus.NOT_FOUND);
@@ -34,7 +34,7 @@ public class SubscriptionController {
     @PostMapping("/subscription")
     public Subscription setCartProducts(@Valid @RequestBody Subscription subscription){
         System.out.println("CREATE SUBSCRIPTION " + subscription.toString());
-        return subscriptionService.createSubscription(subscription);
+        return subscriptionService.create(subscription);
     }
 
 }

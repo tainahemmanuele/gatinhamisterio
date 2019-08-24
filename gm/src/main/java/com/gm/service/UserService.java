@@ -23,20 +23,24 @@ public class UserService {
         return list;
     }
 
-    public User getUserByEmail(String email) {
+    public User getByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 
-    public User getUserById(Long id) {
+    public User getById(Long id) {
         Optional<User> userData = userRepository.findById(id);
         return userData.isPresent()? userData.get() : null;
     }
 
-    public User createUser(User user) {
+    public List<User> getByRole(UserRole role) {
+        return userRepository.findByRole(role);
+    }
+
+    public User create(User user) {
         return userRepository.save(user);
     }
 
-    public User updateUser(Long id, User user) {
+    public User update(Long id, User user) {
         Optional<User> userData = userRepository.findById(id);
         if (userData.isPresent()) {
             User savedUser = userData.get();
@@ -52,7 +56,7 @@ public class UserService {
         }
     }
 
-    public boolean deleteUser(Long id) {
+    public boolean delete(Long id) {
         try {
             userRepository.deleteById(id);
             return true;
@@ -61,7 +65,4 @@ public class UserService {
         }
     }
 
-    public List<User> getUserByRole(UserRole role) {
-        return userRepository.findByRole(role);
-    }
 }
