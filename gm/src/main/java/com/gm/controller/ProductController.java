@@ -16,14 +16,14 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @GetMapping("/products")
+    @GetMapping("/product")
     public List<Product> getAllProducts(){
         System.out.println("GETTING ALL PRODUCTS...");
         List<Product> products = productService.getAll();
         return products;
     }
 
-    @GetMapping("products/{id}")
+    @GetMapping("product/{id}")
     public ResponseEntity<Product> getProduct(@PathVariable("id") Long id){
         System.out.println("GETTING ALL PRODUCTS...");
         Product product = productService.getById(id);
@@ -33,13 +33,14 @@ public class ProductController {
 
     }
 
-    @PostMapping("/products/create")
+    @PostMapping("/product/create")
     public Product createProduct(@Valid @RequestBody Product product){
+        System.out.println("CREATE PRODUCT " + product.getName() + "...");
         return productService.create(product);
 
     }
 
-    @PutMapping("/products/{id}")
+    @PutMapping("/product/{id}")
     public ResponseEntity<Product> updateProduct(@PathVariable("id") Long id, @RequestBody Product product) {
         System.out.println("UPDATING PRODUCT " + id + "...");
 
@@ -51,7 +52,7 @@ public class ProductController {
         }
     }
 
-    @DeleteMapping("/products/{id}")
+    @DeleteMapping("/product/{id}")
     public ResponseEntity<String> deleteProduct(@PathVariable("id") Long id) {
         System.out.println("DELETE PRODUCT " + id + "...");
 
