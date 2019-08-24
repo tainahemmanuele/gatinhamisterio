@@ -11,7 +11,11 @@ public class Box extends Item implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @OneToMany(mappedBy = "box", cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+        name = "box_has",
+        joinColumns = @JoinColumn(name = "box_id"),
+        inverseJoinColumns = @JoinColumn(name = "product_id"))
     private List<Product> products;
 
     public Long getId() {
