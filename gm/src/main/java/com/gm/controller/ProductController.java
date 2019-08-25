@@ -2,12 +2,14 @@ package com.gm.controller;
 
 import com.gm.model.Product;
 import com.gm.service.ProductService;
+import com.sun.deploy.net.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.xml.ws.Response;
 import java.util.List;
 
 @RestController
@@ -17,10 +19,12 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/product")
-    public List<Product> getAllProducts(){
+    public ResponseEntity<List<Product>> getAllProducts(){
         System.out.println("GETTING ALL PRODUCTS...");
         List<Product> products = productService.getAll();
-        return products;
+        if (products.isEmpty())
+            return new ResponseEntity<List<Product>>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<List<Product>>(products,HttpStatus.OK);
     }
 
     @GetMapping("product/{id}")
@@ -33,10 +37,13 @@ public class ProductController {
 
     }
 
-    @PostMapping("/product/create")
-    public Product createProduct(@Valid @RequestBody Product product){
+    @PostMapping("/product")
+    public ResponseEntity<Product> createProduct(@Valid @RequestBody Product product){
         System.out.println("CREATE PRODUCT " + product.getName() + "...");
-        return productService.create(product);
+        Product productCreated = productService.create(product);
+        if (productCreated == null)
+            return new ResponseEntity<Product>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<Product>(productCreated,HttpStatus.OK);
 
     }
 

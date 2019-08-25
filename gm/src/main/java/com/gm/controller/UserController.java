@@ -20,9 +20,12 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/user")
-    public List<User> getAllUsers() {
+    public ResponseEntity<List<User>> getAllUsers() {
         System.out.println("GETTING ALL USERS...");
-        return userService.getAllUsers();
+        List<User> users = userService.getAllUsers();
+        if (users.isEmpty())
+            return new ResponseEntity<List<User>>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<List<User>>(users, HttpStatus.OK);
     }
 
     @GetMapping("/user/{id}")
@@ -44,15 +47,19 @@ public class UserController {
     }
 
     @PostMapping("/user")
-    public User createUser(@Valid @RequestBody User user) {
+    public ResponseEntity<String> createUser(@Valid @RequestBody User user) {
         System.out.println("CREATE USER " + user.getName() + "...");
-        return userService.create(user);
+        User userCreated = userService.create(user);
+        if (userCreated != null){
+            return new ResponseEntity<String>("Failed to create a User", HttpStatus.OK);
+        } else{
+            return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+        }
     }
 
 
     @PutMapping("/user/{id}")
-    public ResponseEntity<User> updateProduct(@PathVariable("id") Long id, @RequestBody User user) {
-
+    public ResponseEntity<User> updateUser(@PathVariable("id") Long id, @RequestBody User user) {
         User updatedUser = userService.update(id, user);
         if(updatedUser != null) {
             return new ResponseEntity<User>(updatedUser, HttpStatus.OK);

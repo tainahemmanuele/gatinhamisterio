@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.xml.ws.Response;
 import java.util.List;
 
 @RestController
@@ -17,14 +18,17 @@ public class OrderController {
     private OrderService orderService;
 
     @GetMapping("/order")
-    public List<Order> getAllOrder() {
+    public ResponseEntity<List<Order>> getAll() {
         System.out.println("GETTING ALL USERS...");
-        return orderService.getAll();
+        List<Order> orders = orderService.getAll();
+        if (orders.isEmpty())
+            return new ResponseEntity<List<Order>>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<List<Order>>(orders,HttpStatus.OK);
     }
 
     @GetMapping("/order/{id}")
     public ResponseEntity<Order> getOrder(@PathVariable("id") Long id) {
-        System.out.println("GET Subscription BY ID " + id + "...");
+        System.out.println("GET Order BY ID " + id + "...");
         Order order = orderService.getById(id);
         return (order != null)?
                 new ResponseEntity<Order>(order, HttpStatus.OK):
@@ -32,8 +36,13 @@ public class OrderController {
     }
 
     @PostMapping("/order")
-    public Order setCartProducts(@Valid @RequestBody Order order){
-        System.out.println("CREATE SUBSCRIPTION " + order.toString());
-        return orderService.create(order);
+    public ResponseEntity<Order> createOrder(@Valid @RequestBody Order order){
+        System.out.println("CREATE ORDER " + order.toString());
+        Order newOrder = orderService.create(order);
+        if (newOrder==null)
+            return new ResponseEntity<Order>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<Order>(newOrder,HttpStatus.OK);
     }
+
+
 }

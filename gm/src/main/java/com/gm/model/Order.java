@@ -1,24 +1,29 @@
 package com.gm.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gm.util.DispatchStatus;
 import com.gm.util.PaymentStatus;
 import com.gm.util.PaymentType;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 public class Order implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
+
+    @JsonIgnore
     @ManyToOne
     @MapsId("user_id")
     @JoinColumn(name = "user_id")
     private User user;
 
+    @JsonIgnore
     @ManyToOne
     @MapsId("subscription_id")
     @JoinColumn(name = "subscription_id")
@@ -28,6 +33,14 @@ public class Order implements Serializable {
     private DispatchStatus dispatchStatus;
     private PaymentType paymentType;
     private PaymentStatus paymentStatus;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Order() {}
 

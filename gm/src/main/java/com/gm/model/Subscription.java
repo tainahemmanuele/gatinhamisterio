@@ -1,5 +1,7 @@
 package com.gm.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.gm.util.SubscriptionType;
 
 import javax.persistence.*;
@@ -28,8 +30,18 @@ public class Subscription implements Serializable {
     @Column(name = "box", nullable = false)
     private Long box;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
-    List<User> users;
+    private List<Order> orders;
+
+    public Subscription() {}
+    public Subscription(long id, SubscriptionType type, Double price, YearMonth subscriptionYearMonth, Long box) {
+        this.id = id;
+        this.type = type;
+        Price = price;
+        this.subscriptionYearMonth = subscriptionYearMonth;
+        this.box = box;
+    }
 
     public Long getBox() {
         return box;
@@ -66,9 +78,16 @@ public class Subscription implements Serializable {
     public Double getPrice() {
         return Price;
     }
-
     public void setPrice(Double price) {
         Price = price;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
     @Override

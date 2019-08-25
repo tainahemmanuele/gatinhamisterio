@@ -1,4 +1,6 @@
 package com.gm.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.gm.util.UserRole;
 
 import java.io.Serializable;
@@ -28,8 +30,9 @@ public class User implements Serializable{
     @Column(name = "role")
     private UserRole role;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "subscription")
-    List<Order> subscriptions;
+    private List<Order> orders;
 
     public User(){}
     public User(long id, String name, String email, String password, UserRole role) {
@@ -70,6 +73,9 @@ public class User implements Serializable{
     public void setRole(UserRole role) {
         this.role = role;
     }
+    public List<Order> getOrders() {return orders;}
+    public void setOrders(List<Order> orders) {this.orders = orders;}
+
     @Override
     public int hashCode() {
         final int prime = 31;
