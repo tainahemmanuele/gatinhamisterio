@@ -2,20 +2,14 @@ package com.gm.model;
 import com.gm.util.UserRole;
 
 import java.io.Serializable;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Entity
 @Table(name = "user_data")
-public abstract class User implements Serializable{
+public class User implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -34,6 +28,17 @@ public abstract class User implements Serializable{
     @Column(name = "role")
     private UserRole role;
 
+    @OneToMany(mappedBy = "subscription")
+    List<SubscriptionPayment> subscriptions;
+
+    public User(){}
+    public User(long id, String name, String email, String password, UserRole role) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
 
     public long getId() {
         return id;

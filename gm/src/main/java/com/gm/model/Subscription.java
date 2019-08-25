@@ -5,6 +5,7 @@ import com.gm.util.SubscriptionType;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.YearMonth;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -26,6 +27,9 @@ public class Subscription implements Serializable {
 
     @Column(name = "box", nullable = false)
     private Long box;
+
+    @OneToMany(mappedBy = "user")
+    List<User> users;
 
     public Long getBox() {
         return box;
