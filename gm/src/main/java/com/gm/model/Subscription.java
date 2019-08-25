@@ -27,27 +27,28 @@ public class Subscription implements Serializable {
     @Column(name = "yearMonth", nullable = false)
     private YearMonth subscriptionYearMonth;
 
-    @Column(name = "box", nullable = false)
-    private Long box;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "box_id", referencedColumnName = "id")
+    private Box box;
 
     @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Order> orders;
 
     public Subscription() {}
-    public Subscription(long id, SubscriptionType type, Double price, YearMonth subscriptionYearMonth, Long box) {
-        this.id = id;
+    public Subscription(SubscriptionType type, Double price, YearMonth subscriptionYearMonth, Box box) {
         this.type = type;
         Price = price;
         this.subscriptionYearMonth = subscriptionYearMonth;
         this.box = box;
     }
 
-    public Long getBox() {
+    public Box getBox() {
         return box;
     }
 
-    public void setBox(Long box) {
+    public void setBox(Box box) {
         this.box = box;
     }
 

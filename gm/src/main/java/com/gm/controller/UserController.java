@@ -47,13 +47,13 @@ public class UserController {
     }
 
     @PostMapping("/user")
-    public ResponseEntity<String> createUser(@Valid @RequestBody User user) {
+    public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
         System.out.println("CREATE USER " + user.getName() + "...");
         User userCreated = userService.create(user);
         if (userCreated != null){
-            return new ResponseEntity<String>("Failed to create a User", HttpStatus.OK);
+            return new ResponseEntity<User>(userCreated, HttpStatus.OK);
         } else{
-            return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<User>(HttpStatus.BAD_REQUEST);
         }
     }
 

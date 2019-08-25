@@ -35,8 +35,7 @@ public class User implements Serializable{
     private List<Order> orders;
 
     public User(){}
-    public User(long id, String name, String email, String password, UserRole role) {
-        this.id = id;
+    public User(String name, String email, String password, UserRole role) {
         this.name = name;
         this.email = email;
         this.password = password;

@@ -2,7 +2,7 @@ package com.gm.model;
 
 import javax.persistence.*;
 
-@Entity
+@MappedSuperclass
 public abstract class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -18,6 +18,17 @@ public abstract class Item {
     private float price;
     @Column(name = "stock", nullable = false)
     private int stock;
+
+    public Item() {
+    }
+
+    public Item(String barcode, String name, float cost, float price, int stock) {
+        this.barcode = barcode;
+        this.name = name;
+        this.cost = cost;
+        this.price = price;
+        this.stock = stock;
+    }
 
     public String getBarcode() {
         return barcode;
@@ -58,4 +69,8 @@ public abstract class Item {
     public void setStock(int stock) {
         this.stock = stock;
     }
+
+    public Long getId() { return id; }
+
+    public void setId(Long id) { this.id = id; }
 }

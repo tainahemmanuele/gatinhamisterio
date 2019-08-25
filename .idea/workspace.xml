@@ -4,13 +4,10 @@
     <list default="true" id="2c03dd93-d31b-49ff-b8fd-8cf0f307d231" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/GatinhamisterioApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/GatinhamisterioApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/BoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/BoxController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/SubscriptionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/SubscriptionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/Box.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/Subscription.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/Subscription.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/User.java" afterDir="false" />
     </list>

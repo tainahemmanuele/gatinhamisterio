@@ -1,11 +1,8 @@
 package com.gm;
 
-import com.gm.model.Subscription;
-import com.gm.model.User;
-import com.gm.repository.SubscriptionRepository;
-import com.gm.repository.UserRepository;
-import com.gm.util.SubscriptionType;
-import com.gm.util.UserRole;
+import com.gm.model.*;
+import com.gm.repository.*;
+import com.gm.util.*;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -13,6 +10,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.time.YearMonth;
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class GatinhamisterioApplication {
@@ -21,21 +20,38 @@ public class GatinhamisterioApplication {
 	private UserRepository userRepository;
 	@Autowired
 	private SubscriptionRepository subscriptionRepository;
+	@Autowired
+	private BoxRepository boxRepository;
+	@Autowired
+	private ProductRepository productRepository;
+	@Autowired
+	private OrderRepository orderRepository;
 
 	@Bean
 	InitializingBean sendDatabase() {
 		return () -> {
-			userRepository.save(new User(0,"John Romero","john@gmail.com","123456",UserRole.ADMIN));
-			userRepository.save(new User(1,"Kim Swift","kim@gmail.com","654321",UserRole.CLIENT));
-			subscriptionRepository.save(new Subscription(0, SubscriptionType.DEFAULT,100.00, YearMonth.now(),0L));
-			subscriptionRepository.save(new Subscription(1, SubscriptionType.PREMIUM,200.00, YearMonth.now(),1L));
+			List<Product> prods = new ArrayList<Product>();
+			prods.add(new Product("100","Batom",20.0f,30.0f,10,"Garnier","Garnier", ProductType.BATOM));
+			prods.add(new Product("101","Agua Micelar",30.0f,30.0f,10,"asdr","Garnfdier", ProductType.AGUA_MICELAR));
+			prods.add(new Product("102","Shampoo",40.0f,60.0f,10,"fdfasr","Garnisser", ProductType.RIMEL));
+			prods.add(new Product("103","Pó de Arroz",16.0f,30.0f,10,"easfier","Garanier", ProductType.RIMEL));
+			prods.add(new Product("104","Presilha",17.0f,30.0f,10,"ascer","Garniaer", ProductType.DEMAQUILANTE));
+			User u1 = new User("Kim Swift","kim@gmail.com","654321",UserRole.CLIENT);
+			Box b1 = new Box("0","Caixa Agosto",80.0f,199.0f,10,prods);
+			Subscription s1 = new Subscription( SubscriptionType.DEFAULT,100.00, YearMonth.now(),b1);
 
+			userRepository.save(new User("John Romero","john@gmail.com","123456",UserRole.ADMIN));
+			userRepository.save(u1);
+			userRepository.save(new User("Jen Zee","jen@gmail.com","111222",UserRole.CLIENT));
+			subscriptionRepository.save(s1);
+			//boxRepository.save(b1);
+			//subscriptionRepository.save(new Subscription(1, SubscriptionType.PREMIUM,200.00, YearMonth.now(),1L));
+			//orderRepository.save(new Order(u1,s1,1, DispatchStatus.WAITING, PaymentType.BOLETO,PaymentStatus.REQUESTED));
 		};
 	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(GatinhamisterioApplication.class, args);
 	}
-
 
 }
