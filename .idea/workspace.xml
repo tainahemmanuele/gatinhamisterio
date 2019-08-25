@@ -2,16 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2c03dd93-d31b-49ff-b8fd-8cf0f307d231" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/SubscriptionPayment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/repository/SubscriptionPaymentRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/service/SubscriptionPaymentService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/util/DispatchStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/util/SubscriptionPaymentStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/util/SubscriptionPaymentType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/OrderController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/Subscription.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/Subscription.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/SubscriptionPayment.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/repository/SubscriptionPaymentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/repository/OrderRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/service/SubscriptionPaymentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/util/SubscriptionPaymentStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/util/PaymentStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/util/SubscriptionPaymentType.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/util/PaymentType.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,8 +24,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>

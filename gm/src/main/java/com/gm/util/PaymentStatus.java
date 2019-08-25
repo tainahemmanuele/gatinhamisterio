@@ -1,13 +1,13 @@
 package com.gm.util;
 
-public enum SubscriptionPaymentStatus {
+public enum PaymentStatus {
     REQUESTED("Requisitado"),
     PROCESSING("Processando"),
     PAID("Pago");
 
     private String paymentStatus;
 
-    SubscriptionPaymentStatus(String status) {
+    PaymentStatus(String status) {
         this.paymentStatus = status;
     }
 

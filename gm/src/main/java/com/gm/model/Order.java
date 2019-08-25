@@ -1,8 +1,8 @@
 package com.gm.model;
 
 import com.gm.util.DispatchStatus;
-import com.gm.util.SubscriptionPaymentStatus;
-import com.gm.util.SubscriptionPaymentType;
+import com.gm.util.PaymentStatus;
+import com.gm.util.PaymentType;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class SubscriptionPayment implements Serializable {
+public class Order implements Serializable {
 
     @ManyToOne
     @MapsId("user_id")
@@ -26,12 +26,12 @@ public class SubscriptionPayment implements Serializable {
 
     private int quantity;
     private DispatchStatus dispatchStatus;
-    private SubscriptionPaymentType paymentType;
-    private SubscriptionPaymentStatus paymentStatus;
+    private PaymentType paymentType;
+    private PaymentStatus paymentStatus;
 
-    public SubscriptionPayment() {}
+    public Order() {}
 
-    public SubscriptionPayment(User user, Subscription subscription, int quantity, DispatchStatus dispatchStatus, SubscriptionPaymentType paymentType, SubscriptionPaymentStatus paymentStatus) {
+    public Order(User user, Subscription subscription, int quantity, DispatchStatus dispatchStatus, PaymentType paymentType, PaymentStatus paymentStatus) {
         this.user = user;
         this.subscription = subscription;
         this.quantity = quantity;
@@ -55,8 +55,8 @@ public class SubscriptionPayment implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof SubscriptionPayment)) return false;
-        SubscriptionPayment that = (SubscriptionPayment) o;
+        if (!(o instanceof Order)) return false;
+        Order that = (Order) o;
         return getQuantity() == that.getQuantity() &&
                 Objects.equals(getUser(), that.getUser()) &&
                 Objects.equals(getSubscription(), that.getSubscription()) &&
@@ -102,19 +102,19 @@ public class SubscriptionPayment implements Serializable {
         this.dispatchStatus = dispatchStatus;
     }
 
-    public SubscriptionPaymentType getPaymentType() {
+    public PaymentType getPaymentType() {
         return paymentType;
     }
 
-    public void setPaymentType(SubscriptionPaymentType paymentType) {
+    public void setPaymentType(PaymentType paymentType) {
         this.paymentType = paymentType;
     }
 
-    public SubscriptionPaymentStatus getPaymentStatus() {
+    public PaymentStatus getPaymentStatus() {
         return paymentStatus;
     }
 
-    public void setPaymentStatus(SubscriptionPaymentStatus paymentStatus) {
+    public void setPaymentStatus(PaymentStatus paymentStatus) {
         this.paymentStatus = paymentStatus;
     }
 }

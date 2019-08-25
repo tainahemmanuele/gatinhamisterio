@@ -29,7 +29,7 @@ public class User implements Serializable{
     private UserRole role;
 
     @OneToMany(mappedBy = "subscription")
-    List<SubscriptionPayment> subscriptions;
+    List<Order> subscriptions;
 
     public User(){}
     public User(long id, String name, String email, String password, UserRole role) {

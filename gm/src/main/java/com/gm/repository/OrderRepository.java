@@ -1,9 +1,9 @@
 package com.gm.repository;
 
-import com.gm.model.SubscriptionPayment;
+import com.gm.model.Order;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SubscriptionPaymentRepository extends CrudRepository<SubscriptionPayment, Long> {
+public interface OrderRepository extends CrudRepository<Order, Long> {
 }

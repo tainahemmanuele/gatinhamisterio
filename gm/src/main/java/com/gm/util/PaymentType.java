@@ -1,13 +1,13 @@
 package com.gm.util;
 
-public enum SubscriptionPaymentType {
+public enum PaymentType {
     BOLETO("Boleto Bancário"),
     CREDIT("Cartão de Crédito"),
     DEBIT("Cartão de Débito");
 
     private String paymentType;
 
-    SubscriptionPaymentType(String type) {
+    PaymentType(String type) {
         this.paymentType = type;
     }
 
