@@ -19,12 +19,21 @@ Use o terminal/cmd para a execução dos passos a seguir:
     
     `mvn spring-boot:run`
 
-4. Depois de executado o comando, o projeto deve estar acessível em qualquer navegador através do endereço:
+4. Depois de executado o comando, a API do projeto deve estar acessível em qualquer navegador através do endereço:
 
-    `http://localhost:8080`
+    `http://localhost:8080/swagger-ui.html#/`
+
+Nesse link aparece as opções desejadas (GET, POST, PUT,DELETE) para todos os modelos do projeto.
 
 5. Para para a execução do projeto, basta executar o comando:
 
     `ctrl + c`
 
 ## Arquitetura do projeto ##
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/img/Class%20Diagram5.png)
+
+
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/img/Class%20Diagram7.png)
+
+
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/img/Relacionamento.png)
