@@ -43,7 +43,7 @@ public class GatinhamisterioApplication {
 			userRepository.save(new User("John Romero","john@gmail.com","123456",UserRole.ADMIN));
 			userRepository.save(new User("Jen Zee","jen@gmail.com","111222",UserRole.CLIENT));
 			//userRepository.save(u1);
-			//subscriptionRepository.save(s1);
+			subscriptionRepository.save(s1);
 			//orderRepository.save(new Order(u1,s1,1, DispatchStatus.WAITING, PaymentType.BOLETO,PaymentStatus.REQUESTED));
 		};
 	}
