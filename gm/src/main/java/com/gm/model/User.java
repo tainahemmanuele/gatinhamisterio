@@ -1,24 +1,21 @@
 package com.gm.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.gm.util.UserRole;
 
 import java.io.Serializable;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Entity
 @Table(name = "user_data")
-public abstract class User implements Serializable{
+public class User implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "user_data_id")
     private long id;
 
     @Column(name = "name")
@@ -34,6 +31,17 @@ public abstract class User implements Serializable{
     @Column(name = "role")
     private UserRole role;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "subscription")
+    private List<Order> orders;
+
+    public User(){}
+    public User(String name, String email, String password, UserRole role) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
 
     public long getId() {
         return id;
@@ -65,6 +73,9 @@ public abstract class User implements Serializable{
     public void setRole(UserRole role) {
         this.role = role;
     }
+    public List<Order> getOrders() {return orders;}
+    public void setOrders(List<Order> orders) {this.orders = orders;}
+
     @Override
     public int hashCode() {
         final int prime = 31;

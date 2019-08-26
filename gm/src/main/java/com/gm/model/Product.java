@@ -9,9 +9,6 @@ import java.util.List;
 @Entity
 public class Product extends Item implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
     @Column(name = "brand", nullable = false)
     private String brand;
     @Column(name = "distributor", nullable = false)
@@ -19,8 +16,6 @@ public class Product extends Item implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false)
     private ProductType type;
-    @ManyToMany
-    private List<Box> boxes;
 
     public String getBrand() {
         return brand;
@@ -46,19 +41,22 @@ public class Product extends Item implements Serializable {
         this.type = type;
     }
 
-    public Long getId() {
-        return id;
+    public Product() {
     }
 
-    public List<Box> getBoxes() {
-        return boxes;
+    @Override
+    public String toString() {
+        return "Product{" +
+                "brand='" + brand + '\'' +
+                ", distributor='" + distributor + '\'' +
+                ", type=" + type +
+                '}';
     }
 
-    public void setBoxes(List<Box> boxes) {
-        this.boxes = boxes;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public Product(String barcode, String name, float cost, float price, int stock, String brand, String distributor, ProductType type) {
+        super( barcode, name, cost, price, stock);
+        this.brand = brand;
+        this.distributor = distributor;
+        this.type = type;
     }
 }

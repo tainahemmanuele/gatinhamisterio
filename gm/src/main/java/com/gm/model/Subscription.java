@@ -1,10 +1,13 @@
 package com.gm.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.gm.util.SubscriptionType;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.YearMonth;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -12,6 +15,7 @@ public class Subscription implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "subscription_id")
     private long id;
 
     @Enumerated(EnumType.STRING)
@@ -24,14 +28,28 @@ public class Subscription implements Serializable {
     @Column(name = "yearMonth", nullable = false)
     private YearMonth subscriptionYearMonth;
 
-    @Column(name = "box", nullable = false)
-    private Long box;
 
-    public Long getBox() {
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "box_id", referencedColumnName = "id")
+    private Box box;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders;
+
+    public Subscription() {}
+    public Subscription(SubscriptionType type, Double price, YearMonth subscriptionYearMonth, Box box) {
+        this.type = type;
+        Price = price;
+        this.subscriptionYearMonth = subscriptionYearMonth;
+        this.box = box;
+    }
+
+    public Box getBox() {
         return box;
     }
 
-    public void setBox(Long box) {
+    public void setBox(Box box) {
         this.box = box;
     }
 
@@ -62,9 +80,16 @@ public class Subscription implements Serializable {
     public Double getPrice() {
         return Price;
     }
-
     public void setPrice(Double price) {
         Price = price;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
     @Override

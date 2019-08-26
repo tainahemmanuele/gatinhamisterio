@@ -1,6 +1,7 @@
 package com.gm.service;
 
 import com.gm.model.Box;
+import com.gm.model.Product;
 import com.gm.repository.BoxRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,7 @@ public class BoxService {
     }
 
     public Box create(Box box){
+        List<Product> products = box.getProducts();
         return boxRepository.save(box);
     }
 
