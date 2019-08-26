@@ -32,9 +32,12 @@ public class SubscriptionController {
     }
 
     @PostMapping("/subscription")
-    public Subscription setCartProducts(@Valid @RequestBody Subscription subscription){
+    public ResponseEntity<Subscription> createSubscription(@Valid @RequestBody Subscription subscription){
         System.out.println("CREATE SUBSCRIPTION " + subscription.toString());
-        return subscriptionService.create(subscription);
+        Subscription newSub = subscriptionService.create(subscription);
+        if (newSub == null)
+            return new ResponseEntity<Subscription>(HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<Subscription>(newSub,HttpStatus.OK);
     }
 
 }
