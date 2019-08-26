@@ -69,8 +69,4 @@ public abstract class Item {
     public void setStock(int stock) {
         this.stock = stock;
     }
-
-    public Long getId() { return id; }
-
-    public void setId(Long id) { this.id = id; }
 }

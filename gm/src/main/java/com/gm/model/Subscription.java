@@ -15,6 +15,7 @@ public class Subscription implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "subscription_id")
     private long id;
 
     @Enumerated(EnumType.STRING)

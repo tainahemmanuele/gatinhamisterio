@@ -8,6 +8,11 @@ import java.util.Objects;
 @Entity
 @Table(name = "box")
 public class Box extends Item implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "box_id", nullable = false)
+    private Long id;
+
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "box_id")
@@ -36,4 +41,8 @@ public class Box extends Item implements Serializable {
     public void setProducts(List<Product> products) {
         this.products = products;
     }
+
+    public Long getId() { return id; }
+
+    public void setId(Long id) { this.id = id; }
 }

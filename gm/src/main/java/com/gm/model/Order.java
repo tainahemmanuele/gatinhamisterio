@@ -1,6 +1,5 @@
 package com.gm.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gm.util.DispatchStatus;
 import com.gm.util.PaymentStatus;
@@ -11,27 +10,27 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
+@Table(name = "order_data")
 public class Order implements Serializable {
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @JsonIgnore
     @ManyToOne
-    @MapsId("user_id")
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_data_id")
     private User user;
 
-    @JsonIgnore
     @ManyToOne
-    @MapsId("subscription_id")
     @JoinColumn(name = "subscription_id")
     private Subscription subscription;
 
+    @Column(name = "quantity")
     private int quantity;
+    @Column(name = "dispatchStatus")
     private DispatchStatus dispatchStatus;
+    @Column(name = "paymentType")
     private PaymentType paymentType;
+    @Column(name = "paymentStatus")
     private PaymentStatus paymentStatus;
 
     public Long getId() {
@@ -130,4 +129,5 @@ public class Order implements Serializable {
     public void setPaymentStatus(PaymentStatus paymentStatus) {
         this.paymentStatus = paymentStatus;
     }
+
 }

@@ -15,6 +15,7 @@ public class User implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "user_data_id")
     private long id;
 
     @Column(name = "name")

@@ -41,11 +41,9 @@ public class GatinhamisterioApplication {
 			Subscription s1 = new Subscription( SubscriptionType.DEFAULT,100.00, YearMonth.now(),b1);
 
 			userRepository.save(new User("John Romero","john@gmail.com","123456",UserRole.ADMIN));
-			userRepository.save(u1);
 			userRepository.save(new User("Jen Zee","jen@gmail.com","111222",UserRole.CLIENT));
-			subscriptionRepository.save(s1);
-			//boxRepository.save(b1);
-			//subscriptionRepository.save(new Subscription(1, SubscriptionType.PREMIUM,200.00, YearMonth.now(),1L));
+			//userRepository.save(u1);
+			//subscriptionRepository.save(s1);
 			//orderRepository.save(new Order(u1,s1,1, DispatchStatus.WAITING, PaymentType.BOLETO,PaymentStatus.REQUESTED));
 		};
 	}
