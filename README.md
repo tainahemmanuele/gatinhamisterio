@@ -46,19 +46,20 @@ Todos os testes existentes no projeto devem ser executados. No fim da execução
 
 Para parar a execução do projeto no outro, basta executar o comando:
 
-    `ctrl + c`
+ `ctrl + c`
 
 E encerrar o terminal/cmd.
 
 ## Arquitetura do projeto ##
-O back-end do gatinha mistério é composto por 5 entidades principais:
+O back-end do **gatinha mistério** é composto por 5 entidades principais:
+
 1. User
 2. Subscription
 3. Order
 4. Box
 5. Product
 
-Usuário é a entidade que representa o cliente do sistema. Um cliente pode fazer assinaturas mensais através de uma order. Uma subscription possui uma e somente uma caixa e uma caixa possui um conjunto de produtos.
+Usuário é a entidade que representa o cliente do sistema. Um cliente pode fazer assinaturas mensais através de uma order. Order é o mecanismo onde é validada a compra de uma Subscription (assinatura) . Há dois tipos de subscription: ***Fada Sensata*** e ***Cristal Lapidado*** . Uma subscription (independente do tipo) possui uma e somente uma caixa e uma caixa possui um conjunto de produtos. Cada produto que compõe uma caixa possui um tipo, que pode ser adicionado ao sistema conforme for aumentando a diversidade de produtos cadastrados.
 
 ### Diagrama de Entidade-Relacionamento ###
 ![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/img/Relacionamento.png)
