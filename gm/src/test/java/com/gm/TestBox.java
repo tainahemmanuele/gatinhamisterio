@@ -34,7 +34,7 @@ public class TestBox {
     }
 
     @Test
-    public void testPostProductSuccess() throws URISyntaxException
+    public void testPostBoxSuccess() throws URISyntaxException
     {
 
         RestTemplate restTemplate = new RestTemplate();
