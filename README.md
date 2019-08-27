@@ -46,7 +46,7 @@ Todos os testes existentes no projeto devem ser executados. No fim da execução
 
 Para parar a execução do projeto no outro, basta executar o comando:
 
-    `ctrl + c`
+	ctrl + c
 
 E encerrar o terminal/cmd.
 
