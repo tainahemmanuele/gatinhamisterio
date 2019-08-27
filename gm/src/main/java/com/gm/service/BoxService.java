@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class BoxService {
@@ -37,7 +38,7 @@ public class BoxService {
     }
 
     public Box create(Box box){
-        List<Product> products = box.getProducts();
+        Set<Product> products = box.getProducts();
         return boxRepository.save(box);
     }
 

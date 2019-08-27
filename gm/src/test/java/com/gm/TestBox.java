@@ -14,7 +14,9 @@ import org.springframework.web.client.RestTemplate;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @SpringBootTest
 public class TestBox {
@@ -44,7 +46,7 @@ public class TestBox {
 
         final String baseUrl = "http://localhost:" + 8080 + "/box";
         URI uri = new URI(baseUrl);
-        List<Product> prods = new ArrayList<Product>();
+        Set<Product> prods = new HashSet<Product>();
         prods.add(new Product("100","Batom",20.0f,30.0f,10,"Garnier","Garnier", ProductType.BATOM));
         prods.add(new Product("101","Agua Micelar",30.0f,30.0f,10,"asdr","Garnfdier", ProductType.AGUA_MICELAR));
         prods.add(new Product("102","Shampoo",40.0f,60.0f,10,"fdfasr","Garnisser", ProductType.RIMEL));
@@ -79,7 +81,7 @@ public class TestBox {
         URI uri = new URI(baseUrl);
 
         String barcode = "1234566";
-        Box box = new Box(barcode,"Caixa",100.0f,150.0f,1,new ArrayList<Product>());
+        Box box = new Box(barcode,"Caixa",100.0f,150.0f,1,new HashSet<Product>());
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);

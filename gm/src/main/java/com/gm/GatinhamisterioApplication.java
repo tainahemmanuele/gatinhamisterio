@@ -11,7 +11,9 @@ import org.springframework.context.annotation.Bean;
 
 import java.time.YearMonth;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @SpringBootApplication
 public class GatinhamisterioApplication {
@@ -30,7 +32,7 @@ public class GatinhamisterioApplication {
 	@Bean
 	InitializingBean sendDatabase() {
 		return () -> {
-			List<Product> prods = new ArrayList<Product>();
+			Set<Product> prods = new HashSet<Product>();
 			prods.add(new Product("100","Batom",20.0f,30.0f,10,"Garnier","Garnier", ProductType.BATOM));
 			prods.add(new Product("101","Agua Micelar",30.0f,30.0f,10,"asdr","Garnfdier", ProductType.AGUA_MICELAR));
 			prods.add(new Product("102","Shampoo",40.0f,60.0f,10,"fdfasr","Garnisser", ProductType.RIMEL));

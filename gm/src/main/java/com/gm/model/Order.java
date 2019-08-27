@@ -16,12 +16,12 @@ public class Order implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_data_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_data_id", referencedColumnName = "user_data_id")
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "subscription_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "subscription_id", referencedColumnName = "subscription_id")
     private Subscription subscription;
 
     @Column(name = "quantity")
@@ -55,8 +55,8 @@ public class Order implements Serializable {
     @Override
     public String toString() {
         return "SubscriptionPayment{" +
-                "user=" + user +
-                ", subscription=" + subscription +
+                "user=" + user.getId() +
+                ", subscription=" + subscription.getId() +
                 ", quantity=" + quantity +
                 ", dispatchStatus=" + dispatchStatus +
                 ", paymentType=" + paymentType +
