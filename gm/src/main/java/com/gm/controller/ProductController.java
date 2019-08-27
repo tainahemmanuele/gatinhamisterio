@@ -21,7 +21,7 @@ public class ProductController {
         System.out.println("GETTING ALL PRODUCTS...");
         List<Product> products = productService.getAll();
         if (products.isEmpty())
-            return new ResponseEntity<List<Product>>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<List<Product>>(products,HttpStatus.OK);
         return new ResponseEntity<List<Product>>(products,HttpStatus.OK);
     }
 

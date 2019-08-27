@@ -14,7 +14,7 @@ public class Box extends Item implements Serializable {
     private Long id;
 
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "box_id")
     private List<Product> products;
 

@@ -17,9 +17,9 @@ public class SubscriptionController {
     private SubscriptionService subscriptionService;
 
     @GetMapping("/subscription")
-    public List<Subscription> getAllSubscriptions() {
+    public ResponseEntity<List<Subscription>> getAllSubscriptions() {
         System.out.println("GETTING ALL USERS...");
-        return subscriptionService.getAll();
+        return new ResponseEntity<List<Subscription>>(subscriptionService.getAll(),HttpStatus.OK) ;
     }
 
     @GetMapping("/subscription/{id}")
@@ -40,4 +40,14 @@ public class SubscriptionController {
         return new ResponseEntity<Subscription>(newSub,HttpStatus.OK);
     }
 
+    @DeleteMapping("/subscription/{id}")
+    public ResponseEntity<String> deleteProduct(@PathVariable("id") Long id) {
+        System.out.println("DELETE SUBSCRIPTION " + id + "...");
+
+        if (subscriptionService.delete(id)) {
+            return new ResponseEntity<String>("Subscription has been deleted.", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<String>("Failed to delete. Subscription does not exist.", HttpStatus.EXPECTATION_FAILED);
+        }
+    }
 }
