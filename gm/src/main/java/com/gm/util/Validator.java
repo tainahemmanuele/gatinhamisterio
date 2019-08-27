@@ -22,13 +22,16 @@ public class Validator {
         }
     }
 
-    public boolean validPrice(float price){
-        return price > 0;
+    public boolean validValue(float value){
+        return value >= 0;
     }
 
-    public boolean validCost(float cost){
-        return cost > 0;
+    public boolean validValueInt(int value){
+        return value % 1 == 0 && value > 0;
     }
+
+
+
 
 
 
