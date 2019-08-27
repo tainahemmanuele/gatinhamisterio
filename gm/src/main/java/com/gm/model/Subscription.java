@@ -37,7 +37,7 @@ public class Subscription implements Serializable {
 
     @JsonProperty("orders")
     @JsonIgnore
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "user", fetch = FetchType.EAGER)
     private Set<Order> orders;
 
     public Subscription() {}
@@ -119,7 +119,7 @@ public class Subscription implements Serializable {
                 ", type=" + type +
                 ", Price=" + Price +
                 ", subscriptionYearMonth=" + subscriptionYearMonth +
-                ", box=" + box +
+                ", box=" + box.getId() +
                 '}';
     }
 }

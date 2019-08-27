@@ -22,7 +22,7 @@ public class OrderController {
         System.out.println("GETTING ALL USERS...");
         List<Order> orders = orderService.getAll();
         if (orders.isEmpty())
-            return new ResponseEntity<List<Order>>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<List<Order>>(orders,HttpStatus.OK);
         return new ResponseEntity<List<Order>>(orders,HttpStatus.OK);
     }
 
@@ -44,5 +44,14 @@ public class OrderController {
         return new ResponseEntity<Order>(newOrder,HttpStatus.OK);
     }
 
+    @DeleteMapping("/order/{id}")
+    public ResponseEntity<String> deleteProduct(@PathVariable("id") Long id) {
+        System.out.println("DELETE order " + id + "...");
 
+        if (orderService.delete(id)) {
+            return new ResponseEntity<String>("Order has been deleted.", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<String>("Failed to delete. Order does not exist.", HttpStatus.EXPECTATION_FAILED);
+        }
+    }
 }

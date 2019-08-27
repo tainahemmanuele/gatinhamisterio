@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "box")
@@ -16,17 +17,17 @@ public class Box extends Item implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "box_id")
-    private List<Product> products;
+    private Set<Product> products;
 
 
-    public List<Product> getProducts() {
+    public Set<Product> getProducts() {
         return products;
     }
 
     public Box() {
     }
 
-    public Box(String barcode, String name, float cost, float price, int stock, List<Product> products) {
+    public Box(String barcode, String name, float cost, float price, int stock, Set<Product> products) {
         super(barcode, name, cost, price, stock);
         this.products = products;
     }
@@ -38,7 +39,7 @@ public class Box extends Item implements Serializable {
                 '}';
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(Set<Product> products) {
         this.products = products;
     }
 
