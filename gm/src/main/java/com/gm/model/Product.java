@@ -9,6 +9,10 @@ import java.util.List;
 @Entity
 public class Product extends Item implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "box_id", nullable = false)
+    private Long id;
 
     @Column(name = "brand", nullable = false)
     private String brand;
@@ -42,13 +46,22 @@ public class Product extends Item implements Serializable {
         this.type = type;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Product() {
     }
 
     @Override
     public String toString() {
         return "Product{" +
-                "brand='" + brand + '\'' +
+                "id=" + id +
+                ", brand='" + brand + '\'' +
                 ", distributor='" + distributor + '\'' +
                 ", type=" + type +
                 '}';

@@ -18,8 +18,7 @@ import java.util.List;
 public class TestBox {
 
     @Test
-    public void testGetBoxListSuccess() throws URISyntaxException
-    {
+    public void testGetBoxListSuccess() throws URISyntaxException {
 
         RestTemplate restTemplate = new RestTemplate();
 
@@ -34,8 +33,7 @@ public class TestBox {
     }
 
     @Test
-    public void testPostBoxSuccess() throws URISyntaxException
-    {
+    public void testPostBoxSuccess() throws URISyntaxException {
 
         RestTemplate restTemplate = new RestTemplate();
 
