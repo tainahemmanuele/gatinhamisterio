@@ -83,13 +83,11 @@ public class ProductService {
     }
 
     private Product auxUpdateCreate(Product product){
-        System.out.println("Testando...");
         if ((validator.validString(product.getName()) && validator.validString(product.getBarcode()) &&
                 validator.validString(product.getBrand()) && validator.validString(product.getDistributor())
                 && validator.validValue(product.getCost()) && validator.validValue(product.getPrice())
-                && validator.validValueInt(product.getStock()) ) == true) {
-            System.out.println("Aqui passou no primeiro if");
-            if (searchProductList(product.getBarcode()) == false) {
+                && validator.validValueInt(product.getStock()) )) {
+            if (!searchProductList(product.getBarcode())) {
                 product.setName(product.getName());
                 product.setBarcode(product.getBarcode());
                 product.setBrand(product.getBrand());
@@ -97,14 +95,11 @@ public class ProductService {
                 product.setCost(product.getCost());
                 product.setPrice(product.getPrice());
                 product.setStock(product.getStock());
-                System.out.println("Aqui passou no segundo if");
                 return product;
             }else {
-                System.out.println("Algo deu errado...");
                 return null; //posteriormente tratar isso com exceção
             }
         }else {
-            System.out.println("Algo deu errado...");
             return null; //posteriormente tratar isso com exceção
         }
     }
