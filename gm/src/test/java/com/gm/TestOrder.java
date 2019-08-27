@@ -53,7 +53,7 @@ public class TestOrder {
 
         RestTemplate restTemplate = new RestTemplate();
         Set<Product> prods = new HashSet<Product>();
-        User u1 = new User("Peggy Olson","peggy@gmail.com","2569774", UserRole.CLIENT);
+        User u1 = new User("Peggy Olson","pegggyy@gmail.com","2569774", UserRole.CLIENT);
         prods.add(new Product("100","Batom",20.0f,30.0f,10,"Garnier","Garnier", ProductType.BATOM));
         prods.add(new Product("101","Agua Micelar",30.0f,30.0f,10,"asdr","Garnfdier", ProductType.AGUA_MICELAR));
         prods.add(new Product("102","Shampoo",40.0f,60.0f,10,"fdfasr","Garnisser", ProductType.RIMEL));
@@ -72,7 +72,6 @@ public class TestOrder {
         ResponseEntity<Order> resultPost = restTemplate.exchange(uri, HttpMethod.POST,request, new ParameterizedTypeReference<Order>() {});
         Order orderPosted = resultPost.getBody();
 
-
         ResponseEntity<Order> resultGet = restTemplate.exchange(new URI(baseUrl + orderPosted.getId()), HttpMethod.GET,null, new ParameterizedTypeReference<Order>() {});
         Order orderGet = resultGet.getBody();
 
@@ -86,7 +85,7 @@ public class TestOrder {
 
         RestTemplate restTemplate = new RestTemplate();
         Set<Product> prods = new HashSet<Product>();
-        User u1 = new User("Peggy Olson","peggy@gmail.com","2569774", UserRole.CLIENT);
+        User u1 = new User("Peggy Olson","peggyy@gmail.com","2569774", UserRole.CLIENT);
         prods.add(new Product("100","Batom",20.0f,30.0f,10,"Garnier","Garnier", ProductType.BATOM));
         prods.add(new Product("101","Agua Micelar",30.0f,30.0f,10,"asdr","Garnfdier", ProductType.AGUA_MICELAR));
         prods.add(new Product("102","Shampoo",40.0f,60.0f,10,"fdfasr","Garnisser", ProductType.RIMEL));
