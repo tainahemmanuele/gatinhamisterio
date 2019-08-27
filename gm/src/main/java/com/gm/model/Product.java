@@ -9,6 +9,7 @@ import java.util.List;
 @Entity
 public class Product extends Item implements Serializable {
 
+
     @Column(name = "brand", nullable = false)
     private String brand;
     @Column(name = "distributor", nullable = false)
@@ -59,4 +60,6 @@ public class Product extends Item implements Serializable {
         this.distributor = distributor;
         this.type = type;
     }
+
+
 }

@@ -44,6 +44,7 @@ public class TestProduct {
         URI uri = new URI(baseUrl);
         Product product = new Product("300","Batom",20.0f,30.0f,10,"Loreal","Loreal", ProductType.BATOM);
 
+
         ResponseEntity<String> result = restTemplate.postForEntity(uri,product,String.class); ;
 
         //Verify request succeed
@@ -51,5 +52,27 @@ public class TestProduct {
 
     }
 
+    @Test
+    public void testDeleteProductSuccess() throws URISyntaxException
+    {
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        final String baseUrl = "http://localhost:" + 8080 + "/product/" + 5;
+
+        URI uri = new URI(baseUrl);
+        restTemplate.delete(uri);
+
+        final String baseUrl2 = "http://localhost:" + 8080 + "/product/" ;
+
+        URI uri2 = new URI(baseUrl2);
+
+
+
+        ResponseEntity<String> result = restTemplate.getForEntity(uri2, String.class);
+        //Verify request succeed
+        Assert.assertEquals(false, result.getBody().contains("5"));
+
+    }
 
 }
