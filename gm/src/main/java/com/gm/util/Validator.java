@@ -2,10 +2,10 @@ package com.gm.util;
 
 public class Validator {
 
-    public boolean validString(String name){
-        if(name.equals("")){
+    public boolean validString(String word){
+        if(word.equals("")){
             return false;
-        }else if(name.startsWith(" ")){
+        }else if(word.startsWith(" ")){
             return false;
         }else{
             return true;

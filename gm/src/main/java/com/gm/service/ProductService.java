@@ -15,7 +15,7 @@ public class ProductService {
 
     @Autowired
     private ProductRepository productRepository;
-    private Validator validator;
+    private Validator validator = new Validator();
 
     public List<Product> getAll() {
         List<Product> listProduct = new ArrayList<Product>();
@@ -28,12 +28,11 @@ public class ProductService {
     }
 
     public Product create(Product product) {
-
         Product productAux = auxUpdateCreate(product);
         if(productAux != null){
             return productRepository.save(productAux);
         }
-        return null;
+        return productAux;
     }
 
     public Product update(Long id, Product productUpdate) {
@@ -42,12 +41,13 @@ public class ProductService {
             Product product = auxUpdateCreate(productData.get());
             if(product != null){
                 return productRepository.save(product);
+            } else{
+                return null;
             }
 
         } else {
             return null; //posteriormente tratar isso com exceção
         }
-        return null;
     }
 
 
@@ -83,11 +83,13 @@ public class ProductService {
     }
 
     private Product auxUpdateCreate(Product product){
-        if (validator.validString(product.getName()) && validator.validString(product.getBarcode()) &&
+        System.out.println("Testando...");
+        if ((validator.validString(product.getName()) && validator.validString(product.getBarcode()) &&
                 validator.validString(product.getBrand()) && validator.validString(product.getDistributor())
                 && validator.validValue(product.getCost()) && validator.validValue(product.getPrice())
-                && validator.validValueInt(product.getStock())) {
-            if (!searchProductList(product.getBarcode())) {
+                && validator.validValueInt(product.getStock()) ) == true) {
+            System.out.println("Aqui passou no primeiro if");
+            if (searchProductList(product.getBarcode()) == false) {
                 product.setName(product.getName());
                 product.setBarcode(product.getBarcode());
                 product.setBrand(product.getBrand());
@@ -95,11 +97,14 @@ public class ProductService {
                 product.setCost(product.getCost());
                 product.setPrice(product.getPrice());
                 product.setStock(product.getStock());
+                System.out.println("Aqui passou no segundo if");
                 return product;
             }else {
+                System.out.println("Algo deu errado...");
                 return null; //posteriormente tratar isso com exceção
             }
         }else {
+            System.out.println("Algo deu errado...");
             return null; //posteriormente tratar isso com exceção
         }
     }
