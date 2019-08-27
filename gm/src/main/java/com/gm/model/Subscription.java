@@ -2,6 +2,7 @@ package com.gm.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gm.util.SubscriptionType;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import java.io.Serializable;
 import java.time.YearMonth;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Subscription implements Serializable {
@@ -28,14 +30,15 @@ public class Subscription implements Serializable {
     @Column(name = "yearMonth", nullable = false)
     private YearMonth subscriptionYearMonth;
 
-
+    @JsonProperty("box")
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "box_id", referencedColumnName = "id")
     private Box box;
 
+    @JsonProperty("orders")
     @JsonIgnore
-    @OneToMany(mappedBy = "user")
-    private List<Order> orders;
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private Set<Order> orders;
 
     public Subscription() {}
     public Subscription(SubscriptionType type, Double price, YearMonth subscriptionYearMonth, Box box) {
@@ -84,11 +87,11 @@ public class Subscription implements Serializable {
         Price = price;
     }
 
-    public List<Order> getOrders() {
+    public Set<Order> getOrders() {
         return orders;
     }
 
-    public void setOrders(List<Order> orders) {
+    public void setOrders(Set<Order> orders) {
         this.orders = orders;
     }
 

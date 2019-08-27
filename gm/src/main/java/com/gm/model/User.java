@@ -5,6 +5,7 @@ import com.gm.util.UserRole;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -33,7 +34,7 @@ public class User implements Serializable{
 
     @JsonIgnore
     @OneToMany(mappedBy = "subscription")
-    private List<Order> orders;
+    private Set<Order> orders;
 
     public User(){}
     public User(String name, String email, String password, UserRole role) {
@@ -73,8 +74,8 @@ public class User implements Serializable{
     public void setRole(UserRole role) {
         this.role = role;
     }
-    public List<Order> getOrders() {return orders;}
-    public void setOrders(List<Order> orders) {this.orders = orders;}
+    public Set<Order> getOrders() {return orders;}
+    public void setOrders(Set<Order> orders) {this.orders = orders;}
 
     @Override
     public int hashCode() {

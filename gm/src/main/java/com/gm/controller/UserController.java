@@ -28,7 +28,7 @@ public class UserController {
         System.out.println("GETTING ALL USERS...");
         List<User> users = userService.getAllUsers();
         if (users.isEmpty())
-            return new ResponseEntity<List<User>>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<List<User>>(HttpStatus.OK);
         return new ResponseEntity<List<User>>(users, HttpStatus.OK);
     }
 
