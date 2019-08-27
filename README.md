@@ -25,13 +25,32 @@ Use o terminal/cmd para a execução dos passos a seguir:
 
     `http://localhost:8080/swagger-ui.html#/`
 
-Nesse link aparece as opções desejadas (GET, POST, PUT,DELETE) para todos os modelos do projeto.
+Nesse link aparece as opções desejadas (**GET**, **POST**, **PUT**,**DELETE**) para todos os modelos do projeto.
 
-5. Para para a execução do projeto, basta executar o comando:
+5. Para parar a execução do projeto, basta executar o comando:
 
     `ctrl + c`
 
-# Arquitetura do projeto #
+## Testando o projeto ##
+1. Abra o terminal/cmd , acesse a pasta do projeto ( ***gatinhamisterio***) e a pasta  ***gm***
+
+2.  Execute o comando :
+
+    `mvn spring-boot:run`
+
+3. Repita o passo 1, sem fechar o primeiro terminal aberto e execute o comando:
+
+    `mvn test`
+
+Todos os testes existentes no projeto devem ser executados. No fim da execução dos testes, o terminal/cmd que está executando os testes pode ser encerrado normalmente.
+
+Para parar a execução do projeto no outro, basta executar o comando:
+
+    `ctrl + c`
+
+E encerrar o terminal/cmd.
+
+## Arquitetura do projeto ##
 O back-end do gatinha mistério é composto por 5 entidades principais:
 1. User
 2. Subscription
