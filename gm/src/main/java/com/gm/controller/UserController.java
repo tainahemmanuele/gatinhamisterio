@@ -83,7 +83,7 @@ public class UserController {
         if (userService.delete(id)) {
             return new ResponseEntity<String>("User has been deleted.", HttpStatus.OK);
         } else {
-            return new ResponseEntity<String>("Failed to delete.", HttpStatus.EXPECTATION_FAILED);
+            return new ResponseEntity<String>("Failed to delete. User does not exist.", HttpStatus.EXPECTATION_FAILED);
         }
     }
 
