@@ -42,11 +42,11 @@ public class GatinhamisterioApplication {
 			Box b1 = new Box("0","Caixa Agosto",80.0f,199.0f,10,prods);
 			Subscription s1 = new Subscription( SubscriptionType.DEFAULT,100.00, YearMonth.now(),b1);
 
+			orderRepository.save(new Order(u1,s1,1, DispatchStatus.WAITING, PaymentType.BOLETO,PaymentStatus.REQUESTED));
 			userRepository.save(new User("John Romero","john@gmail.com","123456",UserRole.ADMIN));
 			userRepository.save(new User("Jen Zee","jen@gmail.com","111222",UserRole.CLIENT));
-			userRepository.save(u1);
-			subscriptionRepository.save(s1);
-			//orderRepository.save(new Order(u1,s1,1, DispatchStatus.WAITING, PaymentType.BOLETO,PaymentStatus.REQUESTED));
+			//userRepository.save(u1);
+			//subscriptionRepository.save(s1);
 		};
 	}
 

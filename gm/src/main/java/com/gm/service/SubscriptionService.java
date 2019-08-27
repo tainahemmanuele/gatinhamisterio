@@ -1,7 +1,11 @@
 package com.gm.service;
 
+import com.gm.model.Order;
 import com.gm.model.Subscription;
+import com.gm.model.User;
+import com.gm.repository.OrderRepository;
 import com.gm.repository.SubscriptionRepository;
+import com.gm.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +15,12 @@ import java.util.Optional;
 
 @Service
 public class SubscriptionService {
-
+    @Autowired
+    private UserRepository userRepository;
     @Autowired
     private SubscriptionRepository subscriptionRepository;
+    @Autowired
+    private OrderRepository orderRepository;
 
     public Subscription getById(Long id) {
         Optional<Subscription> subscriptionData = subscriptionRepository.findById(id);
@@ -47,5 +54,13 @@ public class SubscriptionService {
     }
 
 
-
+    public List<User> findUserBySubscriptionId(Long id){
+        Iterable<Order> orderData = orderRepository.findAll();
+        List<User> users = new ArrayList<>();
+        for (Order o: orderData) {
+            if (o.getSubscription().getId() == id)
+                users.add(o.getUser());
+        }
+        return users;
+    }
 }

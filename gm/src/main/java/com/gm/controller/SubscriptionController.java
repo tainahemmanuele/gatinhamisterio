@@ -1,7 +1,9 @@
 package com.gm.controller;
 
 import com.gm.model.Subscription;
+import com.gm.model.User;
 import com.gm.service.SubscriptionService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,5 +51,11 @@ public class SubscriptionController {
         } else {
             return new ResponseEntity<String>("Failed to delete. Subscription does not exist.", HttpStatus.EXPECTATION_FAILED);
         }
+    }
+
+    @ApiOperation(value="Recebe usuários de uma subscription")
+    @GetMapping("/subscription/{id}/user")
+    public ResponseEntity<List<User>> userGetSubscriptions(@PathVariable("id") Long id){
+        return new ResponseEntity<List<User>>(subscriptionService.findUserBySubscriptionId(id),HttpStatus.OK);
     }
 }
