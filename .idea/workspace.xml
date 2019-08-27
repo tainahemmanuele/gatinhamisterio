@@ -3,10 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="2c03dd93-d31b-49ff-b8fd-8cf0f307d231" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/BoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/BoxController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/Box.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gm/src/test/java/com/gm/TestBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/test/java/com/gm/TestBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/test/java/com/gm/TestProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/test/java/com/gm/TestProduct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/test/java/com/gm/TestUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/test/java/com/gm/TestUser.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -45,7 +45,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="preferences.customizations" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -59,7 +59,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.TestProduct">
+  <component name="RunManager" selected="JUnit.TestProduct.testDeleteProductSuccess">
     <configuration name="GatinhamisterioApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.gm.GatinhamisterioApplication" />
       <module name="gatinhamisterio" />
@@ -88,6 +88,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TestBox.testGetBoxListSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="gatinhamisterio" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.gm.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.gm" />
+      <option name="MAIN_CLASS_NAME" value="com.gm.TestBox" />
+      <option name="METHOD_NAME" value="testGetBoxListSuccess" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TestProduct" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="gatinhamisterio" />
       <extension name="coverage">
@@ -103,7 +119,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestProduct.testGetProductListSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestProduct.testDeleteProductSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="gatinhamisterio" />
       <extension name="coverage">
         <pattern>
@@ -113,34 +129,19 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.gm" />
       <option name="MAIN_CLASS_NAME" value="com.gm.TestProduct" />
-      <option name="METHOD_NAME" value="testGetProductListSuccess" />
+      <option name="METHOD_NAME" value="testDeleteProductSuccess" />
       <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="gatinhamisterio" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.gm.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.gm" />
-      <option name="MAIN_CLASS_NAME" value="com.gm.TestUser" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestProduct" />
-        <item itemvalue="JUnit.TestProduct.testGetProductListSuccess" />
-        <item itemvalue="Application.GatinhamisterioApplication" />
+        <item itemvalue="JUnit.TestProduct.testDeleteProductSuccess" />
         <item itemvalue="JUnit.TestBox" />
-        <item itemvalue="JUnit.TestUser" />
+        <item itemvalue="JUnit.TestBox.testGetBoxListSuccess" />
+        <item itemvalue="Application.GatinhamisterioApplication" />
+        <item itemvalue="JUnit.TestProduct" />
       </list>
     </recent_temporary>
   </component>

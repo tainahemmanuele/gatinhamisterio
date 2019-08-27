@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
@@ -96,6 +97,14 @@ public class TestProduct {
         System.out.println(resultDel.getBody());
         Assert.assertEquals("Product has been deleted.", resultDel.getBody());
 
+        ResponseEntity<String> resultDel2;
+        try {
+            resultDel2 = restTemplate.exchange(new URI(baseUrl + product1.getId()), HttpMethod.DELETE, null, new ParameterizedTypeReference<String>() {
+            });
+            Assert.assertEquals("Failed to delete.Product does not exist.", resultDel2.getBody());
+        } catch (HttpClientErrorException e) {
+            Assert.assertEquals("Failed to delete.Product does not exist.", e.getResponseBodyAsString());
+        }
     }
 
 }

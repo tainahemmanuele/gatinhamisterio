@@ -48,6 +48,5 @@ public class TestUser {
 
         //Verify request succeed
         Assert.assertEquals(200, result.getStatusCodeValue());
-
     }
 }

@@ -22,7 +22,7 @@ public class BoxController {
         System.out.println("GETTING ALL BOXES...");
         List<Box> boxes = boxService.getAll();
         if (boxes.isEmpty())
-            return new ResponseEntity<List<Box>>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<List<Box>>(boxes,HttpStatus.OK);
         return new ResponseEntity<List<Box>>(boxes,HttpStatus.OK);
     }
 
