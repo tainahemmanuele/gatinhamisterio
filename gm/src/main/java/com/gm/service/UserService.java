@@ -2,15 +2,15 @@ package com.gm.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import com.gm.model.Order;
 import com.gm.model.Subscription;
 import com.gm.model.User;
-import com.gm.repository.SubscriptionRepository;
 import com.gm.repository.OrderRepository;
+import com.gm.repository.SubscriptionRepository;
 import com.gm.repository.UserRepository;
 import com.gm.util.UserRole;
+import com.gm.util.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
     @Autowired
     private UserRepository userRepository;
+    private Validator validator = new Validator();
     @Autowired
     private SubscriptionRepository subscriptionRepository;
     @Autowired
@@ -38,7 +39,7 @@ public class UserService {
 
     public User getById(Long id) {
         Optional<User> userData = userRepository.findById(id);
-        return userData.isPresent()? userData.get() : null;
+        return userData.isPresent() ? userData.get() : null;
     }
 
     public List<User> getByRole(UserRole role) {
@@ -46,20 +47,26 @@ public class UserService {
     }
 
     public User create(User user) {
-        return userRepository.save(user);
+        User userAux = validCreate(user);
+        if (userAux != null) {
+            return userRepository.save(user);
+        }
+        return userAux;
     }
 
     public User update(Long id, User user) {
         Optional<User> userData = userRepository.findById(id);
         if (userData.isPresent()) {
-            User savedUser = userData.get();
-            savedUser.setName(user.getName());
-            savedUser.setPassword(user.getPassword());
-            savedUser.setRole(user.getRole());
-            if (!savedUser.getEmail().equals(user.getEmail()) || savedUser.getId() != user.getId()) {
+            User savedUser = validUpdate(userData.get(), user);
+            if (savedUser != null) {
+                if (!savedUser.getEmail().equals(user.getEmail()) || savedUser.getId() != user.getId()) {
+                    return null;
+                } else {
+                    return userRepository.save(savedUser);
+                }
+            } else {
                 return null;
             }
-            return userRepository.save(savedUser);
         } else {
             return null;
         }
@@ -74,6 +81,61 @@ public class UserService {
         }
     }
 
+    private boolean userEmailExists(String email) {
+        Iterable<User> usersIterator = userRepository.findAll();
+        for (User user : usersIterator) {
+            if (user.getEmail().equals(email)) {
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+    private boolean userCPFExists(String CPF){
+        Iterable<User> usersIterator = userRepository.findAll();
+        for (User user : usersIterator) {
+            if (user.getCPF().equals(CPF)) {
+                return true;
+            }
+        }
+        return false;
+
+    }
+    private User validCreate(User user) {
+        if (validator.validString(user.getName()) && validator.validEmail(user.getEmail())
+                && validator.validPassword(user.getPassword()) && validator.validCPF(user.getCPF())) {
+            if (!(userEmailExists(user.getEmail()) && userCPFExists(user.getCPF()))) {
+                user.setName(user.getName());
+                user.setPassword(user.getPassword());
+                user.setRole(user.getRole());
+                user.setEmail(user.getEmail());
+                user.setCpf(user.getCPF());
+                return user;
+            } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
+
+    }
+
+    private User validUpdate(User user, User userUpdate) {
+        if (validator.validString(userUpdate.getName()) && validator.validEmail(userUpdate.getEmail())
+                && validator.validPassword(userUpdate.getPassword())) {
+            user.setName(userUpdate.getName());
+            user.setPassword(userUpdate.getPassword());
+            user.setRole(userUpdate.getRole());
+            user.setEmail(userUpdate.getEmail());
+            user.setCpf(userUpdate.getCPF());
+            return user;
+
+        } else {
+            return null;
+        }
+
+    }
     public List<Subscription> findSubscriptionByUserId(Long id){
         Iterable<Order> orderData = orderRepository.findAll();
         List<Subscription> subs = new ArrayList<>();
