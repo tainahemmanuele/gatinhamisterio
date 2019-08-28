@@ -48,6 +48,7 @@ public class Validator {
         }
     }
 
+    //metodo do repositorio publico: https://github.com/feharaujo/Cpf-Validator/blob/master/src/com/fearaujo/CpfValidator.java
     public  boolean validCPF(String CPF) {
         if (CPF == null)
             return false;

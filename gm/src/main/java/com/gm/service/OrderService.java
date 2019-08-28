@@ -24,7 +24,12 @@ public class OrderService {
     }
 
     public Order create(Order order){
-        return orderRepository.save(order);
+        Order ordexAux = auxCreate(order);
+        if (ordexAux != null) {
+            return orderRepository.save(order);
+        } else{
+            return null;
+        }
     }
 
     public boolean delete(Long id){
@@ -63,4 +68,13 @@ public class OrderService {
         }
     }
 
+    private Order auxCreate(Order order){
+        Iterable<Order> orderIterator = orderRepository.findAll();
+        for (Order auxOrder : orderIterator){
+            if(auxOrder.getUser().equals(order.getUser()) && auxOrder.getSubscription().getType().equals(order.getSubscription().getType())){
+                return null;
+            }
+        }
+        return order;
+    }
 }
