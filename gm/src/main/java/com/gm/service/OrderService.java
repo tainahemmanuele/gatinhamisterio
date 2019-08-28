@@ -24,7 +24,7 @@ public class OrderService {
     }
 
     public Order create(Order order){
-        Order ordexAux = auxCreate(order);
+        Order ordexAux = validCreate(order);
         if (ordexAux != null) {
             return orderRepository.save(order);
         } else{
@@ -68,7 +68,7 @@ public class OrderService {
         }
     }
 
-    private Order auxCreate(Order order){
+    private Order validCreate(Order order){
         Iterable<Order> orderIterator = orderRepository.findAll();
         for (Order auxOrder : orderIterator){
             if(auxOrder.getUser().equals(order.getUser()) && auxOrder.getSubscription().getType().equals(order.getSubscription().getType())){

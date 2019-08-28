@@ -41,7 +41,7 @@ public class BoxService {
 
     public Box create(Box box){
         Set<Product> products = box.getProducts();
-        Box boxAux = auxCreate(box);
+        Box boxAux = validCreate(box);
         if(boxAux != null) {
             return boxRepository.save(boxAux);
         }else{
@@ -52,7 +52,7 @@ public class BoxService {
     public Box update(Long id, Box boxUpdate){
         Optional<Box> boxData = boxRepository.findById(id);
         if(boxData.isPresent()){
-            Box box = auxUpdate(boxData.get(), boxUpdate);
+            Box box = validUpdate(boxData.get(), boxUpdate);
             if(box != null) {
                 return boxRepository.save(box);
             }else{
@@ -73,7 +73,7 @@ public class BoxService {
         }
     }
 
-    private boolean searchBoxList(String barcode) {
+    private boolean boxBarcodeExists(String barcode) {
         Iterable<Box> boxIterator = boxRepository.findAll();
         for (Box box : boxIterator) {
             if (box.getBarcode().equals(barcode)) {
@@ -82,10 +82,10 @@ public class BoxService {
         }
         return false;
     }
-    private Box auxCreate(Box box){
+    private Box validCreate(Box box){
         if(validator.validString(box.getName()) && validator.validString(box.getBarcode()) && validator.validValue(box.getCost())
         && validator.validValue(box.getPrice()) && validator.validValueInt(box.getStock()) && validator.validListProduct(box.getProducts())){
-            if (! searchBoxList(box.getBarcode())){
+            if (! boxBarcodeExists(box.getBarcode())){
                 box.setName(box.getName());
                 box.setProducts(box.getProducts());
                 box.setBarcode(box.getBarcode());
@@ -101,7 +101,7 @@ public class BoxService {
         }
     }
 
-    private Box auxUpdate(Box box, Box boxUpdate){
+    private Box validUpdate(Box box, Box boxUpdate){
         if(validator.validString(boxUpdate.getName()) && validator.validString(boxUpdate.getBarcode()) && validator.validValue(boxUpdate.getCost())
                 && validator.validValue(boxUpdate.getPrice()) && validator.validValueInt(boxUpdate.getStock()) && validator.validListProduct(boxUpdate.getProducts())){
                 box.setName(boxUpdate.getName());

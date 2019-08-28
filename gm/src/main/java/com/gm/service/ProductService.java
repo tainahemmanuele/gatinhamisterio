@@ -28,7 +28,7 @@ public class ProductService {
     }
 
     public Product create(Product product) {
-        Product productAux = auxCreate(product);
+        Product productAux = validCreate(product);
         if(productAux != null){
             return productRepository.save(productAux);
         }
@@ -38,7 +38,7 @@ public class ProductService {
     public Product update(Long id, Product productUpdate) {
         Optional<Product> productData = productRepository.findById(id);
         if (productData.isPresent()) {
-            Product product = auxUpdate(productData.get(), productUpdate);
+            Product product = validUpdate(productData.get(), productUpdate);
             if(product != null){
                 return productRepository.save(product);
             } else{
@@ -72,7 +72,7 @@ public class ProductService {
     }
 
 
-    private boolean searchProductList(String barcode) {
+    private boolean productBarcodeExists(String barcode) {
         Iterable<Product> productsIterator = productRepository.findAll();
         for (Product product : productsIterator) {
             if (product.getBarcode().equals(barcode)) {
@@ -82,12 +82,12 @@ public class ProductService {
         return false;
     }
 
-    private Product auxCreate(Product product){
+    private Product validCreate(Product product){
         if ((validator.validString(product.getName()) && validator.validString(product.getBarcode()) &&
                 validator.validString(product.getBrand()) && validator.validString(product.getDistributor())
                 && validator.validValue(product.getCost()) && validator.validValue(product.getPrice())
-                && validator.validValueInt(product.getStock()) )) {
-            if (!searchProductList(product.getBarcode())) {
+                && validator.validValueInt(product.getStock()) && validator.validProductType(product.getType()) )) {
+            if (!productBarcodeExists(product.getBarcode())) {
                 product.setName(product.getName());
                 product.setBarcode(product.getBarcode());
                 product.setBrand(product.getBrand());
@@ -105,11 +105,11 @@ public class ProductService {
         }
     }
 
-    private Product auxUpdate(Product product, Product productUpdate){
+    private Product validUpdate(Product product, Product productUpdate){
         if ((validator.validString(productUpdate.getName()) && validator.validString(productUpdate.getBarcode()) &&
                 validator.validString(productUpdate.getBrand()) && validator.validString(productUpdate.getDistributor())
                 && validator.validValue(productUpdate.getCost()) && validator.validValue(productUpdate.getPrice())
-                && validator.validValueInt(productUpdate.getStock()) )) {
+                && validator.validValueInt(productUpdate.getStock()) && validator.validProductType(productUpdate.getType()))) {
                 product.setName(productUpdate.getName());
                 product.setBarcode(productUpdate.getBarcode());
                 product.setBrand(productUpdate.getBrand());

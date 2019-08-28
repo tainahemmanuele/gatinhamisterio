@@ -47,7 +47,7 @@ public class UserService {
     }
 
     public User create(User user) {
-        User userAux = auxCreate(user);
+        User userAux = validCreate(user);
         if (userAux != null) {
             return userRepository.save(user);
         }
@@ -57,7 +57,7 @@ public class UserService {
     public User update(Long id, User user) {
         Optional<User> userData = userRepository.findById(id);
         if (userData.isPresent()) {
-            User savedUser = auxUpdate(userData.get(), user);
+            User savedUser = validUpdate(userData.get(), user);
             if (savedUser != null) {
                 if (!savedUser.getEmail().equals(user.getEmail()) || savedUser.getId() != user.getId()) {
                     return null;
@@ -81,7 +81,7 @@ public class UserService {
         }
     }
 
-    private boolean searchUserEmail(String email) {
+    private boolean userEmailExists(String email) {
         Iterable<User> usersIterator = userRepository.findAll();
         for (User user : usersIterator) {
             if (user.getEmail().equals(email)) {
@@ -92,7 +92,7 @@ public class UserService {
 
     }
 
-    private boolean searchUserCPF(String CPF){
+    private boolean userCPFExists(String CPF){
         Iterable<User> usersIterator = userRepository.findAll();
         for (User user : usersIterator) {
             if (user.getCPF().equals(CPF)) {
@@ -102,10 +102,10 @@ public class UserService {
         return false;
 
     }
-    private User auxCreate(User user) {
+    private User validCreate(User user) {
         if (validator.validString(user.getName()) && validator.validEmail(user.getEmail())
                 && validator.validPassword(user.getPassword()) && validator.validCPF(user.getCPF())) {
-            if (!(searchUserEmail(user.getEmail()) && searchUserCPF(user.getCPF()))) {
+            if (!(userEmailExists(user.getEmail()) && userCPFExists(user.getCPF()))) {
                 user.setName(user.getName());
                 user.setPassword(user.getPassword());
                 user.setRole(user.getRole());
@@ -121,7 +121,7 @@ public class UserService {
 
     }
 
-    private User auxUpdate(User user, User userUpdate) {
+    private User validUpdate(User user, User userUpdate) {
         if (validator.validString(userUpdate.getName()) && validator.validEmail(userUpdate.getEmail())
                 && validator.validPassword(userUpdate.getPassword())) {
             user.setName(userUpdate.getName());

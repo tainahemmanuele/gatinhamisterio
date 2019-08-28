@@ -6,6 +6,7 @@ import com.gm.model.User;
 import com.gm.repository.OrderRepository;
 import com.gm.repository.SubscriptionRepository;
 import com.gm.repository.UserRepository;
+import com.gm.util.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,8 @@ public class SubscriptionService {
     private SubscriptionRepository subscriptionRepository;
     @Autowired
     private OrderRepository orderRepository;
+
+    private Validator validator = new Validator();
 
     public Subscription getById(Long id) {
         Optional<Subscription> subscriptionData = subscriptionRepository.findById(id);
@@ -50,7 +53,12 @@ public class SubscriptionService {
         }
     }
     public Subscription create(Subscription subscription) {
-        return subscriptionRepository.save(subscription);
+        Subscription subscriptionAux = validCreate(subscription);
+        if (subscriptionAux != null) {
+            return subscriptionRepository.save(subscription);
+        } else{
+            return null;
+        }
     }
 
 
@@ -65,4 +73,17 @@ public class SubscriptionService {
     }
 
 
+    public Subscription validCreate(Subscription subscription){
+        if(validator.validSubscriptionType(subscription.getType()) && validator.validListProductAux(subscription.getBox().getProducts())
+        && validator.validYearMonthSubscription(subscription.getSubscriptionYearMonth()) && validator.validValue(subscription.getPrice())){
+            subscription.setBox(subscription.getBox());
+            subscription.setPrice(subscription.getPrice());
+            subscription.setType(subscription.getType());
+            subscription.setSubscriptionYearMonth(subscription.getSubscriptionYearMonth());
+            return subscription;
+
+        }else{
+            return null;
+        }
+    }
 }
