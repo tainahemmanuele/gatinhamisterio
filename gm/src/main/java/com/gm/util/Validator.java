@@ -100,6 +100,23 @@ public class Validator {
     }
 
     public boolean validListProduct(Set<Product> products){
-        return products.size() >= 0;
+        return products.size() >= 0 && validListProductAux(products);
+    }
+
+    public boolean validListProductAux(Set<Product> products){
+        boolean status = true;
+        for (Product product : products) {
+            if (validString(product.getName()) && validString(product.getBarcode()) &&
+                    validString(product.getBrand()) && validString(product.getDistributor())
+                    && validValue(product.getCost()) && validValue(product.getPrice())
+                    && validValueInt(product.getStock())) {
+                status = true;
+
+            }else{
+                status = false;
+                break;
+            }
+        }
+        return status;
     }
 }
