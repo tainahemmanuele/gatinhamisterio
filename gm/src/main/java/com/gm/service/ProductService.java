@@ -39,7 +39,6 @@ public class ProductService {
         Optional<Product> productData = productRepository.findById(id);
         if (productData.isPresent()) {
             Product product = auxUpdate(productData.get(), productUpdate);
-            System.out.println(product!=null);
             if(product != null){
                 return productRepository.save(product);
             } else{

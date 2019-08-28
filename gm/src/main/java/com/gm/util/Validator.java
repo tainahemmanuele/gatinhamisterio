@@ -1,6 +1,9 @@
 package com.gm.util;
 
+import com.gm.model.Product;
+
 import java.util.InputMismatchException;
+import java.util.Set;
 
 public class Validator {
 
@@ -96,4 +99,7 @@ public class Validator {
         }
     }
 
+    public boolean validListProduct(Set<Product> products){
+        return products.size() >= 0;
+    }
 }
