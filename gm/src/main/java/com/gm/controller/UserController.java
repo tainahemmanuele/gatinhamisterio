@@ -1,5 +1,6 @@
 package com.gm.controller;
 
+import com.gm.model.Subscription;
 import com.gm.model.User;
 import com.gm.service.UserService;
 import com.gm.util.UserRole;
@@ -110,4 +111,12 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+
+    @ApiOperation(value="Recebe subscriptions de um usuário")
+    @GetMapping("/user/{id}/subscription")
+    public ResponseEntity<List<Subscription>> userGetSubscriptions(@PathVariable("id") Long id){
+        return new ResponseEntity<List<Subscription>>(userService.findSubscriptionByUserId(id),HttpStatus.OK);
+    }
+
 }
