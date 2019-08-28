@@ -85,14 +85,25 @@ public class UserService {
 
     }
 
+    private boolean searchUserCPF(String CPF){
+        Iterable<User> usersIterator = userRepository.findAll();
+        for (User user : usersIterator) {
+            if (user.getCPF().equals(CPF)) {
+                return true;
+            }
+        }
+        return false;
+
+    }
     private User auxCreate(User user) {
         if (validator.validString(user.getName()) && validator.validEmail(user.getEmail())
-                && validator.validPassword(user.getPassword())) {
-            if (!searchUserEmail(user.getEmail())) {
+                && validator.validPassword(user.getPassword()) && validator.validCPF(user.getCPF())) {
+            if (!(searchUserEmail(user.getEmail()) && searchUserCPF(user.getCPF()))) {
                 user.setName(user.getName());
                 user.setPassword(user.getPassword());
                 user.setRole(user.getRole());
                 user.setEmail(user.getEmail());
+                user.setCpf(user.getCPF());
                 return user;
             } else {
                 return null;
@@ -109,7 +120,8 @@ public class UserService {
             user.setName(userUpdate.getName());
             user.setPassword(userUpdate.getPassword());
             user.setRole(userUpdate.getRole());
-            user.setEmail(user.getEmail());
+            user.setEmail(userUpdate.getEmail());
+            user.setCpf(userUpdate.getCPF());
             return user;
 
         } else {

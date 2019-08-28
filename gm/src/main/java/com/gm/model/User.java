@@ -1,4 +1,5 @@
 package com.gm.model;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.gm.util.UserRole;
@@ -12,7 +13,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "user_data")
-public class User implements Serializable{
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -28,54 +29,83 @@ public class User implements Serializable{
     @Column(name = "password")
     private String password;
 
+    @Column(name = "CPF", unique = true)
+    private String CPF;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
     private UserRole role;
 
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "subscription")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "subscription")
     private Set<Order> orders;
 
-    public User(){}
-    public User(String name, String email, String password, UserRole role) {
+    public User() {
+    }
+
+    public User(String name, String email, String password, String CPF, UserRole role) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.role = role;
+        this.CPF = CPF;
     }
 
     public long getId() {
         return id;
     }
+
     public void setId(long id) {
         this.id = id;
     }
+
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
+
     public String getPassword() {
         return password;
     }
+
     public void setPassword(String password) {
         this.password = password;
     }
+
     public UserRole getRole() {
         return role;
     }
+
     public void setRole(UserRole role) {
         this.role = role;
     }
-    public Set<Order> getOrders() {return orders;}
-    public void setOrders(Set<Order> orders) {this.orders = orders;}
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
+
+    public String getCPF() {
+        return CPF;
+    }
+
+    public void setCpf(String CPF) {
+        this.CPF = CPF;
+    }
 
     @Override
     public int hashCode() {
@@ -87,6 +117,7 @@ public class User implements Serializable{
         result = prime * result + ((role == null) ? 0 : role.hashCode());
         return result;
     }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -112,6 +143,7 @@ public class User implements Serializable{
             return false;
         return true;
     }
+
     @Override
     public String toString() {
         return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", role=" + role
