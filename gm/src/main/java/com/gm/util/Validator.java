@@ -31,6 +31,15 @@ public class Validator {
     }
 
 
+    public boolean validPassword(String password){
+        if(password.equals("")){
+            return false;
+        }else if(password.startsWith(" ")){
+            return false;
+        }else{
+            return true;
+        }
+    }
 
 
 

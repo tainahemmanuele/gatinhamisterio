@@ -28,7 +28,7 @@ public class ProductService {
     }
 
     public Product create(Product product) {
-        Product productAux = auxUpdateCreate(product);
+        Product productAux = auxCreate(product);
         if(productAux != null){
             return productRepository.save(productAux);
         }
@@ -38,7 +38,8 @@ public class ProductService {
     public Product update(Long id, Product productUpdate) {
         Optional<Product> productData = productRepository.findById(id);
         if (productData.isPresent()) {
-            Product product = auxUpdateCreate(productData.get());
+            Product product = auxUpdate(productData.get(), productUpdate);
+            System.out.println(product!=null);
             if(product != null){
                 return productRepository.save(product);
             } else{
@@ -82,7 +83,7 @@ public class ProductService {
         return false;
     }
 
-    private Product auxUpdateCreate(Product product){
+    private Product auxCreate(Product product){
         if ((validator.validString(product.getName()) && validator.validString(product.getBarcode()) &&
                 validator.validString(product.getBrand()) && validator.validString(product.getDistributor())
                 && validator.validValue(product.getCost()) && validator.validValue(product.getPrice())
@@ -95,6 +96,7 @@ public class ProductService {
                 product.setCost(product.getCost());
                 product.setPrice(product.getPrice());
                 product.setStock(product.getStock());
+                product.setType(product.getType());
                 return product;
             }else {
                 return null; //posteriormente tratar isso com exceção
@@ -104,4 +106,23 @@ public class ProductService {
         }
     }
 
+    private Product auxUpdate(Product product, Product productUpdate){
+        if ((validator.validString(productUpdate.getName()) && validator.validString(productUpdate.getBarcode()) &&
+                validator.validString(productUpdate.getBrand()) && validator.validString(productUpdate.getDistributor())
+                && validator.validValue(productUpdate.getCost()) && validator.validValue(productUpdate.getPrice())
+                && validator.validValueInt(productUpdate.getStock()) )) {
+                product.setName(productUpdate.getName());
+                product.setBarcode(productUpdate.getBarcode());
+                product.setBrand(productUpdate.getBrand());
+                product.setDistributor(productUpdate.getDistributor());
+                product.setCost(productUpdate.getCost());
+                product.setPrice(productUpdate.getPrice());
+                product.setStock(productUpdate.getStock());
+                product.setType(productUpdate.getType());
+                return product;
+
+        }else {
+            return null; //posteriormente tratar isso com exceção
+        }
+    }
 }
