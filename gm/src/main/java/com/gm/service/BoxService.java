@@ -4,6 +4,7 @@ import com.gm.model.Box;
 import com.gm.model.Product;
 import com.gm.repository.BoxRepository;
 import com.gm.util.Validator;
+import com.gm.util.ValidatorException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +40,7 @@ public class BoxService {
         }
     }
 
-    public Box create(Box box){
+    public Box create(Box box)  throws ValidatorException{
         Set<Product> products = box.getProducts();
         Box boxAux = validCreate(box);
         if(boxAux != null) {
@@ -49,7 +50,7 @@ public class BoxService {
         }
     }
 
-    public Box update(Long id, Box boxUpdate){
+    public Box update(Long id, Box boxUpdate)  throws ValidatorException{
         Optional<Box> boxData = boxRepository.findById(id);
         if(boxData.isPresent()){
             Box box = validUpdate(boxData.get(), boxUpdate);
@@ -82,7 +83,7 @@ public class BoxService {
         }
         return false;
     }
-    private Box validCreate(Box box){
+    private Box validCreate(Box box)  throws ValidatorException{
         if(validator.validString(box.getName()) && validator.validString(box.getBarcode()) && validator.validValue(box.getCost())
         && validator.validValue(box.getPrice()) && validator.validValueInt(box.getStock()) && validator.validListProduct(box.getProducts())){
             if (! boxBarcodeExists(box.getBarcode())){
@@ -94,14 +95,14 @@ public class BoxService {
                 box.setStock(box.getStock());
                 return box;
             }else{
-                return null;
+                throw new ValidatorException("Barcode already exists");
             }
         }else{
             return null;
         }
     }
 
-    private Box validUpdate(Box box, Box boxUpdate){
+    private Box validUpdate(Box box, Box boxUpdate)  throws ValidatorException {
         if(validator.validString(boxUpdate.getName()) && validator.validString(boxUpdate.getBarcode()) && validator.validValue(boxUpdate.getCost())
                 && validator.validValue(boxUpdate.getPrice()) && validator.validValueInt(boxUpdate.getStock()) && validator.validListProduct(boxUpdate.getProducts())){
                 box.setName(boxUpdate.getName());

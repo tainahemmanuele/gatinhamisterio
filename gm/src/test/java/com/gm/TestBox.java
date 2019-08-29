@@ -51,7 +51,7 @@ public class TestBox {
         prods.add(new Product("101","Agua Micelar",30.0f,30.0f,10,"asdr","Garnfdier", ProductType.AGUA_MICELAR));
         prods.add(new Product("102","Shampoo",40.0f,60.0f,10,"fdfasr","Garnisser", ProductType.RIMEL));
         prods.add(new Product("103","Pó de Arroz",16.0f,30.0f,10,"easfier","Garanier", ProductType.PO_FACIAL));
-        Box box = new Box("0","Caixa Setembro",80.0f,199.0f,10,prods);
+        Box box = new Box("502","Caixa Setembro",80.0f,199.0f,10,prods);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -79,9 +79,14 @@ public class TestBox {
 
         final String baseUrl = "http://localhost:" + 8080 + "/box/";
         URI uri = new URI(baseUrl);
+        Set<Product> prods = new HashSet<Product>();
+        prods.add(new Product("100","Batom",20.0f,30.0f,10,"Garnier","Garnier", ProductType.BATOM));
+        prods.add(new Product("101","Agua Micelar",30.0f,30.0f,10,"asdr","Garnfdier", ProductType.AGUA_MICELAR));
+        prods.add(new Product("102","Shampoo",40.0f,60.0f,10,"fdfasr","Garnisser", ProductType.RIMEL));
+        prods.add(new Product("103","Pó de Arroz",16.0f,30.0f,10,"easfier","Garanier", ProductType.PO_FACIAL));
 
         String barcode = "1234566";
-        Box box = new Box(barcode,"Caixa",100.0f,150.0f,1,new HashSet<Product>());
+        Box box = new Box(barcode,"Caixa",100.0f,150.0f,1,prods);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);

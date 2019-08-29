@@ -3,6 +3,7 @@ package com.gm.service;
 import com.gm.model.Product;
 import com.gm.repository.ProductRepository;
 import com.gm.util.Validator;
+import com.gm.util.ValidatorException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +28,7 @@ public class ProductService {
         return listProduct;
     }
 
-    public Product create(Product product) {
+    public Product create(Product product)  throws ValidatorException{
         Product productAux = validCreate(product);
         if(productAux != null){
             return productRepository.save(productAux);
@@ -35,7 +36,7 @@ public class ProductService {
         return productAux;
     }
 
-    public Product update(Long id, Product productUpdate) {
+    public Product update(Long id, Product productUpdate)  throws ValidatorException{
         Optional<Product> productData = productRepository.findById(id);
         if (productData.isPresent()) {
             Product product = validUpdate(productData.get(), productUpdate);
@@ -82,7 +83,7 @@ public class ProductService {
         return false;
     }
 
-    private Product validCreate(Product product){
+    private Product validCreate(Product product) throws ValidatorException {
         if ((validator.validString(product.getName()) && validator.validString(product.getBarcode()) &&
                 validator.validString(product.getBrand()) && validator.validString(product.getDistributor())
                 && validator.validValue(product.getCost()) && validator.validValue(product.getPrice())
@@ -98,14 +99,14 @@ public class ProductService {
                 product.setType(product.getType());
                 return product;
             }else {
-                return null; //posteriormente tratar isso com exceção
+                throw new ValidatorException("Barcode already exists");
             }
         }else {
             return null; //posteriormente tratar isso com exceção
         }
     }
 
-    private Product validUpdate(Product product, Product productUpdate){
+    private Product validUpdate(Product product, Product productUpdate)  throws ValidatorException{
         if ((validator.validString(productUpdate.getName()) && validator.validString(productUpdate.getBarcode()) &&
                 validator.validString(productUpdate.getBrand()) && validator.validString(productUpdate.getDistributor())
                 && validator.validValue(productUpdate.getCost()) && validator.validValue(productUpdate.getPrice())

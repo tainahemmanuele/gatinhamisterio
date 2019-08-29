@@ -2,6 +2,7 @@ package com.gm.controller;
 
 import com.gm.model.Product;
 import com.gm.service.ProductService;
+import com.gm.util.ValidatorException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +39,7 @@ public class ProductController {
     }
 
     @PostMapping("/product")
-    public ResponseEntity<Product> createProduct(@Valid @RequestBody Product product){
+    public ResponseEntity<Product> createProduct(@Valid @RequestBody Product product) throws ValidatorException {
         System.out.println("CREATE PRODUCT " + product.getName() + "...");
         Product productCreated = productService.create(product);
         if (productCreated == null)
@@ -48,7 +49,7 @@ public class ProductController {
     }
 
     @PutMapping("/product/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable("id") Long id, @RequestBody Product product) {
+    public ResponseEntity<Product> updateProduct(@PathVariable("id") Long id, @RequestBody Product product)  throws ValidatorException{
         System.out.println("UPDATING PRODUCT " + id + "...");
 
         Product updatedProduct = productService.update(id, product);

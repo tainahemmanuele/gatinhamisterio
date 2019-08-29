@@ -3,6 +3,7 @@ package com.gm.controller;
 import com.gm.model.Subscription;
 import com.gm.model.User;
 import com.gm.service.SubscriptionService;
+import com.gm.util.ValidatorException;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,7 +35,7 @@ public class SubscriptionController {
     }
 
     @PostMapping("/subscription")
-    public ResponseEntity<Subscription> createSubscription(@Valid @RequestBody Subscription subscription){
+    public ResponseEntity<Subscription> createSubscription(@Valid @RequestBody Subscription subscription)  throws ValidatorException {
         System.out.println("CREATE SUBSCRIPTION " + subscription.toString());
         Subscription newSub = subscriptionService.create(subscription);
         if (newSub == null)

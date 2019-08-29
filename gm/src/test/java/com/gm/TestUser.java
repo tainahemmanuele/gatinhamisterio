@@ -45,7 +45,7 @@ public class TestUser {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        User u1 = new User("Peggy Olson","peggy@gmail.com","2569774","52091859079", UserRole.CLIENT);
+        User u1 = new User("Post Olson","Post@gmail.com","2569774","96958852095", UserRole.CLIENT);
         final String baseUrl = "http://localhost:" + 8080 + "/user";
         URI uri = new URI(baseUrl);
 
@@ -62,7 +62,7 @@ public class TestUser {
     public void testDeleteUserSuccess() throws URISyntaxException {
         RestTemplate restTemplate = new RestTemplate();
 
-        User u1 = new User("Don Draper","don@gmail.com","scpdcgc", "76351903009",UserRole.CLIENT);
+        User u1 = new User("Delete Draper","delete@gmail.com","scpdcgc", "52111375071",UserRole.CLIENT);
         final String baseUrl = "http://localhost:" + 8080 + "/user/";
         URI uri = new URI(baseUrl);
 
