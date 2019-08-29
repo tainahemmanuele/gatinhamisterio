@@ -37,7 +37,7 @@ public class User implements Serializable {
     private UserRole role;
 
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "subscription")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "subscription",orphanRemoval = true)
     private Set<Order> orders;
 
     public User() {
@@ -49,6 +49,16 @@ public class User implements Serializable {
         this.password = password;
         this.role = role;
         this.CPF = CPF;
+    }
+
+    public User(User user) {
+        this.id = user.id;
+        this.name = user.name;
+        this.email = user.email;
+        this.password = user.password;
+        this.CPF = user.CPF;
+        this.role = user.role;
+        this.orders = user.orders;
     }
 
     public long getId() {
