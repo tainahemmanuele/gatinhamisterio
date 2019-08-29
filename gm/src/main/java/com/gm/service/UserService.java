@@ -11,6 +11,7 @@ import com.gm.repository.SubscriptionRepository;
 import com.gm.repository.UserRepository;
 import com.gm.util.UserRole;
 import com.gm.util.Validator;
+import com.gm.util.ValidatorException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,7 +47,7 @@ public class UserService {
         return userRepository.findByRole(role);
     }
 
-    public User create(User user) {
+    public User create(User user)  throws ValidatorException{
         User userAux = validCreate(user);
         if (userAux != null) {
             return userRepository.save(user);
@@ -54,7 +55,7 @@ public class UserService {
         return userAux;
     }
 
-    public User update(Long id, User user) {
+    public User update(Long id, User user)  throws ValidatorException {
         Optional<User> userData = userRepository.findById(id);
         if (userData.isPresent()) {
             User savedUser = validUpdate(userData.get(), user);
@@ -89,7 +90,6 @@ public class UserService {
             }
         }
         return false;
-
     }
 
     private boolean userCPFExists(String CPF){
@@ -102,7 +102,7 @@ public class UserService {
         return false;
 
     }
-    private User validCreate(User user) {
+    private User validCreate(User user)  throws ValidatorException {
         if (validator.validString(user.getName()) && validator.validEmail(user.getEmail())
                 && validator.validPassword(user.getPassword()) && validator.validCPF(user.getCPF())) {
             if (!(userEmailExists(user.getEmail()) && userCPFExists(user.getCPF()))) {
@@ -113,7 +113,7 @@ public class UserService {
                 user.setCpf(user.getCPF());
                 return user;
             } else {
-                return null;
+                throw new ValidatorException("Email alread exists or CPF already is being used");
             }
         } else {
             return null;
@@ -121,7 +121,7 @@ public class UserService {
 
     }
 
-    private User validUpdate(User user, User userUpdate) {
+    private User validUpdate(User user, User userUpdate)  throws ValidatorException{
         if (validator.validString(userUpdate.getName()) && validator.validEmail(userUpdate.getEmail())
                 && validator.validPassword(userUpdate.getPassword())) {
             user.setName(userUpdate.getName());
@@ -132,7 +132,7 @@ public class UserService {
             return user;
 
         } else {
-            return null;
+            throw new ValidatorException("Email alread exists or CPF already is being used");
         }
 
     }

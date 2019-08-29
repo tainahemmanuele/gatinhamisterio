@@ -2,12 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2c03dd93-d31b-49ff-b8fd-8cf0f307d231" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/util/ValidatorException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/GatinhamisterioApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/GatinhamisterioApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/BoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/BoxController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/ProductController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/SubscriptionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/SubscriptionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/service/BoxService.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/service/BoxService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/service/ProductService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/service/SubscriptionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/service/SubscriptionService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/util/Validator.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/util/Validator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/test/java/com/gm/TestBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/test/java/com/gm/TestBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/test/java/com/gm/TestOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/test/java/com/gm/TestOrder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/test/java/com/gm/TestUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/test/java/com/gm/TestUser.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -60,7 +70,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.GatinhamisterioApplication">
+  <component name="RunManager" selected="JUnit.TestBox.testPostBoxSuccess">
     <configuration name="GatinhamisterioApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.gm.GatinhamisterioApplication" />
       <module name="gatinhamisterio" />
@@ -74,7 +84,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestBox" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestBox.testPostBoxSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="gatinhamisterio" />
       <extension name="coverage">
         <pattern>
@@ -84,22 +94,8 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.gm" />
       <option name="MAIN_CLASS_NAME" value="com.gm.TestBox" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestOrder" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="gatinhamisterio" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.gm.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.gm" />
-      <option name="MAIN_CLASS_NAME" value="com.gm.TestOrder" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="METHOD_NAME" value="testPostBoxSuccess" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -120,7 +116,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestSubscription" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestUser.testDeleteUserSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="gatinhamisterio" />
       <extension name="coverage">
         <pattern>
@@ -129,8 +125,23 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.gm" />
-      <option name="MAIN_CLASS_NAME" value="com.gm.TestSubscription" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="com.gm.TestUser" />
+      <option name="METHOD_NAME" value="testDeleteUserSuccess" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="com.gm in gatinhamisterio" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="gatinhamisterio" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.gm.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.gm" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -138,10 +149,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.GatinhamisterioApplication" />
-        <item itemvalue="JUnit.TestOrder" />
+        <item itemvalue="JUnit.TestBox.testPostBoxSuccess" />
+        <item itemvalue="JUnit.com.gm in gatinhamisterio" />
+        <item itemvalue="JUnit.TestUser.testDeleteUserSuccess" />
         <item itemvalue="JUnit.TestOrder.testPostOrderSuccess" />
-        <item itemvalue="JUnit.TestSubscription" />
-        <item itemvalue="JUnit.TestBox" />
       </list>
     </recent_temporary>
   </component>

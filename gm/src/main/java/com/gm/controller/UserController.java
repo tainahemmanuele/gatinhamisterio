@@ -1,9 +1,13 @@
 package com.gm.controller;
 
+import com.gm.model.Order;
 import com.gm.model.Subscription;
 import com.gm.model.User;
+import com.gm.service.OrderService;
+import com.gm.service.SubscriptionService;
 import com.gm.service.UserService;
 import com.gm.util.UserRole;
+import com.gm.util.ValidatorException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
@@ -16,12 +20,17 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 @Api(value = "API REST de Usuário")
 @RestController
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private SubscriptionService subscriptionService;
+    @Autowired
+    private OrderService orderService;
 
     @ApiOperation(value="Retorna uma lista de Usuários")
     @GetMapping("/user")
@@ -54,7 +63,7 @@ public class UserController {
 
     @ApiOperation(value="Cria um novo usuário")
     @PostMapping("/user")
-    public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
+    public ResponseEntity<User> createUser(@Valid @RequestBody User user)  throws ValidatorException {
         System.out.println("CREATE USER " + user.getName() + "...");
         User userCreated = userService.create(user);
         if (userCreated != null){
@@ -67,7 +76,7 @@ public class UserController {
 
     @ApiOperation(value="Atualiza um usuário")
     @PutMapping("/user/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable("id") Long id, @RequestBody User user) {
+    public ResponseEntity<User> updateUser(@PathVariable("id") Long id, @RequestBody User user)  throws ValidatorException{
         User updatedUser = userService.update(id, user);
         if(updatedUser != null) {
             return new ResponseEntity<User>(updatedUser, HttpStatus.OK);
@@ -117,6 +126,22 @@ public class UserController {
     @GetMapping("/user/{id}/subscription")
     public ResponseEntity<List<Subscription>> userGetSubscriptions(@PathVariable("id") Long id){
         return new ResponseEntity<List<Subscription>>(userService.findSubscriptionByUserId(id),HttpStatus.OK);
+    }
+
+    @ApiOperation(value="Cria uma nova order")
+    @PostMapping("/user/{uid}/subscription/{sid}")
+    public ResponseEntity<Order> userPostOrder(@PathVariable("uid") Long uid,@PathVariable("sid") Long sid, @Valid @RequestBody Order order) throws ValidatorException{
+        User user = userService.getById(uid);
+        Subscription sub = subscriptionService.getById(sid);
+        Set<Order> orders = user.getOrders();
+        for (Order o :
+                orders) {
+            if (o.getSubscription().getId() == sid)
+                throw new ValidatorException("User already has this subscription");
+        }
+        order.setUser(user);
+        order.setSubscription(sub);
+        return new ResponseEntity<Order>(order,HttpStatus.OK);
     }
 
 }

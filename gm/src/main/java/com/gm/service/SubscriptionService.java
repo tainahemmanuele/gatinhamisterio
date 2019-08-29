@@ -7,6 +7,7 @@ import com.gm.repository.OrderRepository;
 import com.gm.repository.SubscriptionRepository;
 import com.gm.repository.UserRepository;
 import com.gm.util.Validator;
+import com.gm.util.ValidatorException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,7 +53,7 @@ public class SubscriptionService {
             return false;
         }
     }
-    public Subscription create(Subscription subscription) {
+    public Subscription create(Subscription subscription) throws ValidatorException {
         Subscription subscriptionAux = validCreate(subscription);
         if (subscriptionAux != null) {
             return subscriptionRepository.save(subscription);
@@ -73,7 +74,7 @@ public class SubscriptionService {
     }
 
 
-    public Subscription validCreate(Subscription subscription){
+    public Subscription validCreate(Subscription subscription) throws ValidatorException {
         if(validator.validSubscriptionType(subscription.getType()) && validator.validListProductAux(subscription.getBox().getProducts())
         && validator.validYearMonthSubscription(subscription.getSubscriptionYearMonth()) && validator.validValue(subscription.getPrice())){
             subscription.setBox(subscription.getBox());

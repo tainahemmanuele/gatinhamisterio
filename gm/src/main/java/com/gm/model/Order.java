@@ -64,6 +64,13 @@ public class Order implements Serializable {
                 '}';
     }
 
+    public Order(int quantity, DispatchStatus dispatchStatus, PaymentType paymentType, PaymentStatus paymentStatus) {
+        this.quantity = quantity;
+        this.dispatchStatus = dispatchStatus;
+        this.paymentType = paymentType;
+        this.paymentStatus = paymentStatus;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

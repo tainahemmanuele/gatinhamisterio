@@ -2,6 +2,7 @@ package com.gm.controller;
 
 import com.gm.model.Box;
 import com.gm.service.BoxService;
+import com.gm.util.ValidatorException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,7 +37,7 @@ public class BoxController {
     }
 
     @PostMapping("/box")
-    public ResponseEntity<Box> createBox(@Valid @RequestBody Box box) {
+    public ResponseEntity<Box> createBox(@Valid @RequestBody Box box)  throws ValidatorException {
         System.out.println("CREATE BOX " + box.getName() + "...");
         Box newBox = boxService.create(box);
         if (newBox == null)
@@ -46,7 +47,7 @@ public class BoxController {
 
 
     @PutMapping("/box/{id}")
-    public ResponseEntity<Box> update(@PathVariable("id") Long id, @RequestBody Box box) {
+    public ResponseEntity<Box> update(@PathVariable("id") Long id, @RequestBody Box box)  throws ValidatorException{
         Box updatedBox = boxService.update(id, box);
         if(updatedBox != null) {
             return new ResponseEntity<Box>(updatedBox, HttpStatus.OK);
