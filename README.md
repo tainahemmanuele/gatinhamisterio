@@ -53,10 +53,9 @@ E encerrar o terminal/cmd.
 ## Arquitetura do projeto ##
 A arquitetura do projeto **gatinha mistério** segue os princípios de REST. Usa ***modelo em três camadas***:
 
-
-- A ***camada de aplicação*** é onde o usuário pode realizar consultas ao banco de dados, criar/modificar dados ou até mesmo apagar, além de outros recursos da aplicação. É representada pelas classes do pacote *controller*.
-- A ***camada de negócio*** é  onde está toda as funcionalidades do projeto e a lógica de negócio. É representada pelas classes do pacote *service*.
-- A ***camada de dados*** é representada pelo o banco de dados (atualmente não há persistência em disco, apenas em memória, usando o H2) .  A manipulação dos dados armazenados no banco é feita através da camada de aplicação, através de chamadas da API. É representada pelas classes do pacote *repository*.
+- A ***camada de apresentação*** é onde o usuário pode realizar consultas ao banco de dados, criar/modificar dados ou até mesmo apagar, além de outros recursos da aplicação. É representada pelas classes do pacote *controller*.
+- A ***camada de negócio*** é  onde está toda as funcionalidades do projeto e a lógica de negócio. É a intermediária entre o repositório (camada de acesso a dados) e a classe do controlador (camada de apresentação). As classes da camada de negócio devem oferecer as classes da camada de apresentação tudo o que precisa para atender às solicitações.É representada pelas classes do pacote *service*.
+- A ***camada de dados*** é representada pelo o banco de dados (atualmente não há persistência em disco, apenas em memória, usando o H2) .  A manipulação dos dados armazenados no banco é feita através da camada de apresentação, através de chamadas da API. É representada pelas classes do pacote *repository*.
 
 O back-end do **gatinha mistério** é composto por 5 entidades principais:
 
