@@ -31,7 +31,7 @@ public class Subscription implements Serializable {
     private YearMonth subscriptionYearMonth;
 
     @JsonProperty("box")
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
     @JoinColumn(name = "box_id", referencedColumnName = "id")
     private Box box;
 
@@ -78,6 +78,15 @@ public class Subscription implements Serializable {
 
     public void setSubscriptionYearMonth(YearMonth subscriptionYearMonth) {
         this.subscriptionYearMonth = subscriptionYearMonth;
+    }
+
+    public Subscription(Subscription sub) {
+        this.id = sub.id;
+        this.type = sub.type;
+        Price = sub.Price;
+        this.subscriptionYearMonth = sub.subscriptionYearMonth;
+        this.box = sub.box;
+        this.orders = sub.orders;
     }
 
     public Double getPrice() {

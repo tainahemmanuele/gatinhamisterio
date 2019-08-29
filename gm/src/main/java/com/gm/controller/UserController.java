@@ -14,9 +14,11 @@ import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 //import sun.plugin.javascript.navig.Array;
 
+import javax.persistence.EntityManager;
 import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
@@ -31,7 +33,7 @@ public class UserController {
     private SubscriptionService subscriptionService;
     @Autowired
     private OrderService orderService;
-
+    EntityManager entityManager;
     @ApiOperation(value="Retorna uma lista de Usuários")
     @GetMapping("/user")
     public ResponseEntity<List<User>> getAllUsers() {
@@ -130,17 +132,19 @@ public class UserController {
 
     @ApiOperation(value="Cria uma nova order")
     @PostMapping("/user/{uid}/subscription/{sid}")
+    @Transactional
     public ResponseEntity<Order> userPostOrder(@PathVariable("uid") Long uid,@PathVariable("sid") Long sid, @Valid @RequestBody Order order) throws ValidatorException{
         User user = userService.getById(uid);
         Subscription sub = subscriptionService.getById(sid);
-        Set<Order> orders = user.getOrders();
-        for (Order o :
-                orders) {
-            if (o.getSubscription().getId() == sid)
+        List<Order> orders = orderService.getAll();
+        for (Order o : orders) {
+            if (o.getSubscription().getId() == sid && o.getUser().getId() == uid)
                 throw new ValidatorException("User already has this subscription");
         }
         order.setUser(user);
         order.setSubscription(sub);
+        orderService.create(order);
+
         return new ResponseEntity<Order>(order,HttpStatus.OK);
     }
 
