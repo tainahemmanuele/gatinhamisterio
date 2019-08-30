@@ -31,7 +31,7 @@ public class Subscription implements Serializable {
     private YearMonth subscriptionYearMonth;
 
     @JsonProperty("box")
-    @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "box_id", referencedColumnName = "id")
     private Box box;
 

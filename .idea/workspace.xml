@@ -4,9 +4,6 @@
     <list default="true" id="2c03dd93-d31b-49ff-b8fd-8cf0f307d231" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/GatinhamisterioApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/GatinhamisterioApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/Box.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/Subscription.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/Subscription.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/User.java" afterDir="false" />
     </list>
@@ -61,7 +58,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.TestOrder">
+  <component name="RunManager" selected="JUnit.TestBox and 4 more">
     <configuration name="GatinhamisterioApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.gm.GatinhamisterioApplication" />
       <module name="gatinhamisterio" />
@@ -71,6 +68,20 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestBox and 4 more" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="gatinhamisterio" />
+      <option name="TEST_OBJECT" value="pattern" />
+      <patterns>
+        <pattern testClass="com.gm.TestBox" />
+        <pattern testClass="com.gm.TestOrder" />
+        <pattern testClass="com.gm.TestProduct" />
+        <pattern testClass="com.gm.TestSubscription" />
+        <pattern testClass="com.gm.TestUser" />
+      </patterns>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -106,22 +117,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestUser.testDeleteUserSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="gatinhamisterio" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.gm.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.gm" />
-      <option name="MAIN_CLASS_NAME" value="com.gm.TestUser" />
-      <option name="METHOD_NAME" value="testDeleteUserSuccess" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="com.gm in gatinhamisterio" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="gatinhamisterio" />
       <extension name="coverage">
@@ -138,11 +133,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestOrder" />
         <item itemvalue="Application.GatinhamisterioApplication" />
+        <item itemvalue="JUnit.TestBox and 4 more" />
+        <item itemvalue="JUnit.TestOrder" />
         <item itemvalue="JUnit.com.gm in gatinhamisterio" />
         <item itemvalue="JUnit.TestBox.testPostBoxSuccess" />
-        <item itemvalue="JUnit.TestUser.testDeleteUserSuccess" />
       </list>
     </recent_temporary>
   </component>
