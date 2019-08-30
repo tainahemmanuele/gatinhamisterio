@@ -1,4 +1,4 @@
-package com.gm;
+package com.gm.item;
 
 import javax.persistence.*;
 

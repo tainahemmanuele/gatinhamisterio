@@ -2,35 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2c03dd93-d31b-49ff-b8fd-8cf0f307d231" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/GatinhamisterioApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/GatinhamisterioApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/BoxController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/box/BoxController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/order/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/product/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/SubscriptionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/subscription/SubscriptionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/user/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/box/Box.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/order/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/product/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/Subscription.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/subscription/Subscription.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/user/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/repository/BoxRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/box/BoxRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/repository/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/order/OrderRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/repository/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/product/ProductRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/repository/SubscriptionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/subscription/SubscriptionRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/user/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/service/BoxService.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/service/BoxService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/service/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/service/SubscriptionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/service/SubscriptionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/util/Validator.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/util/Validator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/test/java/com/gm/TestBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/test/java/com/gm/TestBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/test/java/com/gm/TestOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/test/java/com/gm/TestOrder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/test/java/com/gm/TestProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/test/java/com/gm/TestProduct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/test/java/com/gm/TestSubscription.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/test/java/com/gm/TestSubscription.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/test/java/com/gm/TestUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/test/java/com/gm/TestUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/item/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/box/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/box/Box.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/product/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/product/Product.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -71,6 +46,11 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.gm" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -83,13 +63,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.TestBox and 4 more">
+  <component name="RunManager" selected="JUnit.com.gm in gatinhamisterio">
     <configuration name="GatinhamisterioApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.gm.GatinhamisterioApplication" />
       <module name="gatinhamisterio" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.gm.*" />
+          <option name="PATTERN" value="com.gm.item.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -115,7 +95,7 @@
       <module name="gatinhamisterio" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.gm.*" />
+          <option name="PATTERN" value="com.gm.item.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -131,7 +111,7 @@
       <module name="gatinhamisterio" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.gm.*" />
+          <option name="PATTERN" value="com.gm.item.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -146,7 +126,7 @@
       <module name="gatinhamisterio" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.gm.*" />
+          <option name="PATTERN" value="com.gm.item.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -158,10 +138,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.com.gm in gatinhamisterio" />
         <item itemvalue="Application.GatinhamisterioApplication" />
         <item itemvalue="JUnit.TestBox and 4 more" />
         <item itemvalue="JUnit.TestOrder" />
-        <item itemvalue="JUnit.com.gm in gatinhamisterio" />
         <item itemvalue="JUnit.TestBox.testPostBoxSuccess" />
       </list>
     </recent_temporary>

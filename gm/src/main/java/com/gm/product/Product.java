@@ -1,6 +1,6 @@
 package com.gm.product;
 
-import com.gm.Item;
+import com.gm.item.Item;
 import com.gm.util.ProductType;
 
 import javax.persistence.*;
