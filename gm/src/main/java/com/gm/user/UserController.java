@@ -1,16 +1,13 @@
-package com.gm.controller;
+package com.gm.user;
 
-import com.gm.model.Order;
-import com.gm.model.Subscription;
-import com.gm.model.User;
-import com.gm.service.OrderService;
-import com.gm.service.SubscriptionService;
-import com.gm.service.UserService;
+import com.gm.order.Order;
+import com.gm.subscription.Subscription;
+import com.gm.order.OrderService;
+import com.gm.subscription.SubscriptionService;
 import com.gm.util.UserRole;
 import com.gm.util.ValidatorException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,9 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityManager;
 import javax.validation.Valid;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
 @Api(value = "API REST de Usuário")
 @RestController

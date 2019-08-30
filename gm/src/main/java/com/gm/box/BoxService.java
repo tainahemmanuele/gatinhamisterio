@@ -1,8 +1,8 @@
-package com.gm.service;
+package com.gm.box;
 
-import com.gm.model.Box;
-import com.gm.model.Product;
-import com.gm.repository.BoxRepository;
+import com.gm.box.Box;
+import com.gm.product.Product;
+import com.gm.box.BoxRepository;
 import com.gm.util.Validator;
 import com.gm.util.ValidatorException;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,5 @@
-package com.gm.controller;
+package com.gm.product;
 
-import com.gm.model.Product;
-import com.gm.service.ProductService;
 import com.gm.util.ValidatorException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.Validator;
 import java.util.List;
 
 @RestController

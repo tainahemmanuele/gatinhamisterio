@@ -1,9 +1,8 @@
 package com.gm;
 
-import com.gm.model.Box;
-import com.gm.model.Product;
-import com.gm.model.Subscription;
-import com.gm.service.ProductService;
+import com.gm.box.Box;
+import com.gm.product.Product;
+import com.gm.subscription.Subscription;
 import com.gm.util.ProductType;
 import com.gm.util.SubscriptionType;
 import org.junit.Assert;
@@ -16,9 +15,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.time.Year;
 import java.time.YearMonth;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;

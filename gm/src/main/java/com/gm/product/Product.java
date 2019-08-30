@@ -1,10 +1,10 @@
-package com.gm.model;
+package com.gm.product;
 
+import com.gm.Item;
 import com.gm.util.ProductType;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 public class Product extends Item implements Serializable {

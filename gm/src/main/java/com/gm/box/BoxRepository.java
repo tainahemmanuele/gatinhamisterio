@@ -1,6 +1,6 @@
-package com.gm.repository;
+package com.gm.box;
 
-import com.gm.model.Box;
+import com.gm.box.Box;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

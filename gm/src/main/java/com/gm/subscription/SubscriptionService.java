@@ -1,11 +1,11 @@
-package com.gm.service;
+package com.gm.subscription;
 
-import com.gm.model.Order;
-import com.gm.model.Subscription;
-import com.gm.model.User;
-import com.gm.repository.OrderRepository;
-import com.gm.repository.SubscriptionRepository;
-import com.gm.repository.UserRepository;
+import com.gm.order.Order;
+import com.gm.subscription.Subscription;
+import com.gm.user.User;
+import com.gm.order.OrderRepository;
+import com.gm.subscription.SubscriptionRepository;
+import com.gm.user.UserRepository;
 import com.gm.util.Validator;
 import com.gm.util.ValidatorException;
 import org.springframework.beans.factory.annotation.Autowired;

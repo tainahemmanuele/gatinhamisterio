@@ -1,14 +1,14 @@
-package com.gm.model;
+package com.gm.subscription;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.gm.box.Box;
+import com.gm.order.Order;
 import com.gm.util.SubscriptionType;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.YearMonth;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 

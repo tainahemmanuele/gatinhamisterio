@@ -1,6 +1,6 @@
-package com.gm.repository;
+package com.gm.order;
 
-import com.gm.model.Order;
+import com.gm.order.Order;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,7 +1,7 @@
-package com.gm.service;
+package com.gm.product;
 
-import com.gm.model.Product;
-import com.gm.repository.ProductRepository;
+import com.gm.product.Product;
+import com.gm.product.ProductRepository;
 import com.gm.util.Validator;
 import com.gm.util.ValidatorException;
 import org.springframework.beans.factory.annotation.Autowired;

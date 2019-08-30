@@ -1,7 +1,7 @@
-package com.gm.service;
+package com.gm.order;
 
-import com.gm.model.Order;
-import com.gm.repository.OrderRepository;
+import com.gm.order.Order;
+import com.gm.order.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

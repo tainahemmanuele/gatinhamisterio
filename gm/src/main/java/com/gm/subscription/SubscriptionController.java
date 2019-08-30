@@ -1,8 +1,6 @@
-package com.gm.controller;
+package com.gm.subscription;
 
-import com.gm.model.Subscription;
-import com.gm.model.User;
-import com.gm.service.SubscriptionService;
+import com.gm.user.User;
 import com.gm.util.ValidatorException;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

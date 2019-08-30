@@ -1,4 +1,4 @@
-package com.gm.controller;
+package com.gm;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;

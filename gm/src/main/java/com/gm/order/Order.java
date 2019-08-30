@@ -1,6 +1,7 @@
-package com.gm.model;
+package com.gm.order;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.gm.subscription.Subscription;
+import com.gm.user.User;
 import com.gm.util.DispatchStatus;
 import com.gm.util.PaymentStatus;
 import com.gm.util.PaymentType;

@@ -1,7 +1,5 @@
-package com.gm.controller;
+package com.gm.box;
 
-import com.gm.model.Box;
-import com.gm.service.BoxService;
 import com.gm.util.ValidatorException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

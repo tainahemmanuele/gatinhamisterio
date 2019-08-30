@@ -1,7 +1,5 @@
-package com.gm.controller;
+package com.gm.order;
 
-import com.gm.model.Order;
-import com.gm.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

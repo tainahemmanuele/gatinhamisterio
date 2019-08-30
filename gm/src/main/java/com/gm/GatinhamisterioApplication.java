@@ -1,19 +1,24 @@
 package com.gm;
 
-import com.gm.model.*;
-import com.gm.repository.*;
+import com.gm.box.Box;
+import com.gm.box.BoxRepository;
+import com.gm.order.Order;
+import com.gm.order.OrderRepository;
+import com.gm.product.Product;
+import com.gm.product.ProductRepository;
+import com.gm.subscription.Subscription;
+import com.gm.subscription.SubscriptionRepository;
+import com.gm.user.User;
+import com.gm.user.UserRepository;
 import com.gm.util.*;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.YearMonth;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @SpringBootApplication

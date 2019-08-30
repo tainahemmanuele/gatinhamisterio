@@ -1,9 +1,10 @@
-package com.gm.model;
+package com.gm.box;
+
+import com.gm.Item;
+import com.gm.product.Product;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
