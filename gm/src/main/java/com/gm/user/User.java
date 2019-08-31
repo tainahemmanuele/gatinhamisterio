@@ -1,11 +1,10 @@
-package com.gm.model;
+package com.gm.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.gm.order.Order;
 import com.gm.util.UserRole;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -37,7 +36,7 @@ public class User implements Serializable {
     private UserRole role;
 
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "subscription",orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "subscription")
     private Set<Order> orders;
 
     public User() {

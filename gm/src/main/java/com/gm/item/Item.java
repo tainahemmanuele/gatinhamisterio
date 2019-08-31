@@ -1,4 +1,4 @@
-package com.gm.model;
+package com.gm.item;
 
 import javax.persistence.*;
 

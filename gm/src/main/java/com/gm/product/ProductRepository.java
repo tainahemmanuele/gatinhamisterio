@@ -1,6 +1,6 @@
-package com.gm.repository;
+package com.gm.product;
 
-import com.gm.model.Product;
+import com.gm.product.Product;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

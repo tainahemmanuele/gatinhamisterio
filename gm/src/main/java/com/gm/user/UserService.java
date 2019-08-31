@@ -1,14 +1,16 @@
-package com.gm.service;
+package com.gm.user;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import com.gm.model.Order;
-import com.gm.model.Subscription;
-import com.gm.model.User;
-import com.gm.repository.OrderRepository;
-import com.gm.repository.SubscriptionRepository;
-import com.gm.repository.UserRepository;
+import com.gm.order.Order;
+import com.gm.order.OrderService;
+import com.gm.subscription.Subscription;
+import com.gm.subscription.SubscriptionService;
+import com.gm.user.User;
+import com.gm.order.OrderRepository;
+import com.gm.subscription.SubscriptionRepository;
+import com.gm.user.UserRepository;
 import com.gm.util.UserRole;
 import com.gm.util.Validator;
 import com.gm.util.ValidatorException;
@@ -21,10 +23,12 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
     private Validator validator = new Validator();
+
     @Autowired
-    private SubscriptionRepository subscriptionRepository;
+    private SubscriptionService subscriptionService;
+
     @Autowired
-    private OrderRepository orderRepository;
+    private OrderService orderService;
 
     public List<User> getAllUsers() {
         List<User> list = new ArrayList<>();
@@ -137,12 +141,27 @@ public class UserService {
 
     }
     public List<Subscription> findSubscriptionByUserId(Long id){
-        Iterable<Order> orderData = orderRepository.findAll();
+        Iterable<Order> orderData = orderService.findByUserId(id);
         List<Subscription> subs = new ArrayList<>();
         for (Order o: orderData) {
-            if (o.getUser().getId() == id)
-                subs.add(o.getSubscription());
+            subs.add(o.getSubscription());
         }
         return subs;
+    }
+
+    public Order createOrderByUserAndSubscription(long uid, long sid) throws ValidatorException{
+        Order order = orderService.createByUserAndSubscription(uid,sid);
+
+        if (order == null)
+            throw new ValidatorException("User already has this subscription");
+
+        User user = getById(uid);
+        Subscription sub = subscriptionService.getById(sid);
+
+        order.setUser(user);
+        order.setSubscription(sub);
+        orderService.create(order);
+
+        return order;
     }
 }

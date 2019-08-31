@@ -1,6 +1,6 @@
 package com.gm.util;
 
-import com.gm.model.Product;
+import com.gm.product.Product;
 
 import java.time.YearMonth;
 import java.util.InputMismatchException;

@@ -1,7 +1,6 @@
 package com.gm;
 
-import com.gm.model.Product;
-import com.gm.service.ProductService;
+import com.gm.product.Product;
 import com.gm.util.ProductType;
 import org.junit.Assert;
 import org.junit.Test;
@@ -13,7 +12,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest

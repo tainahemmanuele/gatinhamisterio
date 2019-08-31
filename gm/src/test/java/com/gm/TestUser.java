@@ -1,7 +1,7 @@
 package com.gm;
 
 
-import com.gm.model.User;
+import com.gm.user.User;
 import com.gm.util.UserRole;
 import org.junit.Assert;
 import org.junit.Test;
@@ -12,7 +12,6 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.List;
 
 

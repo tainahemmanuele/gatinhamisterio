@@ -1,8 +1,6 @@
-package com.gm.controller;
+package com.gm.subscription;
 
-import com.gm.model.Subscription;
-import com.gm.model.User;
-import com.gm.service.SubscriptionService;
+import com.gm.user.User;
 import com.gm.util.ValidatorException;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +54,7 @@ public class SubscriptionController {
 
     @ApiOperation(value="Recebe usuários de uma subscription")
     @GetMapping("/subscription/{id}/user")
-    public ResponseEntity<List<User>> userGetSubscriptions(@PathVariable("id") Long id){
-        return new ResponseEntity<List<User>>(subscriptionService.findUserBySubscriptionId(id),HttpStatus.OK);
+    public ResponseEntity<List<User>> subscriptionGetUsers(@PathVariable("id") Long id){
+        return new ResponseEntity<List<User>>(subscriptionService.findUsersBySubscriptionId(id),HttpStatus.OK);
     }
 }

@@ -1,6 +1,6 @@
-package com.gm.repository;
+package com.gm.user;
 
-import com.gm.model.User;
+import com.gm.user.User;
 import com.gm.util.UserRole;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
