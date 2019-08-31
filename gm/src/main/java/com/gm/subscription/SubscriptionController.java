@@ -54,7 +54,7 @@ public class SubscriptionController {
 
     @ApiOperation(value="Recebe usuários de uma subscription")
     @GetMapping("/subscription/{id}/user")
-    public ResponseEntity<List<User>> userGetSubscriptions(@PathVariable("id") Long id){
-        return new ResponseEntity<List<User>>(subscriptionService.findUserBySubscriptionId(id),HttpStatus.OK);
+    public ResponseEntity<List<User>> subscriptionGetUsers(@PathVariable("id") Long id){
+        return new ResponseEntity<List<User>>(subscriptionService.findUsersBySubscriptionId(id),HttpStatus.OK);
     }
 }

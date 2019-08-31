@@ -3,9 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="2c03dd93-d31b-49ff-b8fd-8cf0f307d231" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/item/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/box/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/box/Box.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/product/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/product/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/order/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/order/OrderRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/order/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/order/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/subscription/SubscriptionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/subscription/SubscriptionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/subscription/SubscriptionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/subscription/SubscriptionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/user/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/user/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/user/UserService.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,6 +47,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
   </component>
   <component name="RecentsManager">
@@ -63,7 +67,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.com.gm in gatinhamisterio">
+  <component name="RunManager" selected="JUnit.TestBox and 4 more">
     <configuration name="GatinhamisterioApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.gm.GatinhamisterioApplication" />
       <module name="gatinhamisterio" />
@@ -138,9 +142,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.com.gm in gatinhamisterio" />
-        <item itemvalue="Application.GatinhamisterioApplication" />
         <item itemvalue="JUnit.TestBox and 4 more" />
+        <item itemvalue="Application.GatinhamisterioApplication" />
+        <item itemvalue="JUnit.com.gm in gatinhamisterio" />
         <item itemvalue="JUnit.TestOrder" />
         <item itemvalue="JUnit.TestBox.testPostBoxSuccess" />
       </list>

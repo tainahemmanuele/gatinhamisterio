@@ -129,16 +129,6 @@ public class UserController {
     @PostMapping("/user/{uid}/subscription/{sid}")
     @Transactional
     public ResponseEntity<Order> userPostOrder(@PathVariable("uid") Long uid,@PathVariable("sid") Long sid, @Valid @RequestBody Order order) throws ValidatorException{
-        User user = userService.getById(uid);
-        Subscription sub = subscriptionService.getById(sid);
-        List<Order> orders = orderService.getAll();
-        for (Order o : orders) {
-            if (o.getSubscription().getId() == sid && o.getUser().getId() == uid)
-                throw new ValidatorException("User already has this subscription");
-        }
-        order.setUser(user);
-        order.setSubscription(sub);
-        orderService.create(order);
 
         return new ResponseEntity<Order>(order,HttpStatus.OK);
     }

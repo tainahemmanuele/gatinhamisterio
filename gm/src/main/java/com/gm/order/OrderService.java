@@ -2,6 +2,8 @@ package com.gm.order;
 
 import com.gm.order.Order;
 import com.gm.order.OrderRepository;
+import com.gm.subscription.Subscription;
+import com.gm.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -76,5 +78,16 @@ public class OrderService {
             }
         }
         return order;
+    }
+
+    public Order createByUserAndSubscription(long user, long subscription){
+        return orderRepository.findOrderBySubscriptionAndSubscription(user,subscription);
+    }
+
+    public List<Order> findByUserId(long id){
+        return orderRepository.findOrderByUserId(id);
+    }
+    public List<Order> findBySubscriptionId(long id){
+        return orderRepository.findOrderBySubscriptionId(id);
     }
 }

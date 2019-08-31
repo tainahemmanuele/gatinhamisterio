@@ -1,6 +1,7 @@
 package com.gm.subscription;
 
 import com.gm.order.Order;
+import com.gm.order.OrderService;
 import com.gm.subscription.Subscription;
 import com.gm.user.User;
 import com.gm.order.OrderRepository;
@@ -22,7 +23,7 @@ public class SubscriptionService {
     @Autowired
     private SubscriptionRepository subscriptionRepository;
     @Autowired
-    private OrderRepository orderRepository;
+    private OrderService orderService;
 
     private Validator validator = new Validator();
 
@@ -63,12 +64,11 @@ public class SubscriptionService {
     }
 
 
-    public List<User> findUserBySubscriptionId(Long id){
-        Iterable<Order> orderData = orderRepository.findAll();
+    public List<User> findUsersBySubscriptionId(Long id){
+        Iterable<Order> orderData = orderService.findBySubscriptionId(id);
         List<User> users = new ArrayList<>();
         for (Order o: orderData) {
-            if (o.getSubscription().getId() == id)
-                users.add(o.getUser());
+            users.add(o.getUser());
         }
         return users;
     }
