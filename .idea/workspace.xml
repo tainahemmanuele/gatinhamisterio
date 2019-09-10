@@ -2,13 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2c03dd93-d31b-49ff-b8fd-8cf0f307d231" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_attoparser_attoparser_2_0_5_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_thymeleaf_2_1_7_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_thymeleaf_extras_thymeleaf_extras_java8time_3_0_4_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_thymeleaf_thymeleaf_3_0_11_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_thymeleaf_thymeleaf_spring5_3_0_11_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_unbescape_unbescape_1_1_6_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_h2database_h2_1_4_199.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/order/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/order/OrderRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/order/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/order/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/subscription/SubscriptionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/subscription/SubscriptionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/subscription/SubscriptionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/subscription/SubscriptionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/user/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/user/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/user/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/main/java/com/gm/GatinhamisterioApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/java/com/gm/GatinhamisterioApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gm/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gm/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,13 +50,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="com.gm" />
-    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -67,13 +64,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.TestBox and 4 more">
+  <component name="RunManager" selected="Application.GatinhamisterioApplication">
     <configuration name="GatinhamisterioApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.gm.GatinhamisterioApplication" />
       <module name="gatinhamisterio" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.gm.item.*" />
+          <option name="PATTERN" value="com.gm.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -99,7 +96,7 @@
       <module name="gatinhamisterio" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.gm.item.*" />
+          <option name="PATTERN" value="com.gm.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -115,7 +112,7 @@
       <module name="gatinhamisterio" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.gm.item.*" />
+          <option name="PATTERN" value="com.gm.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -130,7 +127,7 @@
       <module name="gatinhamisterio" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.gm.item.*" />
+          <option name="PATTERN" value="com.gm.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -142,8 +139,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestBox and 4 more" />
         <item itemvalue="Application.GatinhamisterioApplication" />
+        <item itemvalue="JUnit.TestBox and 4 more" />
         <item itemvalue="JUnit.com.gm in gatinhamisterio" />
         <item itemvalue="JUnit.TestOrder" />
         <item itemvalue="JUnit.TestBox.testPostBoxSuccess" />
