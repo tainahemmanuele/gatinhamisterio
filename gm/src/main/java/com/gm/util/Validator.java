@@ -20,6 +20,9 @@ public class Validator {
 
 
     public boolean validEmail(String email) throws ValidatorException{
+        if (email.equals("admin"))
+            return true;
+
         if (((email.endsWith(".com") || (email.endsWith(".com.br"))) && (email
                 .matches("(.*)@(.*)")) == true)) {
             return true;

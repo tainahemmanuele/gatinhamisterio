@@ -11,6 +11,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 //import sun.plugin.javascript.navig.Array;
@@ -29,10 +30,12 @@ public class UserController {
     @Autowired
     private OrderService orderService;
     EntityManager entityManager;
+
     @ApiOperation(value="Retorna uma lista de Usuários")
     @GetMapping("/user")
-    public ResponseEntity<List<User>> getAllUsers() {
-        System.out.println("GETTING ALL USERS...");
+    public ResponseEntity<List<User>> getUser(Authentication auth) {
+        System.out.println(auth.toString());
+
         List<User> users = userService.getAllUsers();
         if (users.isEmpty())
             return new ResponseEntity<List<User>>(users,HttpStatus.OK);
@@ -41,7 +44,7 @@ public class UserController {
 
     @ApiOperation(value="Retorna o usuário cujo id é {id}")
     @GetMapping("/user/{id}")
-    public ResponseEntity<User> getUser(@PathVariable("id") Long id) {
+    public ResponseEntity<User> getUserById(@PathVariable("id") Long id) {
         System.out.println("GET USER BY ID "+ id + "...");
         User user = userService.getById(id);
         return (user != null)?

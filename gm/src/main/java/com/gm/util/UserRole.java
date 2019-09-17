@@ -2,8 +2,8 @@ package com.gm.util;
 
 
 public enum UserRole {
-    ADMIN("Administrador"),
-    CLIENT("Cliente");
+    ADMIN("ROLE_ADMIN"),
+    CLIENT("ROLE_USER");
 
     private String userRole;
 
