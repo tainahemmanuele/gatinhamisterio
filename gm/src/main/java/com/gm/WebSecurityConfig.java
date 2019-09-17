@@ -19,6 +19,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.web.savedrequest.NullRequestCache;
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -32,10 +34,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().authorizeRequests().anyRequest().permitAll();
+
+                //.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                //.and()
+        .csrf().disable()
+
+                .authorizeRequests()
+                    .antMatchers("/static","/register","/").permitAll()
+                    .antMatchers(HttpMethod.GET,"/user/**").access("hasRole('ROLE_ADMIN')")
+                    .antMatchers(HttpMethod.POST,"/product/**").access("hasRole('ROLE_ADMIN')")
+                    .antMatchers(HttpMethod.POST,"/box/**").access("hasRole('ROLE_ADMIN')");
+
+
         /* http
+        .and().authorizeRequests().anyRequest().permitAll();
+
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
@@ -49,6 +62,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(authenticationFilterBean(),
                         UsernamePasswordAuthenticationFilter.class);
     */
+
+
+
         http.headers().cacheControl();
     }
 
