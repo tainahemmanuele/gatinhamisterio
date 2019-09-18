@@ -76,4 +76,11 @@ Usuário é a entidade que representa o cliente do sistema. Um cliente pode faze
 ### Diagrama de classes do controller ###
 ![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/img/Class%20Diagram7.png)
 
+## Autenticação ##
+O projeto **gatinha mistério** faz uso de autenticação para identificar se o usuário que tenta fazer login no sistema é quem ele diz ser. Para auxiliar na tarefa de autenticação, foi usado o padrão JSON Web Token (JWT). O pacote **jwt** possui todas as classes e métodos necessários para que a autenticação funcione. Usar JWT permite autenticar um usuário e garantir que as demais requisições serão feitas de forma autenticada, além de que é possível restringir acesso a recursos e serviços com os mais variados níveis e tipos de permissões.
+
+Funcionamente, a autenticação por JWT ocorre da seguinte forma: o usuário solicita acesso a API do sistema, comumente através do uso da funcionalidade de login, e a API emite um token (aqui usando o método *generateToken* da classe ***JwtTokenUtil***) , que identifica aquele usuário no sistema e esse token é entregue ao usuário (nesse caso, é criado um **JWTUser** usando o método *create* da classe ***JwtUserFactory***. Esse objeto irá possuir as informações de autenticação do usuário: o email, a senha e o token para que ele tenha acesso ao sistema).
+
+Por fim, toda vez que o usuário solicitar um recurso que necessita a identificação do usuário, como *login* , o token deve ser apresentado para permitir o acesso. Para isso, foi criada a classe ***JwtAuthenticationFilter*** que a partir de uma requisição feita, usando o método  *doFilterInternal* , verifica a validação da autenticação dos usuários. Esse filtro também define a validação da autenticação dos usuários quando acessarem outras rotas, fora a rota de *login*. No especifico do projeto **gatinhamisterio**, a validação de autenticação ocorre apenas na funcionalidade de *login*.
+
 
