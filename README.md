@@ -53,9 +53,9 @@ E encerrar o terminal/cmd.
 ## Arquitetura do projeto ##
 A arquitetura do projeto **gatinha mistério** segue os princípios de REST. Usa ***modelo em três camadas***:
 
-- A ***camada de apresentação*** é onde o usuário pode realizar consultas ao banco de dados, criar/modificar dados ou até mesmo apagar, além de outros recursos da aplicação. É representada pelas classes do pacote *controller*.
-- A ***camada de negócio*** é  onde está toda as funcionalidades do projeto e a lógica de negócio. É a intermediária entre o repositório (camada de acesso a dados) e a classe do controlador (camada de apresentação). As classes da camada de negócio devem oferecer as classes da camada de apresentação tudo o que precisa para atender às solicitações.É representada pelas classes do pacote *service*.
-- A ***camada de dados*** é representada pelo o banco de dados (atualmente não há persistência em disco, apenas em memória, usando o H2) .  A manipulação dos dados armazenados no banco é feita através da camada de apresentação, através de chamadas da API. É representada pelas classes do pacote *repository*.
+- A ***camada de apresentação*** é onde o usuário pode realizar consultas ao banco de dados, criar/modificar dados ou até mesmo apagar, além de outros recursos da aplicação. É representada pelas classes que possuem no nome a palavra: *controller*. **Ex:** *BoxController*.
+- A ***camada de negócio*** é  onde está toda as funcionalidades do projeto e a lógica de negócio. É a intermediária entre o repositório (camada de acesso a dados) e a classe do controlador (camada de apresentação). As classes da camada de negócio devem oferecer as classes da camada de apresentação tudo o que precisa para atender às solicitações.É representada pelas classes que possuem no nome a palavra: *service*. **Ex:** *BoxService*
+- A ***camada de dados*** é representada pelo o banco de dados, nesse projeto é usado o ***postgres*** .  A manipulação dos dados armazenados no banco é feita através da camada de apresentação, através de chamadas da API. É representada pelas classes que possuem no nome a palavra: *repository*. **Ex:** *BoxRepository*.
 
 O back-end do **gatinha mistério** é composto por 5 entidades principais:
 
@@ -75,6 +75,9 @@ Usuário é a entidade que representa o cliente do sistema. Um cliente pode faze
 
 ### Diagrama de classes do controller ###
 ![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/img/Class%20Diagram7.png)
+
+## Persistência ##
+O projeto **gatinha mistério** faz uso de persistência usando como banco de dados o postgres e usando ORM, já que se trata de um banco de dados relacional. ORM é uma técnica de mapeamento objeto relacional que permite fazer uma relação dos objetos com os dados que os mesmos representam. Para que essa técnica funcione é necessário fazer o uso de JPA com Hibernate. Usando JPA com Hibernate é possível mapear uma classe de modelo de entidade para um banco de dados sem precisar ter se preocupar como o código SQL será gerado - ao usar Hibernate, é possível gerar código SQL para qualquer banco de dados.
 
 ## Autenticação ##
 O projeto **gatinha mistério** faz uso de autenticação para identificar se o usuário que tenta fazer login no sistema é quem ele diz ser. Para auxiliar na tarefa de autenticação, foi usado o padrão JSON Web Token (JWT). O pacote **jwt** possui todas as classes e métodos necessários para que a autenticação funcione. Usar JWT permite autenticar um usuário e garantir que as demais requisições serão feitas de forma autenticada, além de que é possível restringir acesso a recursos e serviços com os mais variados níveis e tipos de permissões.
