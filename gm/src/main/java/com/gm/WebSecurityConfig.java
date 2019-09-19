@@ -1,7 +1,6 @@
 package com.gm;
 
 import com.gm.jwt.JwtAuthenticationFilter;
-import com.gm.util.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,12 +13,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-import org.springframework.security.web.savedrequest.NullRequestCache;
 
 @Configuration
 @EnableWebSecurity
@@ -33,37 +29,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-
-                //.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                //.and()
-        .csrf().disable()
-
-                .authorizeRequests()
-                    .antMatchers("/static","/register","/").permitAll()
-                    .antMatchers(HttpMethod.GET,"/user/**").access("hasRole('ROLE_ADMIN')")
-                    .antMatchers(HttpMethod.POST,"/product/**").access("hasRole('ROLE_ADMIN')")
-                    .antMatchers(HttpMethod.POST,"/box/**").access("hasRole('ROLE_ADMIN')");
-
-
-        /* http
-        .and().authorizeRequests().anyRequest().permitAll();
-
-                .csrf().disable()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/info").permitAll()
-                .antMatchers(HttpMethod.POST, "/register").permitAll()
-                .antMatchers(HttpMethod.GET, "/login").permitAll()
-                .antMatchers(HttpMethod.GET, "/refresh").permitAll()
-                .anyRequest().authenticated()
+        
+         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        .and()
+                 .csrf().disable()
+                 .authorizeRequests()
+                 .antMatchers("/v2/api-docs","/configuration/ui", "/swagger-resources/**",
+                         "/configuration/security", "/swagger-ui.html", "/webjars/**").permitAll()
+                 .antMatchers(HttpMethod.POST, "/register","/order","/user/subscription/*").permitAll()
+                 .antMatchers(HttpMethod.GET, "/login", "/","/subscription","/box",
+                         "/product","/order","/user","/user/subscription").permitAll()
+                 .anyRequest().hasAuthority("ROLE_ADMIN")
                 .and()
                 .addFilterBefore(authenticationFilterBean(),
                         UsernamePasswordAuthenticationFilter.class);
-    */
-
-
 
         http.headers().cacheControl();
     }

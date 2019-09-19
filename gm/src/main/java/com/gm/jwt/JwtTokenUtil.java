@@ -42,7 +42,6 @@ public class JwtTokenUtil {
             Map<String, Object> claims = new HashMap<>();
             claims.put("roles", user.getRole().getUserRole());
             claims.put("id", user.getId());
-
             return TOKEN_PREFIX + " " + Jwts.builder()
                     .setClaims(claims)
                     .setSubject(username)
@@ -117,7 +116,7 @@ public class JwtTokenUtil {
             String roles = getBody(token).get("roles", String.class);
             List<GrantedAuthority> grantedAuths =
                     AuthorityUtils.commaSeparatedStringToAuthorityList(roles);
-
+            System.out.println("\n\n" + grantedAuths + " \n\n");
             return user != null ?
                     new UsernamePasswordAuthenticationToken(user, null,
                             grantedAuths) :

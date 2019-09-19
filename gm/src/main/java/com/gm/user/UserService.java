@@ -149,6 +149,15 @@ public class UserService {
         return subs;
     }
 
+    public List<Subscription> findSubscriptionByUserEmail(String email){
+        Iterable<Order> orderData = orderService.findByUserEmail(email);
+        List<Subscription> subs = new ArrayList<>();
+        for (Order o: orderData) {
+            subs.add(o.getSubscription());
+        }
+        return subs;
+    }
+
     public Order createOrderByUserAndSubscription(long uid, long sid) throws ValidatorException{
         Order order = orderService.createByUserAndSubscription(uid,sid);
 

@@ -16,6 +16,9 @@ public interface OrderRepository extends CrudRepository<Order, Long> {
     @Query("SELECT o FROM Order o WHERE o.user.id = :user_id")
     public List<Order> findOrderByUserId(@Param("user_id") long user_id);
 
+    @Query("SELECT o FROM Order o WHERE o.user.email = :email")
+    public List<Order> findOrderByUserEmail(@Param("email") String email);
+
     @Query("SELECT o FROM Order o WHERE o.subscription.id = :subscription_id")
     public List<Order> findOrderBySubscriptionId(@Param("subscription_id") long subscription_id);
 

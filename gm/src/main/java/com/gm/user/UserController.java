@@ -11,6 +11,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityManager;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @Api(value = "API REST de Usuário")
@@ -31,14 +33,25 @@ public class UserController {
     private OrderService orderService;
     EntityManager entityManager;
 
+    // @PreAuthorize("hasRole('" + UserRole.ADM + "')")
     @ApiOperation(value="Retorna uma lista de Usuários")
     @GetMapping("/user")
     public ResponseEntity<List<User>> getUser(Authentication auth) {
-        System.out.println(auth.toString());
+        List<User> users = new ArrayList<>();
+        System.out.println(auth.getAuthorities());
+        System.out.println(auth.getAuthorities());
 
-        List<User> users = userService.getAllUsers();
-        if (users.isEmpty())
-            return new ResponseEntity<List<User>>(users,HttpStatus.OK);
+        if (auth.getAuthorities().contains(UserRole.ADM)){
+            users = userService.getAllUsers();
+            System.out.println("Admin, getting all users");
+        } else if (auth.getAuthorities().contains(UserRole.USER)) {
+            User user = userService.getByEmail(auth.getName());
+            users.add(user);
+            System.out.println("user, getting himself");
+       }else {
+            System.out.println("NULL trying to  get users.");
+        }
+
         return new ResponseEntity<List<User>>(users, HttpStatus.OK);
     }
 
@@ -76,10 +89,14 @@ public class UserController {
 
     @ApiOperation(value="Atualiza um usuário")
     @PutMapping("/user/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable("id") Long id, @RequestBody User user)  throws ValidatorException{
+    public ResponseEntity<User> updateUser(@PathVariable("id") Long id, @RequestBody User user,Authentication auth)  throws ValidatorException{
         User updatedUser = userService.update(id, user);
         if(updatedUser != null) {
-            return new ResponseEntity<User>(updatedUser, HttpStatus.OK);
+            if (auth.getName().equals(user.getEmail()) || auth.getAuthorities().contains(UserRole.ADM)) {
+                return new ResponseEntity<User>(updatedUser, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -124,15 +141,48 @@ public class UserController {
 
     @ApiOperation(value="Recebe subscriptions de um usuário")
     @GetMapping("/user/{id}/subscription")
-    public ResponseEntity<List<Subscription>> userGetSubscriptions(@PathVariable("id") Long id){
-        return new ResponseEntity<List<Subscription>>(userService.findSubscriptionByUserId(id),HttpStatus.OK);
+    public ResponseEntity<List<Subscription>> userGetSubscriptions(@PathVariable("id") Long id, Authentication auth){
+        if (auth.getAuthorities().contains(UserRole.ADM) || id == userService.getByEmail(auth.getName()).getId())
+            return new ResponseEntity<List<Subscription>>(userService.findSubscriptionByUserId(id),HttpStatus.OK);
+
+        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+    }
+
+    @ApiOperation(value="Recebe subscriptions de um usuário")
+    @GetMapping("/user/subscription")
+    public ResponseEntity<List<Subscription>> userGetMySubscriptions(Authentication auth){
+        if (auth == null)
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+         return new ResponseEntity<List<Subscription>>(userService.findSubscriptionByUserEmail(auth.getName()),HttpStatus.OK);
     }
 
     @ApiOperation(value="Cria uma nova order")
     @PostMapping("/user/{uid}/subscription/{sid}")
     @Transactional
-    public ResponseEntity<Order> userPostOrder(@PathVariable("uid") Long uid,@PathVariable("sid") Long sid, @Valid @RequestBody Order order) throws ValidatorException{
+    public ResponseEntity<Order> userPostOrder(@PathVariable("uid") Long uid,
+                                               @PathVariable("sid") Long sid,
+                                               @Valid @RequestBody Order order) throws ValidatorException{
 
+            order.setUser(userService.getById(uid));
+            order.setSubscription(subscriptionService.getById(sid));
+            return new ResponseEntity<Order>(order,HttpStatus.OK);
+    }
+
+
+    @ApiOperation(value="Cria uma nova order")
+    @PostMapping("/user/subscription/{sid}")
+    @Transactional
+    public ResponseEntity<Order> userPostSelf(
+                                               @PathVariable("sid") Long sid,
+                                               @Valid @RequestBody Order order,
+                                               Authentication auth) throws ValidatorException{
+        if (auth == null)
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+
+        order.setUser(userService.getByEmail(auth.getName()));
+        order.setSubscription(subscriptionService.getById(sid));
+
+        orderService.create(order);
         return new ResponseEntity<Order>(order,HttpStatus.OK);
     }
 
