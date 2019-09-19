@@ -1,12 +1,17 @@
 package com.gm.order;
 
+import com.gm.user.User;
+import com.gm.user.UserService;
+import com.gm.util.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 //import javax.xml.ws.Response;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -14,11 +19,21 @@ public class OrderController {
 
     @Autowired
     private OrderService orderService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/order")
-    public ResponseEntity<List<Order>> getAll() {
-        System.out.println("GETTING ALL USERS...");
-        List<Order> orders = orderService.getAll();
+    public ResponseEntity<List<Order>> getAll(Authentication auth) {
+        if (auth == null)
+            return new ResponseEntity<List<Order>>(HttpStatus.UNAUTHORIZED);
+
+        List<Order> orders = new ArrayList<>();
+        if (auth.getAuthorities().contains(UserRole.ADM)){
+            orders = orderService.getAll();
+        } else if (auth.getAuthorities().contains(UserRole.USER)){
+            orders = orderService.findByUserEmail(auth.getName());
+        }
+
         if (orders.isEmpty())
             return new ResponseEntity<List<Order>>(orders,HttpStatus.OK);
         return new ResponseEntity<List<Order>>(orders,HttpStatus.OK);
@@ -34,9 +49,12 @@ public class OrderController {
     }
 
     @PostMapping("/order")
-    public ResponseEntity<Order> createOrder(@Valid @RequestBody Order order){
+    public ResponseEntity<Order> createOrder(@Valid @RequestBody Order order, Authentication auth){
         System.out.println("CREATE ORDER " + order.toString());
-        Order newOrder = orderService.create(order);
+        Order newOrder = null;
+        if (auth.getAuthorities().contains(UserRole.ADM) || order.getUser().getId() == userService.getByEmail(auth.getName()).getId())
+            newOrder = orderService.create(order);
+
         if (newOrder==null)
             return new ResponseEntity<Order>(HttpStatus.BAD_REQUEST);
         return new ResponseEntity<Order>(newOrder,HttpStatus.OK);

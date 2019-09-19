@@ -27,7 +27,7 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public Boolean register(User user) {
         if (userRepository.findByEmail(user.getEmail()) != null) {
-            System.out.println("false");
+            System.out.println("Found a user");
             return false;
         }
 
@@ -35,7 +35,6 @@ public class AuthServiceImpl implements AuthService {
         final String rawPassword = user.getPassword();
         final String encodedPassword = encoder.encode(rawPassword);
         user.setPassword(encodedPassword);
-        System.out.println(user);
         //user.setRole(UserRole.CLIENT);
 
         userRepository.save(user);
@@ -48,14 +47,12 @@ public class AuthServiceImpl implements AuthService {
         if (userDetails == null) {
             return null;
         }
-        System.out.println(userDetails.getPassword());
-        System.out.println(password);
 
         if (!BCrypt.checkpw(password, userDetails.getPassword())) {
             return null;
         }
         final String token = jwtTokenUtil.generateToken(username);
-        System.out.println(token);
+
         return token;
     }
 

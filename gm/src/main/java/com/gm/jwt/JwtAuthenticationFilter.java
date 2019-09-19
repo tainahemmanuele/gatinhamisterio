@@ -71,16 +71,19 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             FilterChain chain) throws ServletException, IOException {
 
         String username = jwtTokenUtil.getUsername(request);
-        System.out.println("\n");
-        System.out.println("checking authentication " + username);
-        System.out.println("\n " + SecurityContextHolder.getContext().getAuthentication());
+        System.out.println(":: " + request);
+        System.out.println("\n checking authentication " + username);
+        System.out.println("\n Context 1: " + SecurityContextHolder.getContext());
+        System.out.println("\n Context 2: " + SecurityContextHolder.getContext().getAuthentication());
 
-        if (username != null /*&& SecurityContextHolder.getContext().getAuthentication() == null*/) {
+        if (username != null  /*&& SecurityContextHolder.getContext().getAuthentication() == null*/) {
             if (jwtTokenUtil.validate(request)) {
                 Authentication authentication = jwtTokenUtil.
                         getAuthentication(request);
                 System.out.println("authenticated user " + username + ", setting security context");
                 SecurityContextHolder.getContext().setAuthentication(authentication);
+                System.out.println("\n\nAAAAAAAAAAAA: " + authentication);
+                System.out.println("\n Context 3: " + SecurityContextHolder.getContext());
 
                 User user = userRepository.findByEmail(username);
                 System.out.println(user.getId());
