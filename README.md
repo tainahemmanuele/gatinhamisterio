@@ -86,4 +86,7 @@ Funcionamente, a autenticação por JWT ocorre da seguinte forma: o usuário sol
 
 Por fim, toda vez que o usuário solicitar um recurso que necessita a identificação do usuário, como *login* , o token deve ser apresentado para permitir o acesso. Para isso, foi criada a classe ***JwtAuthenticationFilter*** que a partir de uma requisição feita, usando o método  *doFilterInternal* , verifica a validação da autenticação dos usuários. Esse filtro também define a validação da autenticação dos usuários quando acessarem outras rotas, fora a rota de *login*. No especifico do projeto **gatinhamisterio**, a validação de autenticação ocorre apenas na funcionalidade de *login*.
 
+Abaixo, o diagrama que demonstra o funcionamento da autenticação:
+
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/readme2/img/auth_diagram.png)
 
