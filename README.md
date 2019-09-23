@@ -88,5 +88,5 @@ Por fim, toda vez que o usuário solicitar um recurso que necessita a identifica
 
 Abaixo, o diagrama que demonstra o funcionamento da autenticação:
 
-![](https://github.com/tainahemmanuele/gatinhamisterio/blob/readme2/img/auth_diagram.png)
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/img/auth_diagram.png)
 

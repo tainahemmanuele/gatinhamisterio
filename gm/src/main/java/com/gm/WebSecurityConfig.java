@@ -29,7 +29,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        
          http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         .and()
                  .csrf().disable()
@@ -45,38 +44,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         UsernamePasswordAuthenticationFilter.class);
 
         http.headers().cacheControl();
-    }
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("admin")
-                .password("password")
-                .roles("admin");
-    }
-
-
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-
-        // First encrypt the password string
-        String encodedPassword = passwordEncoder().encode("123456");
-
-        // Set the password
-        UserDetails user = User.builder()
-                .username("Test")
-                .password(encodedPassword)
-                .roles("user")
-                .build();
-
-        // Use in-memory authentication with BCryptEncoder
-        auth.inMemoryAuthentication()
-                .withUser(user)
-                .passwordEncoder(passwordEncoder());
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 }
