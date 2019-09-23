@@ -5,6 +5,7 @@ import com.gm.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -62,32 +63,23 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private JwtTokenUtil jwtTokenUtil;
 
     @Autowired
-    private UserRepository userRepository;
+    private JwtUserDetailsService jwtUserDetailsService;
 
     @Override
     protected void doFilterInternal(
             HttpServletRequest request,
             HttpServletResponse response,
             FilterChain chain) throws ServletException, IOException {
-
+        /*&& SecurityContextHolder.getContext().getAuthentication() == null*/
         String username = jwtTokenUtil.getUsername(request);
-        System.out.println(":: " + request);
-        System.out.println("\n checking authentication " + username);
-        System.out.println("\n Context 1: " + SecurityContextHolder.getContext());
-        System.out.println("\n Context 2: " + SecurityContextHolder.getContext().getAuthentication());
 
-        if (username != null  /*&& SecurityContextHolder.getContext().getAuthentication() == null*/) {
+        if (username != null  ) {
             if (jwtTokenUtil.validate(request)) {
                 Authentication authentication = jwtTokenUtil.
                         getAuthentication(request);
                 System.out.println("authenticated user " + username + ", setting security context");
                 SecurityContextHolder.getContext().setAuthentication(authentication);
-                System.out.println("\n\nAAAAAAAAAAAA: " + authentication);
-                System.out.println("\n Context 3: " + SecurityContextHolder.getContext());
-
-                User user = userRepository.findByEmail(username);
-                System.out.println(user.getId());
-                System.out.println(user.getRole());
+                UserDetails user = jwtUserDetailsService.loadUserByUsername(username);
             }
         } else {
             System.out.println("\n");
