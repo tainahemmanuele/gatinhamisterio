@@ -81,7 +81,7 @@ public class ProductService {
         }
     }
 
-    @CachePut
+    @CacheEvict(value="product",  allEntries = true)
     public boolean delete(Long id) {
         Optional<Product> productData = productRepository.findById(id);
         if (productData.isPresent()) {
