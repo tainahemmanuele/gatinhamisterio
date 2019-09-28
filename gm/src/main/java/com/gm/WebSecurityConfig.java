@@ -35,14 +35,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                  .authorizeRequests()
                  .antMatchers("/v2/api-docs","/configuration/ui", "/swagger-resources/**",
                          "/configuration/security", "/swagger-ui.html", "/webjars/**").permitAll()
-                 .antMatchers(HttpMethod.POST, "/register","/order","/user/subscription/*").permitAll()
+                 .antMatchers("/console/**").permitAll()
+                 .antMatchers(HttpMethod.POST, "/login","/register","/order","/user/subscription/*").permitAll()
                  .antMatchers(HttpMethod.GET, "/login", "/","/subscription","/box",
                          "/product","/order","/user","/user/subscription").permitAll()
+
                  .anyRequest().hasAuthority("ROLE_ADMIN")
                 .and()
                 .addFilterBefore(authenticationFilterBean(),
                         UsernamePasswordAuthenticationFilter.class);
 
         http.headers().cacheControl();
+        http.headers().frameOptions().disable();
     }
 }

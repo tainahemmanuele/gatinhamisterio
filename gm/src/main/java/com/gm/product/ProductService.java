@@ -5,6 +5,9 @@ import com.gm.product.ProductRepository;
 import com.gm.util.Validator;
 import com.gm.util.ValidatorException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,12 +15,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@CacheConfig(cacheNames = {"product"})
 public class ProductService {
 
     @Autowired
     private ProductRepository productRepository;
     private Validator validator = new Validator();
 
+    @Cacheable(value= "product")
     public List<Product> getAll() {
         List<Product> listProduct = new ArrayList<Product>();
         Iterable<Product> productsIterator = productRepository.findAll();
@@ -25,9 +30,11 @@ public class ProductService {
         for (Product product : productsIterator) {
             listProduct.add(product);
         }
+        simulateSlowService();
         return listProduct;
     }
 
+    @CacheEvict(value="product",  allEntries = true)
     public Product create(Product product)  throws ValidatorException{
         Product productAux = validCreate(product);
         if(productAux != null){
@@ -125,4 +132,13 @@ public class ProductService {
             return null; //posteriormente tratar isso com exceção
         }
     }
+
+    private void simulateSlowService () {
+        try {
+            Thread.sleep (500L);
+        } catch (InterruptedException e) {
+            e.printStackTrace ();
+        }
+    }
+
 }
