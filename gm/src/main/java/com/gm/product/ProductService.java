@@ -7,7 +7,9 @@ import com.gm.util.ValidatorException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,11 +20,12 @@ import java.util.Optional;
 @CacheConfig(cacheNames = {"product"})
 public class ProductService {
 
+
     @Autowired
     private ProductRepository productRepository;
     private Validator validator = new Validator();
 
-    @Cacheable(value= "product")
+    @Cacheable(cacheNames="Product", key="#root.method.name")
     public List<Product> getAll() {
         List<Product> listProduct = new ArrayList<Product>();
         Iterable<Product> productsIterator = productRepository.findAll();
@@ -34,7 +37,8 @@ public class ProductService {
         return listProduct;
     }
 
-    @CacheEvict(value="product",  allEntries = true)
+
+    @CacheEvict(cacheNames = "Product", allEntries = true)
     public Product create(Product product)  throws ValidatorException{
         Product productAux = validCreate(product);
         if(productAux != null){
@@ -43,6 +47,7 @@ public class ProductService {
         return productAux;
     }
 
+    @CachePut(cacheNames = "Product", key = "#id")
     public Product update(Long id, Product productUpdate)  throws ValidatorException{
         Optional<Product> productData = productRepository.findById(id);
         if (productData.isPresent()) {
@@ -59,6 +64,7 @@ public class ProductService {
     }
 
 
+    @CachePut(cacheNames = "Product", key = "#id")
     public Product getById(Long id) {
         Optional<Product> productData = productRepository.findById(id);
         if (productData.isPresent()) {
