@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@CacheConfig(cacheNames = {"product"})
 public class ProductService {
 
 
@@ -25,20 +24,21 @@ public class ProductService {
     private ProductRepository productRepository;
     private Validator validator = new Validator();
 
-    @Cacheable(cacheNames="Product", key="#root.method.name")
+    @Cacheable(cacheNames=Product.CACHE_NAME,key="#root.method.name")
     public List<Product> getAll() {
         List<Product> listProduct = new ArrayList<Product>();
         Iterable<Product> productsIterator = productRepository.findAll();
 
         for (Product product : productsIterator) {
             listProduct.add(product);
+            System.out.println(product.getId());
         }
         simulateSlowService();
         return listProduct;
     }
 
 
-    @CacheEvict(cacheNames = "Product", allEntries = true)
+    @CacheEvict(cacheNames = Product.CACHE_NAME, allEntries = true)
     public Product create(Product product)  throws ValidatorException{
         Product productAux = validCreate(product);
         if(productAux != null){
@@ -47,7 +47,7 @@ public class ProductService {
         return productAux;
     }
 
-    @CachePut(cacheNames = "Product", key = "#id")
+    @CachePut(cacheNames = Product.CACHE_NAME, key="#id")
     public Product update(Long id, Product productUpdate)  throws ValidatorException{
         Optional<Product> productData = productRepository.findById(id);
         if (productData.isPresent()) {
@@ -64,7 +64,7 @@ public class ProductService {
     }
 
 
-    @CachePut(cacheNames = "Product", key = "#id")
+
     public Product getById(Long id) {
         Optional<Product> productData = productRepository.findById(id);
         if (productData.isPresent()) {
@@ -75,6 +75,7 @@ public class ProductService {
         }
     }
 
+    @CacheEvict(cacheNames = Product.CACHE_NAME, key="#id")
     public boolean delete(Long id) {
         Optional<Product> productData = productRepository.findById(id);
         if (productData.isPresent()) {
