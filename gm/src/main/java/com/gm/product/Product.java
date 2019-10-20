@@ -9,6 +9,8 @@ import java.io.Serializable;
 @Entity
 public class Product extends Item implements Serializable {
 
+    public static final String CACHE_NAME = "Product";
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "box_id", nullable = false)

@@ -68,5 +68,9 @@ public class ProductController {
         }
     }
 
-
+    @GetMapping("product/cache")
+    public ResponseEntity<String> getCache(){
+        String str = productService.debugCache();
+        return new ResponseEntity<String>(str, HttpStatus.OK);
+    }
 }

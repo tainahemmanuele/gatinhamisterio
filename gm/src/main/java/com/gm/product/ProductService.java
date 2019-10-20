@@ -5,9 +5,9 @@ import com.gm.product.ProductRepository;
 import com.gm.util.Validator;
 import com.gm.util.ValidatorException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.*;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,14 +15,18 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@CacheConfig(cacheNames = {"product"})
 public class ProductService {
+
+    @Autowired
+    private CacheManager cache;
+
+    public static final String CACHE_GETALL_KEY = "getAll";
 
     @Autowired
     private ProductRepository productRepository;
     private Validator validator = new Validator();
 
-    @Cacheable(value= "product")
+    @Cacheable(cacheNames=Product.CACHE_NAME,key="#root.target.CACHE_GETALL_KEY")
     public List<Product> getAll() {
         List<Product> listProduct = new ArrayList<Product>();
         Iterable<Product> productsIterator = productRepository.findAll();
@@ -34,7 +38,8 @@ public class ProductService {
         return listProduct;
     }
 
-    @CacheEvict(value="product",  allEntries = true)
+
+    @CacheEvict(cacheNames = Product.CACHE_NAME,  key="#root.target.CACHE_GETALL_KEY")
     public Product create(Product product)  throws ValidatorException{
         Product productAux = validCreate(product);
         if(productAux != null){
@@ -43,6 +48,8 @@ public class ProductService {
         return productAux;
     }
 
+    @Caching(   evict = {@CacheEvict(cacheNames = Product.CACHE_NAME, key="#root.target.CACHE_GETALL_KEY")},
+                put = {@CachePut(cacheNames = Product.CACHE_NAME, key="#id")})
     public Product update(Long id, Product productUpdate)  throws ValidatorException{
         Optional<Product> productData = productRepository.findById(id);
         if (productData.isPresent()) {
@@ -58,9 +65,10 @@ public class ProductService {
         }
     }
 
-
+    @Cacheable(cacheNames=Product.CACHE_NAME,key="#id")
     public Product getById(Long id) {
         Optional<Product> productData = productRepository.findById(id);
+        simulateSlowService();
         if (productData.isPresent()) {
             Product product = productData.get();
             return product;
@@ -69,6 +77,10 @@ public class ProductService {
         }
     }
 
+    @Caching(evict = {
+            @CacheEvict(cacheNames = Product.CACHE_NAME, key="#id"),
+            @CacheEvict(cacheNames = Product.CACHE_NAME, key="#root.target.CACHE_GETALL_KEY")
+    })
     public boolean delete(Long id) {
         Optional<Product> productData = productRepository.findById(id);
         if (productData.isPresent()) {
@@ -139,6 +151,15 @@ public class ProductService {
         } catch (InterruptedException e) {
             e.printStackTrace ();
         }
+    }
+
+    public String debugCache(){
+        String str = "Caches:";
+        for(String cacheName : cache.getCacheNames()){
+            str += "\nCache Name: " + cacheName + ": " + cache.getCache(cacheName).toString()+"";
+            Object obj = cache.getCache(cacheName).getNativeCache();
+        }
+        return str;
     }
 
 }
