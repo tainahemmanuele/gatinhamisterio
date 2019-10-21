@@ -55,7 +55,7 @@ A arquitetura do projeto **gatinha mistério** segue os princípios de REST. Usa
 
 - A ***camada de apresentação*** é onde o usuário pode realizar consultas ao banco de dados, criar/modificar dados ou até mesmo apagar, além de outros recursos da aplicação. É representada pelas classes que possuem no nome a palavra: *controller*. **Ex:** *BoxController*.
 - A ***camada de negócio*** é  onde está toda as funcionalidades do projeto e a lógica de negócio. É a intermediária entre o repositório (camada de acesso a dados) e a classe do controlador (camada de apresentação). As classes da camada de negócio devem oferecer as classes da camada de apresentação tudo o que precisa para atender às solicitações.É representada pelas classes que possuem no nome a palavra: *service*. **Ex:** *BoxService*
-- A ***camada de dados*** é representada pelo o banco de dados, nesse projeto é usado o ***postgres*** .  A manipulação dos dados armazenados no banco é feita através da camada de apresentação, através de chamadas da API. É representada pelas classes que possuem no nome a palavra: *repository*. **Ex:** *BoxRepository*.
+- A ***camada de dados*** é representada pelo o banco de dados, nesse projeto é usado o ***H2*** .  A manipulação dos dados armazenados no banco é feita através da camada de apresentação, através de chamadas da API. É representada pelas classes que possuem no nome a palavra: *repository*. **Ex:** *BoxRepository*.
 
 O back-end do **gatinha mistério** é composto por 5 entidades principais:
 
@@ -76,17 +76,130 @@ Usuário é a entidade que representa o cliente do sistema. Um cliente pode faze
 ### Diagrama de classes do controller ###
 ![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/img/Class%20Diagram7.png)
 
+### Cadastrando um usuário ###
+**OBS:** Para todas as operações envolvendo a API do projeto, é usado o programa *Postman*.
+
+Para cadastrar um usuário no sistema, no campo **url**, coloque: localhost:8080/register,  escolha a opção **POST** e coloque no **Body** os dados referentes a: CPF, email, id (pode se qualquer valor, apenas para referencia no banco de dados) , name , password e role (ADMIN OU CLIENT). Depois selecione a opção **Send** , conforme o exemplo abaixo:
+
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/jmeter/img/register_1.png)
+
+O usuário foi cadastrado com sucesso, se aparecer no Postman a seguinte tela:
+
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/jmeter/img/register_2.png)
+
 ## Persistência ##
-O projeto **gatinha mistério** faz uso de persistência usando como banco de dados o postgres e usando ORM, já que se trata de um banco de dados relacional. ORM é uma técnica de mapeamento objeto relacional que permite fazer uma relação dos objetos com os dados que os mesmos representam. Para que essa técnica funcione é necessário fazer o uso de JPA com Hibernate. Usando JPA com Hibernate é possível mapear uma classe de modelo de entidade para um banco de dados sem precisar ter se preocupar como o código SQL será gerado - ao usar Hibernate, é possível gerar código SQL para qualquer banco de dados.
+O projeto **gatinha mistério** faz uso de persistência usando como banco de dados o H2 e usando ORM, já que se trata de um banco de dados relacional. ORM é uma técnica de mapeamento objeto relacional que permite fazer uma relação dos objetos com os dados que os mesmos representam. Para que essa técnica funcione é necessário fazer o uso de JPA com Hibernate. Usando JPA com Hibernate é possível mapear uma classe de modelo de entidade para um banco de dados sem precisar ter se preocupar como o código SQL será gerado - ao usar Hibernate, é possível gerar código SQL para qualquer banco de dados.
 
 ## Autenticação ##
 O projeto **gatinha mistério** faz uso de autenticação para identificar se o usuário que tenta fazer login no sistema é quem ele diz ser. Para auxiliar na tarefa de autenticação, foi usado o padrão JSON Web Token (JWT). O pacote **jwt** possui todas as classes e métodos necessários para que a autenticação funcione. Usar JWT permite autenticar um usuário e garantir que as demais requisições serão feitas de forma autenticada, além de que é possível restringir acesso a recursos e serviços com os mais variados níveis e tipos de permissões.
 
 Funcionamente, a autenticação por JWT ocorre da seguinte forma: o usuário solicita acesso a API do sistema, comumente através do uso da funcionalidade de login, e a API emite um token (aqui usando o método *generateToken* da classe ***JwtTokenUtil***) , que identifica aquele usuário no sistema e esse token é entregue ao usuário (nesse caso, é criado um **JWTUser** usando o método *create* da classe ***JwtUserFactory***. Esse objeto irá possuir as informações de autenticação do usuário: o email, a senha e o token para que ele tenha acesso ao sistema).
 
-Por fim, toda vez que o usuário solicitar um recurso que necessita a identificação do usuário, como *login* , o token deve ser apresentado para permitir o acesso. Para isso, foi criada a classe ***JwtAuthenticationFilter*** que a partir de uma requisição feita, usando o método  *doFilterInternal* , verifica a validação da autenticação dos usuários. Esse filtro também define a validação da autenticação dos usuários quando acessarem outras rotas, fora a rota de *login*. No especifico do projeto **gatinhamisterio**, a validação de autenticação ocorre apenas na funcionalidade de *login*.
+Por fim, toda vez que o usuário solicitar um recurso que necessita a identificação do usuário, como */login , o token deve ser apresentado para permitir o acesso. Para isso, foi criada a classe ***JwtAuthenticationFilter*** que a partir de uma requisição feita, usando o método  *doFilterInternal* , verifica a validação da autenticação dos usuários. Esse filtro também define a validação da autenticação dos usuários quando acessarem outras rotas, fora a rota de *login*. No especifico do projeto **gatinhamisterio**, a validação de autenticação ocorre apenas na funcionalidade de */login*.
 
 Abaixo, o diagrama que demonstra o funcionamento da autenticação:
 
 ![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/img/auth_diagram.png)
+
+### Operação de Login e Uso do Token ###
+Após cadastrar o usuário, para logar no sistema e ter acesso, no *Postman*, no campo **url**, coloque: localhost:8080/login,  escolha a opção **GET** e coloque em **Headers** o email do usuário e o password, e selecione **Send** conforme o exemplo abaixo:
+
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/jmeter/img/login_1.png)
+
+Depois, em **Headers** -> **Temporary Headers**, no campo **Authorization**, copie o valor que começa com *Bearer* e cole no campo **Token** em **Authorization**:
+
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/jmeter/img/login_2.png)
+
+Depois disso, já é possível usar o sistema.
+
+## Autenticação ##
+O projeto **gatinha mistério** faz uso de autorização na rota **/user** com o objetivo de filtrar os dados a serem exibidos conformem o tipo de usuário (**admin** ou **client**).
+
+Se um usuário do tipo **admin** acessar a rota **/user**, além das informações do seu usuário irá aparecer as informações referentes a todos os usuários do sistema, já que como administrador ele deve poder controlar todos os cadastros feitos.
+
+Se um usuário do tipo **client** acessar a rota **/user**, apenas as informações referentes ao seu usuário serão mostradas.
+
+As configurações de autorização estão localizadas na classe ***WebSecurityConfig*** . No método *configure*, é feita as operações necessárias para permitir o acesso as rotas e a quais tipos de operações deve ser dado o acesso. É verificada a autenticação do usuário antes da autorização ser feita (uma vez que o usuário, independente de ser **client** ou **admin** deve estar logado no sistema para ter acesso a rota) e que tipo de usuário ele é.
+
+
+## Desempenho ##
+Para melhorar o desempenho da aplicação foi adotado o uso de cache. Aqui é usado o cache padrão de Spring Boot.
+O cache está habilitado em todo o projeto **gatinha mistério**, porém foi implementado apenas na classe **ProductService**, com o objetivo de diminuir o tempo de requisição ao fazer **GET** em */product*. Qualquer alteração feita (GET, POST, UPDATE ,DELETE), referente aos produtos, irá atualizar o cache.
+
+Conforme a especificação da disciplina de DACA, foi implementada uma espera de 0.5s na operação **GET** */product*. O método que faz isso chama-se *simulateSlowService* .
+
+Sem o uso de cache ( e no primeiro acesso, antes que o cache seja criado) a operação de **GET** em *http://localhost:8080/product* dura em torno de 0.5s:
+
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/jmeter/img/product_no_use_cache.png)
+
+Após o uso de cache o tempo cai para em torno de 27ms:
+
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/jmeter/img/product_use_cache.png)
+
+
+### JMeter ###
+Para testar o desempenho da aplicação e descobrir os limites de  throughput (quando houver no gráfico uma assintota horizontal) , tanto sem o uso de cache, como com o uso de cache, foi usado o JMeter.
+
+O plano de testes levou em consideração:
+
+- Acesso a url: http:localhost:8080/product
+- Operação de GET nessa url
+- Tanto para o não uso de cache, como para o uso de cache, foi considerado o atraso de 0.5s na operação de GET em /product
+
+Todos os artefatos gerados, tal como o plano de testes usado, pode ser encontrado em:
+
+[Testes - JMeter](https://github.com/tainahemmanuele/gatinhamisterio/tree/jmeter/Testes%20-%20JMeter)
+
+#### Testes de Desempenho - Sem Uso de Cache ####
+Na **primeira execução**, foram usadas as configurações de ***Threads**: 5* e ***Tempo:**  60s*, que é o padrão do JMeter. Após a execução, o gráfico de resultados gerados foi:
+
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/jmeter/Testes%20-%20JMeter/Sem%20Cache/Configura%C3%A7%C3%B5es%20Padr%C3%A3o%20-%205%20Threads/Gr%C3%A1fico%20de%20Resultados_5_threads.png)
+
+Aqui, percebe-se que começa a aparecer o que será uma assintota, mas ainda não chegou em nenhum limite. O valor da vazão é de: 178,42/minuto.
+
+No gráfico de tempo de resposta, percebe-se que ao longo do tempo do teste sendo executado, o tempo da requisição, que começou alto e foi caindo ao decorrer do tempo, se torna constante:
+
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/jmeter/Testes%20-%20JMeter/Sem%20Cache/Configura%C3%A7%C3%B5es%20Padr%C3%A3o%20-%205%20Threads/Response%20Time%20Graph_5_threads.png)
+
+No gráfico agregado, há a média entre o número de amostras e o tempo que ocorreram as requisições:
+
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/jmeter/Testes%20-%20JMeter/Sem%20Cache/Configura%C3%A7%C3%B5es%20Padr%C3%A3o%20-%205%20Threads/Gr%C3%A1fico%20Agregado_5_threads.png)
+
+Na **segunda execução**, foram usadas as configurações de ***Threads:** 10* e ***Tempo:** 120s*. Após a execução, o gráfico de resultados gerados foi:
+
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/jmeter/Testes%20-%20JMeter/Sem%20Cache/10%20Threads/Gr%C3%A1fico%20de%20Resultados_10_threads.png)
+
+Nesse gráfico já percebe-se uma assintota horizontal, ainda incompleta, o que significa que  com 10 threads já se chega próximo ao limite de throughput da aplicação. O valor da vazão é de:  372,72 minuto.
+
+No gráfico de tempo de resposta, percebe-se que ao longo do tempo do teste sendo executado, o tempo da requisição, diminuiu em relação ao primeiro teste, mas se manteve constante durante toda a execução:
+
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/jmeter/Testes%20-%20JMeter/Sem%20Cache/10%20Threads/Response%20Time%20Graph_10_threads.png)
+
+No gráfico agregado, a média continuou a mesma em relação a primeira execução do teste, mas a taxa de erro caiu para 0%, além da vazão ter aumentado:
+
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/jmeter/Testes%20-%20JMeter/Sem%20Cache/10%20Threads/Gr%C3%A1fico%20Agregado_10_threads.png)
+
+
+Na **terceira execução**, foram usadas as configurações de ***Threads:** 10* e ***Tempo:** 180s*. Após a execução, o gráfico de resultados gerados foi:
+
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/jmeter/Testes%20-%20JMeter/Sem%20Cache/20%20Threads/Gr%C3%A1fico%20de%20Resultados_20_threads.png)
+
+Nesse gráfico, a assintota horizontal aparece, logo, o limite de vazão da aplicação é atingido quando há 2263 amostras fazendo requisições ao mesmo tempo. O valor da vazão é de : 752,511/minuto .
+
+No gráfico de tempo de resposta, não houve mudanças no tempo, em relação a execução anterior do teste, se manteve constante.
+
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/jmeter/Testes%20-%20JMeter/Sem%20Cache/20%20Threads/Response%20Time%20Graph_20_threads.png)
+
+
+No gráfico agregado,a única modificação expressiva veio em relação a vazão:
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/jmeter/Testes%20-%20JMeter/Sem%20Cache/20%20Threads/Gr%C3%A1fico%20Agregado_20_threads.png)
+
+
+
+
+
+
+
+
+
 
