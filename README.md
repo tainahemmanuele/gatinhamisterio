@@ -76,6 +76,14 @@ Usuário é a entidade que representa o cliente do sistema. Um cliente pode faze
 ### Diagrama de classes do controller ###
 ![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/img/Class%20Diagram7.png)
 
+### Cadastrando um usuário ###
+**OBS:** Para todas as operações envolvendo a API do projeto, é usado o programa *Postman*.
+
+Para cadastrar um usuário no sistema, no campo **url**, coloque: localhost:8080/register,  escolha a opção **POST** e coloque no **Body** os dados referentes a: CPF, email, id (pode se qualquer valor, apenas para referencia no banco de dados) , name , password e role (ADMIN OU CLIENT). Depois selecione a opção **Send** , conforme o exemplo abaixo:
+
+O usuário foi cadastrado com sucesso, se aparecer no Postman a seguinte tela:
+
+
 ## Persistência ##
 O projeto **gatinha mistério** faz uso de persistência usando como banco de dados o H2 e usando ORM, já que se trata de um banco de dados relacional. ORM é uma técnica de mapeamento objeto relacional que permite fazer uma relação dos objetos com os dados que os mesmos representam. Para que essa técnica funcione é necessário fazer o uso de JPA com Hibernate. Usando JPA com Hibernate é possível mapear uma classe de modelo de entidade para um banco de dados sem precisar ter se preocupar como o código SQL será gerado - ao usar Hibernate, é possível gerar código SQL para qualquer banco de dados.
 
@@ -90,8 +98,14 @@ Abaixo, o diagrama que demonstra o funcionamento da autenticação:
 
 ![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/img/auth_diagram.png)
 
+### Operação de Login e Uso do Token ###
+Após cadastrar o usuário, para logar no sistema e ter acesso, no *Postman*, no campo **url**, coloque: localhost:8080/login,  escolha a opção **GET** e coloque em **Headers** o email do usuário e o password, e selecione **Send** conforme o exemplo abaixo:
 
-## Autorização ##
+Depois, em Headers -> Temporary Headers, no campo Authorization, copie o valor que começa com Bearer e cole no campo Token em Authorization:
+
+Depois disso, já é possível usar o sistema.
+
+## Autenticação ##
 O projeto **gatinha mistério** faz uso de autorização na rota **/user** com o objetivo de filtrar os dados a serem exibidos conformem o tipo de usuário (**admin** ou **client**).
 
 Se um usuário do tipo **admin** acessar a rota **/user**, além das informações do seu usuário irá aparecer as informações referentes a todos os usuários do sistema, já que como administrador ele deve poder controlar todos os cadastros feitos.
