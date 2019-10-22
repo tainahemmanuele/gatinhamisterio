@@ -267,7 +267,13 @@ No gráfico agregado , mesmo aumentando o número de amostras, o tempo médio da
 
 ![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/Testes%20-%20JMeter/Com%20Cache/80%20Threads/Gr%C3%A1fico%20Agregado_80_threads_cache.png)
 
+**Conclusão:** Pelos testes feitos no JMeter nota-se que o uso de cache melhora de forma expressiva o desempenho da aplicação. Observando os dados coletados dos testes referentes a requisições de /product sem o uso de cache, percebe-se que além do tempo de demora para obter os dados ser de expressivo, há também a questão limitante de quantas solicitações a aplicação conseguia suportar. 
 
+Ao usar cache, a aplicação passou a ter um bom desempenho e conseguiria atender um bom número de usuários em simultâneo. Como a aplicação se trata de um e-ccomerce, essa questão da quantidade de usuários em simultâneo é de fundamental importância para o sucesso da aplicação.
+
+## License ##
+
+Este projeto está licenciado sob a licença MIT - leia o arquivo [LICENSE](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/LICENSE.txt) para obter mais detalhes.
 
 
 
