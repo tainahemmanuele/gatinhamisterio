@@ -81,11 +81,11 @@ Usuário é a entidade que representa o cliente do sistema. Um cliente pode faze
 
 Para cadastrar um usuário no sistema, no campo **url**, coloque: localhost:8080/register,  escolha a opção **POST** e coloque no **Body** os dados referentes a: CPF, email, id (pode se qualquer valor, apenas para referencia no banco de dados) , name , password e role (ADMIN OU CLIENT). Depois selecione a opção **Send** , conforme o exemplo abaixo:
 
-![](https://github.com/tainahemmanuele/gatinhamisterio/blob/jmeter/img/register_1.png)
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/img/register_1.png)
 
 O usuário foi cadastrado com sucesso, se aparecer no Postman a seguinte tela:
 
-![](https://github.com/tainahemmanuele/gatinhamisterio/blob/jmeter/img/register_2.png)
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/img/register_2.png)
 
 ## Persistência ##
 O projeto **gatinha mistério** faz uso de persistência usando como banco de dados o H2 e usando ORM, já que se trata de um banco de dados relacional. ORM é uma técnica de mapeamento objeto relacional que permite fazer uma relação dos objetos com os dados que os mesmos representam. Para que essa técnica funcione é necessário fazer o uso de JPA com Hibernate. Usando JPA com Hibernate é possível mapear uma classe de modelo de entidade para um banco de dados sem precisar ter se preocupar como o código SQL será gerado - ao usar Hibernate, é possível gerar código SQL para qualquer banco de dados.
@@ -104,11 +104,11 @@ Abaixo, o diagrama que demonstra o funcionamento da autenticação:
 ### Operação de Login e Uso do Token ###
 Após cadastrar o usuário, para logar no sistema e ter acesso, no *Postman*, no campo **url**, coloque: localhost:8080/login,  escolha a opção **GET** e coloque em **Headers** o email do usuário e o password, e selecione **Send** conforme o exemplo abaixo:
 
-![](https://github.com/tainahemmanuele/gatinhamisterio/blob/jmeter/img/login_1.png)
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/img/login_1.png)
 
 Depois, em **Headers** -> **Temporary Headers**, no campo **Authorization**, copie o valor que começa com *Bearer* e cole no campo **Token** em **Authorization**:
 
-![](https://github.com/tainahemmanuele/gatinhamisterio/blob/jmeter/img/login_2.png)
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/img/login_2.png)
 
 Depois disso, já é possível usar o sistema.
 
@@ -130,11 +130,11 @@ Conforme a especificação da disciplina de DACA, foi implementada uma espera de
 
 Sem o uso de cache ( e no primeiro acesso, antes que o cache seja criado) a operação de **GET** em *http://localhost:8080/product* dura em torno de 0.5s:
 
-![](https://github.com/tainahemmanuele/gatinhamisterio/blob/jmeter/img/product_no_use_cache.png)
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/img/product_no_use_cache.png)
 
 Após o uso de cache o tempo cai para em torno de 27ms:
 
-![](https://github.com/tainahemmanuele/gatinhamisterio/blob/jmeter/img/product_use_cache.png)
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/img/product_use_cache.png)
 
 
 ### JMeter ###
@@ -148,51 +148,125 @@ O plano de testes levou em consideração:
 
 Todos os artefatos gerados, tal como o plano de testes usado, pode ser encontrado em:
 
-[Testes - JMeter](https://github.com/tainahemmanuele/gatinhamisterio/tree/jmeter/Testes%20-%20JMeter)
+[Testes - JMeter](https://github.com/tainahemmanuele/gatinhamisterio/tree/master/Testes%20-%20JMeter)
 
 #### Testes de Desempenho - Sem Uso de Cache ####
 Na **primeira execução**, foram usadas as configurações de ***Threads**: 5* e ***Tempo:**  60s*, que é o padrão do JMeter. Após a execução, o gráfico de resultados gerados foi:
 
-![](https://github.com/tainahemmanuele/gatinhamisterio/blob/jmeter/Testes%20-%20JMeter/Sem%20Cache/Configura%C3%A7%C3%B5es%20Padr%C3%A3o%20-%205%20Threads/Gr%C3%A1fico%20de%20Resultados_5_threads.png)
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/Testes%20-%20JMeter/Sem%20Cache/Configura%C3%A7%C3%B5es%20Padr%C3%A3o%20-%205%20Threads/Gr%C3%A1fico%20de%20Resultados_5_threads.png)
 
 Aqui, percebe-se que começa a aparecer o que será uma assintota, mas ainda não chegou em nenhum limite. O valor da vazão é de: 178,42/minuto.
 
 No gráfico de tempo de resposta, percebe-se que ao longo do tempo do teste sendo executado, o tempo da requisição, que começou alto e foi caindo ao decorrer do tempo, se torna constante:
 
-![](https://github.com/tainahemmanuele/gatinhamisterio/blob/jmeter/Testes%20-%20JMeter/Sem%20Cache/Configura%C3%A7%C3%B5es%20Padr%C3%A3o%20-%205%20Threads/Response%20Time%20Graph_5_threads.png)
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/Testes%20-%20JMeter/Sem%20Cache/Configura%C3%A7%C3%B5es%20Padr%C3%A3o%20-%205%20Threads/Response%20Time%20Graph_5_threads.png)
 
 No gráfico agregado, há a média entre o número de amostras e o tempo que ocorreram as requisições:
 
-![](https://github.com/tainahemmanuele/gatinhamisterio/blob/jmeter/Testes%20-%20JMeter/Sem%20Cache/Configura%C3%A7%C3%B5es%20Padr%C3%A3o%20-%205%20Threads/Gr%C3%A1fico%20Agregado_5_threads.png)
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/Testes%20-%20JMeter/Sem%20Cache/Configura%C3%A7%C3%B5es%20Padr%C3%A3o%20-%205%20Threads/Gr%C3%A1fico%20Agregado_5_threads.png)
 
 Na **segunda execução**, foram usadas as configurações de ***Threads:** 10* e ***Tempo:** 120s*. Após a execução, o gráfico de resultados gerados foi:
 
-![](https://github.com/tainahemmanuele/gatinhamisterio/blob/jmeter/Testes%20-%20JMeter/Sem%20Cache/10%20Threads/Gr%C3%A1fico%20de%20Resultados_10_threads.png)
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/Testes%20-%20JMeter/Sem%20Cache/10%20Threads/Gr%C3%A1fico%20de%20Resultados_10_threads.png)
 
 Nesse gráfico já percebe-se uma assintota horizontal, ainda incompleta, o que significa que  com 10 threads já se chega próximo ao limite de throughput da aplicação. O valor da vazão é de:  372,72 minuto.
 
 No gráfico de tempo de resposta, percebe-se que ao longo do tempo do teste sendo executado, o tempo da requisição, diminuiu em relação ao primeiro teste, mas se manteve constante durante toda a execução:
 
-![](https://github.com/tainahemmanuele/gatinhamisterio/blob/jmeter/Testes%20-%20JMeter/Sem%20Cache/10%20Threads/Response%20Time%20Graph_10_threads.png)
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/Testes%20-%20JMeter/Sem%20Cache/10%20Threads/Response%20Time%20Graph_10_threads.png)
 
-No gráfico agregado, a média continuou a mesma em relação a primeira execução do teste, mas a taxa de erro caiu para 0%, além da vazão ter aumentado:
+No gráfico agregado, a média de tempo de requisição continuou a mesma em relação a primeira execução do teste (506ms), mas a taxa de erro caiu para 0%, além da vazão ter aumentado:
 
-![](https://github.com/tainahemmanuele/gatinhamisterio/blob/jmeter/Testes%20-%20JMeter/Sem%20Cache/10%20Threads/Gr%C3%A1fico%20Agregado_10_threads.png)
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/Testes%20-%20JMeter/Sem%20Cache/10%20Threads/Gr%C3%A1fico%20Agregado_10_threads.png)
 
 
-Na **terceira execução**, foram usadas as configurações de ***Threads:** 10* e ***Tempo:** 180s*. Após a execução, o gráfico de resultados gerados foi:
+Na **terceira execução**, foram usadas as configurações de ***Threads:** 20* e ***Tempo:** 180s*. Após a execução, o gráfico de resultados gerados foi:
 
-![](https://github.com/tainahemmanuele/gatinhamisterio/blob/jmeter/Testes%20-%20JMeter/Sem%20Cache/20%20Threads/Gr%C3%A1fico%20de%20Resultados_20_threads.png)
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/Testes%20-%20JMeter/Sem%20Cache/20%20Threads/Gr%C3%A1fico%20de%20Resultados_20_threads.png)
 
 Nesse gráfico, a assintota horizontal aparece, logo, o limite de vazão da aplicação é atingido quando há 2263 amostras fazendo requisições ao mesmo tempo. O valor da vazão é de : 752,511/minuto .
 
 No gráfico de tempo de resposta, não houve mudanças no tempo, em relação a execução anterior do teste, se manteve constante.
 
-![](https://github.com/tainahemmanuele/gatinhamisterio/blob/jmeter/Testes%20-%20JMeter/Sem%20Cache/20%20Threads/Response%20Time%20Graph_20_threads.png)
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/Testes%20-%20JMeter/Sem%20Cache/20%20Threads/Response%20Time%20Graph_20_threads.png)
 
 
 No gráfico agregado,a única modificação expressiva veio em relação a vazão:
-![](https://github.com/tainahemmanuele/gatinhamisterio/blob/jmeter/Testes%20-%20JMeter/Sem%20Cache/20%20Threads/Gr%C3%A1fico%20Agregado_20_threads.png)
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/Testes%20-%20JMeter/Sem%20Cache/20%20Threads/Gr%C3%A1fico%20Agregado_20_threads.png)
+
+
+####  Testes de Desempenho - Com Uso de Cache ####
+Na **primeira execução**, foram usadas as configurações de ***Threads**: 5* e ***Tempo:**  60s*, que é o padrão do JMeter. Após a execução, o gráfico de resultados gerados foi:
+
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/Testes%20-%20JMeter/Com%20Cache/Configura%C3%A7%C3%B5es%20Padr%C3%A3o%20-%205%20Threads/Gr%C3%A1fico%20de%20Resultados_5_threads_cache.png)
+
+Percebe-se que por conta do uso de cache, ainda não se chega a um gráfico que mostre a vazão da aplicação. O gráfico é constante, e a vazão é de : 268,64/minuto.
+
+No gráfico de tempo de resposta, percebe-se que começa alto o tempo da requisição, cai, mas volta a aumentar conforme aumenta o número de requisições ao longo do tempo.
+
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/Testes%20-%20JMeter/Com%20Cache/Configurações%20Padrão%20-%205%20Threads/Response%20Time%20Graph_5_threads_cache.png)
+
+No gráfico agregado, percebe-se que apesar do número de amostras ser alto, em torno de 268, havendo várias requisições a /product, a média de tempo de requisição foi em torno de 6ms, já que com o uso de cache a aplicação acaba não retornando uma página nova a cada requisição.
+
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/Testes%20-%20JMeter/Com%20Cache/Configurações%20Padrão%20-%205%20Threads/Gráfico%20Agregado_5_threads_cache.png)
+
+Na **segunda execução**, foram usadas as configurações de ***Threads:** 10* e ***Tempo:** 120s*. Após a execução, o gráfico de resultados gerados foi:
+
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/Testes%20-%20JMeter/Com%20Cache/10%20Threads/Gr%C3%A1fico%20de%20Resultados_10_threads_cache.png)
+
+No gráfico, já percebe-se uma assintota horizontal,ainda pequena em relação ao mesmo teste executado sem o uso de cache. A vazão é de: 551,014/minuto
+
+No gráfico de tempo de resposta percebe-se que da mesma forma que anteriormente, o tempo da requisição começa alto, cai e aumenta de novo, mas ainda continua baixo, em relação ao tempo das primeiras requisições executadas no teste.
+
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/Testes%20-%20JMeter/Com%20Cache/10%20Threads/Response%20Time%20Graph_10_threads_cache.png)
+
+No gráfico agregado, a média de tempo de reqisição das amostra cai para 4ms e a vazão começa a aumentar:
+
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/Testes%20-%20JMeter/Com%20Cache/10%20Threads/Gr%C3%A1fico%20Agregado_10_threads_cache.png)
+
+Na **terceira execução**, foram usadas as configurações de ***Threads:** 20* e ***Tempo:** 180s*. Após a execução, o gráfico de resultados gerados foi:
+
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/Testes%20-%20JMeter/Com%20Cache/20%20Threads/Gr%C3%A1fico%20de%20Resultados_20_threads_cache.png)
+
+No gráfico, já existe uma assintota horizontal, mas pequena em relação ao mesmo teste executado na aplicação sem o uso de cache. A vazão é de : 1.112,099/minuto
+
+No gráfico de tempo de resposta, percebe-se que o tempo cai nas primeiras requisições, e fica aumentando e diminuindo conforme vai aumentando o número de requisições feitas ao longo do tempo. Como há o uso de cache, enquanto o cache não expira para as amostras o tempo tende a ser constante, quando ele expira, aumenta, já que precisa acessar o banco de dados novamente para obter o resultado da requisição.
+
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/Testes%20-%20JMeter/Com%20Cache/20%20Threads/Response%20Time%20Graph_20_threads.png)
+
+No gráfico agregado, o número de amostras usadas aumenta e o tempo médio das requisições ficam em torno de 3ms:
+
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/Testes%20-%20JMeter/Com%20Cache/20%20Threads/Gr%C3%A1fico%20Agregado_20_threads_cache.png)
+
+Na **quarta execução**, foram usadas as configurações de ***Threads:** 40* e ***Tempo:** 240s*. Após a execução, o gráfico de resultados gerados foi:
+
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/Testes%20-%20JMeter/Com%20Cache/40%20Threads/Gr%C3%A1fico%20de%20Resultados_40_threads_cache.png)
+
+A assintota horizontal no gráfico aumentou em relação a execução anterior do teste, mas ainda não foi expressiva. A vazão é de 2.238,103/minuto.
+
+No gráfico de tempo de resposta, o comportamento foi igual a da execução anterior do teste, onde cada vez que aumenta a quantidade de requisições, o tempo de resposta aumenta , fica constante por conta do uso do cache, e quando ele expira volta a aumentar.
+
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/Testes%20-%20JMeter/Com%20Cache/40%20Threads/Response%20Time%20Graph_40_threads_cache.png)
+
+No gráfico agregado o tempo médio das requisições fica em torno de 3ms (como na execução anterior do teste):
+
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/Testes%20-%20JMeter/Com%20Cache/40%20Threads/Gráfico%20Agregado_40_threads_cache.png)
+
+
+Na **quinta execução**, foram usadas as configurações de ***Threads:** 80* e ***Tempo:** 300s*. Após a execução, o gráfico de resultados gerados foi:
+
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/Testes%20-%20JMeter/Com%20Cache/80%20Threads/Gr%C3%A1fico%20de%20Resultados_80_threads_cache.png)
+
+No gráfico, a assintota horizontal apresenta-se de forma mais clara em relação as execuções anteriores do teste. O limite de vazão da aplicação é atingido quando há 22464 amostras fazendo requisições ao mesmo tempo. O valor da vazão é de : 4.493,174/minuto .
+
+No gráfico de tempo de resposta, o comportamento foi igual a execução anterior do teste:
+
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/Testes%20-%20JMeter/Com%20Cache/80%20Threads/Response%20Time%20Graph_80_threads_cache.png)
+
+No gráfico agregado , mesmo aumentando o número de amostras, o tempo médio das requisições fica em torno de 3ms:
+
+![](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/Testes%20-%20JMeter/Com%20Cache/80%20Threads/Gr%C3%A1fico%20Agregado_80_threads_cache.png)
+
 
 
 
