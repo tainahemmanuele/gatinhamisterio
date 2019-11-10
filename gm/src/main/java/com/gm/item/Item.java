@@ -1,22 +1,27 @@
 package com.gm.item;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDB;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+
 import javax.persistence.*;
 
 @MappedSuperclass
+@DynamoDBTable(tableName = "Item")
 public abstract class Item {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    //@Id
+    //@GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column(name = "barcode", nullable = false)
+    //@Column(name = "barcode", nullable = false)
     private String barcode;
-    @Column(name = "name", nullable = false)
+    //@Column(name = "name", nullable = false)
     private String name;
-    @Column(name = "cost", nullable = false)
+    //@Column(name = "cost", nullable = false)
     private float cost;
-    @Column(name = "price", nullable = false)
+    //@Column(name = "price", nullable = false)
     private float price;
-    @Column(name = "stock", nullable = false)
+    //@Column(name = "stock", nullable = false)
     private int stock;
 
     public Item() {
@@ -30,6 +35,7 @@ public abstract class Item {
         this.stock = stock;
     }
 
+    @DynamoDBAttribute
     public String getBarcode() {
         return barcode;
     }
@@ -38,6 +44,7 @@ public abstract class Item {
         this.barcode = barcode;
     }
 
+    @DynamoDBAttribute
     public String getName() {
         return name;
     }
@@ -46,6 +53,7 @@ public abstract class Item {
         this.name = name;
     }
 
+    @DynamoDBAttribute
     public float getCost() {
         return cost;
     }
@@ -54,6 +62,7 @@ public abstract class Item {
         this.cost = cost;
     }
 
+    @DynamoDBAttribute
     public float getPrice() {
         return price;
     }
@@ -62,6 +71,7 @@ public abstract class Item {
         this.price = price;
     }
 
+    @DynamoDBAttribute
     public int getStock() {
         return stock;
     }
