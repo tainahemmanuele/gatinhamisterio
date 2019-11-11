@@ -20,8 +20,8 @@ import java.util.Set;
 @DynamoDBTable(tableName = "Subscription")
 public class Subscription implements Serializable {
 
-    //@Id
-    //@GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     //@Column(name = "subscription_id")
     private long id;
 

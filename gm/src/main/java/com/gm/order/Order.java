@@ -18,8 +18,8 @@ import java.util.Objects;
 //@Table(name = "order_data")
 @DynamoDBTable(tableName = "Order")
 public class Order implements Serializable {
-    //@Id
-    //@GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     //@ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})

@@ -16,8 +16,8 @@ public class Product extends Item implements Serializable {
 
     public static final String CACHE_NAME = "Product";
 
-    //@Id
-    //@GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     //@Column(name = "box_id", nullable = false)
     private Long id;
 

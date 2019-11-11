@@ -3,6 +3,7 @@ package com.gm.order;
 import com.gm.order.Order;
 import com.gm.subscription.Subscription;
 import com.gm.user.User;
+import org.socialsignin.spring.data.dynamodb.repository.EnableScan;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
+@EnableScan
 public interface OrderRepository extends CrudRepository<Order, Long> {
 
     @Query("SELECT o FROM Order o WHERE o.user.id = :user_id")

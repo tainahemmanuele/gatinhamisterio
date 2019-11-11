@@ -19,8 +19,8 @@ import javax.persistence.*;
 //@Table(name = "user_data")
 public class User implements Serializable {
 
-    //@Id
-    //@GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     //@Column(name = "user_data_id")
     private long id;
 

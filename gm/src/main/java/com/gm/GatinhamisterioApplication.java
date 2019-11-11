@@ -33,7 +33,7 @@ import java.util.Set;
 @EnableCaching
 public class GatinhamisterioApplication {
 
-	@Autowired
+	/*@Autowired
 	private UserRepository userRepository;
 	@Autowired
 	private SubscriptionRepository subscriptionRepository;
@@ -42,8 +42,8 @@ public class GatinhamisterioApplication {
 	@Autowired
 	private ProductRepository productRepository;
 	@Autowired
-	private OrderRepository orderRepository;
-
+	private OrderRepository orderRepository;*/
+/*
 	@Bean
 	InitializingBean sendDatabase() {
 		return () -> {
@@ -63,7 +63,7 @@ public class GatinhamisterioApplication {
 			subscriptionRepository.save(s1);
 			//orderRepository.save(new Order(u1,s1,3, DispatchStatus.WAITING, PaymentType.BOLETO,PaymentStatus.REQUESTED));
 		};
-	}
+	}*/
 	public static void main(String[] args) {
 		SpringApplication.run(GatinhamisterioApplication.class, args);
 	}

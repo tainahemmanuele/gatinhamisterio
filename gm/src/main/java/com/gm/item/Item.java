@@ -9,8 +9,8 @@ import javax.persistence.*;
 @MappedSuperclass
 @DynamoDBTable(tableName = "Item")
 public abstract class Item {
-    //@Id
-    //@GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     //@Column(name = "barcode", nullable = false)
