@@ -14,12 +14,12 @@ import java.util.List;
 @Repository
 @EnableScan
 public interface UserRepository extends CrudRepository<User, Long> {
-    //@Query("SELECT u FROM User u WHERE u.email = :email")
+    @Query("SELECT u FROM User u WHERE u.email = :email")
     public User findByEmail(@Param("email") String email);
 
-    //@Query("SELECT u FROM User u WHERE u.role = :role")
+    @Query("SELECT u FROM User u WHERE u.role = :role")
     public List<User> findByRole(@Param("role") UserRole role);
 
-    //@Query("SELECT u FROM User u WHERE u.email = :email")
+    @Query("SELECT u FROM User u WHERE u.email = :email")
     public UserRole findUserRoleByEmail(@Param("email") String email);
 }
