@@ -17,7 +17,7 @@ import java.util.Objects;
 //@Table(name = "order_data")
 @DynamoDBTable(tableName = "Order")
 //@DynamoDBDocument
-public class Order  {
+public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @DynamoDBHashKey(attributeName = "id")

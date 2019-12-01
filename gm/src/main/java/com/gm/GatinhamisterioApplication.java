@@ -33,7 +33,7 @@ import java.util.Set;
 @EnableCaching
 public class GatinhamisterioApplication {
 
-	/*@Autowired
+	@Autowired
 	private UserRepository userRepository;
 	@Autowired
 	private SubscriptionRepository subscriptionRepository;
@@ -42,8 +42,8 @@ public class GatinhamisterioApplication {
 	@Autowired
 	private ProductRepository productRepository;
 	@Autowired
-	private OrderRepository orderRepository;*/
-/*
+	private OrderRepository orderRepository;
+
 	@Bean
 	InitializingBean sendDatabase() {
 		return () -> {
@@ -57,13 +57,13 @@ public class GatinhamisterioApplication {
 			Box b1 = new Box("0","Caixa Agosto",80.0f,199.0f,10,prods);
 			Subscription s1 = new Subscription( SubscriptionType.DEFAULT,100.00, YearMonth.now(),b1);
 
-			userRepository.save(new User("John Romero","john@gmail.com","Mudar123","16752155020",UserRole.ADMIN));
-			userRepository.save(new User("Jen Zee","jen@gmail.com","Mudar123","99704525095",UserRole.CLIENT));
+			//userRepository.save(new User("John Romero","john@gmail.com","Mudar123","16752155020",UserRole.ADMIN));
+			//userRepository.save(new User("Jen Zee","jen@gmail.com","Mudar123","99704525095",UserRole.CLIENT));
 			userRepository.save(u1);
 			subscriptionRepository.save(s1);
 			//orderRepository.save(new Order(u1,s1,3, DispatchStatus.WAITING, PaymentType.BOLETO,PaymentStatus.REQUESTED));
 		};
-	}*/
+	}
 	public static void main(String[] args) {
 		SpringApplication.run(GatinhamisterioApplication.class, args);
 	}

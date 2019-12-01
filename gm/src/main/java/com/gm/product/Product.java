@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Entity
 @DynamoDBTable(tableName = "Product")
 //@DynamoDBDocument
-public class Product extends Item  {
+public class Product extends Item implements Serializable {
 
     public static final String CACHE_NAME = "Product";
 
