@@ -11,7 +11,7 @@ public class UserConverter implements DynamoDBTypeConverter<String, User> {
         User userObject = (User) object;
         String user = null;
         try {
-            if (user != null) {
+            if (userObject != null) {
                 user = String.format("%s , %s , %s , %s , %s ", userObject.getName(), userObject.getEmail(), userObject.getPassword(),
                         userObject.getCPF(), userObject.getRole());
             }

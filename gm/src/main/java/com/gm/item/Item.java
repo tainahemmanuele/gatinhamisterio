@@ -5,8 +5,8 @@ import com.amazonaws.services.dynamodbv2.datamodeling.*;
 import javax.persistence.*;
 
 @MappedSuperclass
-//@DynamoDBTable(tableName = "Item")
-@DynamoDBDocument
+@DynamoDBTable(tableName = "Item")
+//@DynamoDBDocument
 public abstract class Item {
     @Id
     @DynamoDBHashKey(attributeName = "id")

@@ -90,6 +90,7 @@ public class OrderService {
     public List<Order> findByUserEmail(String email){
         return orderRepository.findOrderByUserEmail(email);
     }
+
     public List<Order> findBySubscriptionId(long id){
         return orderRepository.findOrderBySubscriptionId(id);
     }

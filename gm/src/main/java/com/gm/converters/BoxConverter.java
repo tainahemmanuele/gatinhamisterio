@@ -8,7 +8,7 @@ public class BoxConverter implements DynamoDBTypeConverter<String, Box>  {
         @Override
         public String convert(Box object) {
                 Box boxObject = (Box) object;
-                String box = null;
+                String box = "";
                 try {
                         if (box != null) {
                                 box = String.format("%s , %s , %s , %s , %s , %s",boxObject.getBarcode(), boxObject.getName(), boxObject.getCost(),

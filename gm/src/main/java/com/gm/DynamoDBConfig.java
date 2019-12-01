@@ -19,6 +19,7 @@ import org.socialsignin.spring.data.dynamodb.repository.config.EnableDynamoDBRep
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 @Configuration
 @EnableDynamoDBRepositories(basePackageClasses = {UserRepository.class, ProductRepository.class, BoxRepository.class,
@@ -41,11 +42,13 @@ public  class DynamoDBConfig {
     }
 
     @Bean
+    @Primary
     public DynamoDBMapperConfig dynamoDBMapperConfig() {
         return DynamoDBMapperConfig.DEFAULT;
     }
 
     @Bean
+    @Primary
     public DynamoDBMapper dynamoDBMapper(AmazonDynamoDB amazonDynamoDB, DynamoDBMapperConfig config) {
         return new DynamoDBMapper(amazonDynamoDB, config);
     }

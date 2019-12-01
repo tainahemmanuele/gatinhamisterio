@@ -13,9 +13,9 @@ import javax.persistence.*;
 
 
 @Entity
-//@DynamoDBTable(tableName = "User")
+@DynamoDBTable(tableName = "User")
 //@Table(name = "user_data")
-@DynamoDBDocument
+//@DynamoDBDocument
 public class User {
 
     @Id
