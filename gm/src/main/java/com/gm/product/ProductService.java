@@ -9,6 +9,8 @@ import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.*;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,68 +29,39 @@ public class ProductService {
     private Validator validator = new Validator();
 
     @Cacheable(cacheNames=Product.CACHE_NAME,key="#root.target.CACHE_GETALL_KEY")
-    public List<Product> getAll() {
+    public Flux<List<Product>> getAll() {
         List<Product> listProduct = new ArrayList<Product>();
         Iterable<Product> productsIterator = productRepository.findAll();
 
         for (Product product : productsIterator) {
             listProduct.add(product);
         }
-        simulateSlowService();
-        return listProduct;
+        return Flux.just(listProduct);
     }
 
 
     @CacheEvict(cacheNames = Product.CACHE_NAME,  key="#root.target.CACHE_GETALL_KEY")
-    public Product create(Product product)  throws ValidatorException{
-        Product productAux = validCreate(product);
-        if(productAux != null){
-            return productRepository.save(productAux);
-        }
-        return productAux;
+    public Mono<Product> create(Product product)  throws ValidatorException{
+        return Mono.just(productRepository.save(product));
     }
 
     @Caching(   evict = {@CacheEvict(cacheNames = Product.CACHE_NAME, key="#root.target.CACHE_GETALL_KEY")},
                 put = {@CachePut(cacheNames = Product.CACHE_NAME, key="#id")})
-    public Product update(Long id, Product productUpdate)  throws ValidatorException{
-        Optional<Product> productData = productRepository.findById(id);
-        if (productData.isPresent()) {
-            Product product = validUpdate(productData.get(), productUpdate);
-            if(product != null){
-                return productRepository.save(product);
-            } else{
-                return null;
-            }
-
-        } else {
-            return null; //posteriormente tratar isso com exceção
-        }
+    public Mono<Product> update(Long id, Product product)  throws ValidatorException{
+         return Mono.just(productRepository.save(product)) ;
     }
 
     @Cacheable(cacheNames=Product.CACHE_NAME,key="#id")
-    public Product getById(Long id) {
-        Optional<Product> productData = productRepository.findById(id);
-        simulateSlowService();
-        if (productData.isPresent()) {
-            Product product = productData.get();
-            return product;
-        } else {
-            return null; //posteriormente tratar isso com exceção
-        }
+    public Mono<Product> getById(Long id) {
+        return Mono.just(productRepository.findById(id).get());
     }
 
     @Caching(evict = {
             @CacheEvict(cacheNames = Product.CACHE_NAME, key="#id"),
             @CacheEvict(cacheNames = Product.CACHE_NAME, key="#root.target.CACHE_GETALL_KEY")
     })
-    public boolean delete(Long id) {
-        Optional<Product> productData = productRepository.findById(id);
-        if (productData.isPresent()) {
-            productRepository.deleteById(id);
-            return true;
-        } else {
-            return false;
-        }
+    public void delete(Long id) {
+        productRepository.deleteById(id);
     }
 
 

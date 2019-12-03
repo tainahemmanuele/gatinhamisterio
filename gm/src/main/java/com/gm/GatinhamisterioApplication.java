@@ -25,6 +25,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
+import org.springframework.web.reactive.config.EnableWebFlux;
 
 import java.time.YearMonth;
 import java.util.HashSet;

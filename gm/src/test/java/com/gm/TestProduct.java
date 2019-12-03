@@ -4,9 +4,11 @@ import com.gm.product.Product;
 import com.gm.util.ProductType;
 import org.junit.Assert;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
+import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
@@ -17,14 +19,15 @@ import java.util.List;
 @SpringBootTest
 public class TestProduct {
 
+    @Autowired
+    private WebTestClient webTestClient;
 
     @Test
-    public void testGetProductListSuccess() throws URISyntaxException
-    {
+    public void testGetProductListSuccess() throws URISyntaxException {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        final String baseUrl = "http://localhost:" + 8080 + "/product";
+        final String baseUrl = "http://localhost:" + 9094 + "/product";
         URI uri = new URI(baseUrl);
 
         ResponseEntity<List<Product>> result = restTemplate.exchange(uri, HttpMethod.GET,null, new ParameterizedTypeReference<List<Product>>() {});
@@ -43,7 +46,7 @@ public class TestProduct {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        final String baseUrl = "http://localhost:" + 8080 + "/product";
+        final String baseUrl = "http://localhost:" + 9094 + "/product";
         URI uri = new URI(baseUrl);
         Product product = new Product("300","Batom",20.0f,30.0f,10,"Loreal","Loreal", ProductType.BATOM);
 
@@ -62,7 +65,7 @@ public class TestProduct {
     public void testDeleteProductSuccess() throws URISyntaxException {
         RestTemplate restTemplate = new RestTemplate();
 
-        final String baseUrl = "http://localhost:" + 8080 + "/product/";
+        final String baseUrl = "http://localhost:" + 9094 + "/product/";
         URI uri = new URI(baseUrl);
 
         ResponseEntity<List<Product>> result = restTemplate.exchange(uri, HttpMethod.GET,null, new ParameterizedTypeReference<List<Product>>() {});

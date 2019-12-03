@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -17,55 +19,33 @@ public class ProductController {
 
 
     @GetMapping("/product")
-    public ResponseEntity<List<Product>> getAllProducts(){
-        System.out.println("GETTING ALL PRODUCTS...");
-        List<Product> products = productService.getAll();
-        if (products.isEmpty())
-            return new ResponseEntity<List<Product>>(products,HttpStatus.OK);
-        return new ResponseEntity<List<Product>>(products,HttpStatus.OK);
+    public Flux<List<Product>> getAllProducts(){
+        return productService.getAll();
     }
 
     @GetMapping("product/{id}")
-    public ResponseEntity<Product> getProduct(@PathVariable("id") Long id){
+    public Mono<Product> getProduct(@PathVariable("id") Long id){
         System.out.println("GETTING ALL PRODUCTS...");
-        Product product = productService.getById(id);
-        return (product != null)?
-                new ResponseEntity<Product>(product, HttpStatus.OK):
-                new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
+        return productService.getById(id);
 
     }
 
     @PostMapping("/product")
-    public ResponseEntity<Product> createProduct(@Valid @RequestBody Product product) throws ValidatorException {
+    public Mono<Product> createProduct(@Valid @RequestBody Product product) throws ValidatorException {
         System.out.println("CREATE PRODUCT " + product.getName() + "...");
-        Product productCreated = productService.create(product);
-        if (productCreated == null)
-            return new ResponseEntity<Product>(HttpStatus.BAD_REQUEST);
-        return new ResponseEntity<Product>(productCreated,HttpStatus.OK);
+        return productService.create(product);
 
     }
 
     @PutMapping("/product/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable("id") Long id, @RequestBody Product product)  throws ValidatorException{
-        System.out.println("UPDATING PRODUCT " + id + "...");
-
-        Product updatedProduct = productService.update(id, product);
-        if(updatedProduct != null) {
-            return new ResponseEntity<Product>(updatedProduct, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    public Mono<Product> updateProduct(@PathVariable("id") Long id, @RequestBody Product product)  throws ValidatorException{
+        return productService.update(id, product);
     }
 
     @DeleteMapping("/product/{id}")
-    public ResponseEntity<String> deleteProduct(@PathVariable("id") Long id) {
+    public Mono<String> deleteProduct(@PathVariable("id") Long id) {
         System.out.println("DELETE PRODUCT " + id + "...");
-
-        if (productService.delete(id)) {
-            return new ResponseEntity<String>("Product has been deleted.", HttpStatus.OK);
-        } else {
-            return new ResponseEntity<String>("Failed to delete.Product does not exist.", HttpStatus.EXPECTATION_FAILED);
-        }
+        return Mono.just("Product has been deleted.");
     }
 
     @GetMapping("product/cache")
