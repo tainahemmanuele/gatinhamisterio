@@ -22,6 +22,9 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.kafka.annotation.EnableKafka;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 
 import java.time.YearMonth;
 import java.util.HashSet;
@@ -31,6 +34,7 @@ import java.util.Set;
 @ComponentScan
 @SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
 @EnableCaching
+@EnableKafka
 public class GatinhamisterioApplication {
 
 	@Autowired
@@ -43,6 +47,11 @@ public class GatinhamisterioApplication {
 	private ProductRepository productRepository;
 	@Autowired
 	private OrderRepository orderRepository;
+
+	@KafkaListener(topics="kafka_rating")
+	public void listen(String i) {
+		System.out.println(i);
+	}
 
 	@Bean
 	InitializingBean sendDatabase() {
@@ -63,6 +72,7 @@ public class GatinhamisterioApplication {
 			subscriptionRepository.save(s1);
 			//orderRepository.save(new Order(u1,s1,3, DispatchStatus.WAITING, PaymentType.BOLETO,PaymentStatus.REQUESTED));
 		};
+
 	}
 	public static void main(String[] args) {
 		SpringApplication.run(GatinhamisterioApplication.class, args);
