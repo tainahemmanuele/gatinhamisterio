@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
 //import javax.xml.ws.Response;
@@ -17,41 +19,26 @@ public class BoxController {
     private BoxService boxService;
 
     @GetMapping("/box")
-    public ResponseEntity<List<Box>> getAllBoxes() {
+    public Flux<List<Box>> getAllBoxes() {
         System.out.println("GETTING ALL BOXES...");
-        List<Box> boxes = boxService.getAll();
-        if (boxes.isEmpty())
-            return new ResponseEntity<List<Box>>(boxes,HttpStatus.OK);
-        return new ResponseEntity<List<Box>>(boxes,HttpStatus.OK);
+        return boxService.getAll();
     }
 
     @GetMapping("/box/{id}")
-    public ResponseEntity<Box> getBox(@PathVariable("id") Long id) {
-        System.out.println("GET BOX BY ID "+ id + "...");
-        Box box = boxService.getById(id);
-        return (box != null)?
-                new ResponseEntity<Box>(box, HttpStatus.OK):
-                new ResponseEntity<Box>(HttpStatus.NOT_FOUND);
+    public Mono<Box> getBox(@PathVariable("id") Long id) {
+        return boxService.getById(id);
     }
 
     @PostMapping("/box")
-    public ResponseEntity<Box> createBox(@Valid @RequestBody Box box)  throws ValidatorException {
+    public Mono<Box> createBox(@Valid @RequestBody Box box)  throws ValidatorException {
         System.out.println("CREATE BOX " + box.getName() + "...");
-        Box newBox = boxService.create(box);
-        if (newBox == null)
-            return new ResponseEntity<Box>(HttpStatus.BAD_REQUEST);
-        return new ResponseEntity<Box>(newBox,HttpStatus.OK);
+        return boxService.create(box);
     }
 
 
     @PutMapping("/box/{id}")
-    public ResponseEntity<Box> update(@PathVariable("id") Long id, @RequestBody Box box)  throws ValidatorException{
-        Box updatedBox = boxService.update(id, box);
-        if(updatedBox != null) {
-            return new ResponseEntity<Box>(updatedBox, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    public Mono<Box> update(@PathVariable("id") Long id, @RequestBody Box box)  throws ValidatorException{
+        return boxService.update(id, box);
     }
 
     @DeleteMapping("/box/{id}")

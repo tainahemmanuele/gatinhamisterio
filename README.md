@@ -271,15 +271,21 @@ No gráfico agregado , mesmo aumentando o número de amostras, o tempo médio da
 
 Ao usar cache, a aplicação passou a ter um bom desempenho e conseguiria atender um bom número de usuários em simultâneo. Como a aplicação se trata de um e-commerce, essa questão da quantidade de usuários em simultâneo é de fundamental importância para o sucesso da aplicação.
 
+## Tecnologias utilizadas ##
+
+## Apache Kafka ##
+Apache kafka é uma plataforma de processamento de streams desenvolvida pela Apache Software Foundation, escrita em Scala e Java. O projeto tem como objetivo fornecer uma plataforma unificada, de alta capacidade e baixa latência para tratamento de dados em tempo real
+
+A intenção de utilizar o apache kafka era para fazer um sistema de avaliações que mostre somente as últimas avalialçoes feitas. O serviço seria atualizado de tempos em tempos. 
+
+Para rodar o projeto será necessário abrir tanto o Apache zookeper quanto o Apache Kafka. Juntamente com um produtor do tipo rating.
+
+## Reactive Architecture ##
+A programação reativa é um paradigma de programação declarativa relacionado aos fluxos de dados. Ela promove fluxos assíncronos, não bloqueantes e reativo a eventos. A inteção é transformar dados e eventos em fluxos de dados observáveis e reativos a mudanças no sistema. 
+
+
 ## License ##
 
 Este projeto está licenciado sob a licença MIT - leia o arquivo [LICENSE](https://github.com/tainahemmanuele/gatinhamisterio/blob/master/LICENSE.txt) para obter mais detalhes.
-
-
-
-
-
-
-
 
 

@@ -7,6 +7,8 @@ import com.gm.util.Validator;
 import com.gm.util.ValidatorException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,48 +22,26 @@ public class BoxService {
     private BoxRepository boxRepository;
 
     private Validator validator = new Validator();
-    public List<Box> getAll(){
+    public Flux<List<Box>> getAll(){
         List<Box> listBoxes = new ArrayList<Box>();
         Iterable<Box> boxesIterator = boxRepository.findAll();
 
         for (Box box : boxesIterator){
             listBoxes.add(box);
         }
-        return listBoxes;
+        return Flux.just(listBoxes);
     }
 
-    public Box getById(Long id){
-        Optional<Box> boxData = boxRepository.findById(id);
-        if(boxData.isPresent()){
-            Box box  = boxData.get();
-            return box;
-        }else{
-            return null;
-        }
+    public Mono<Box> getById(Long id){
+       return Mono.just(boxRepository.findById(id).get());
     }
 
-    public Box create(Box box)  throws ValidatorException{
-        Set<Product> products = box.getProducts();
-        Box boxAux = validCreate(box);
-        if(boxAux != null) {
-            return boxRepository.save(boxAux);
-        }else{
-            return null;
-        }
+    public Mono<Box> create(Box box) throws ValidatorException {
+        return Mono.just(boxRepository.save(validCreate(box)));
     }
 
-    public Box update(Long id, Box boxUpdate)  throws ValidatorException{
-        Optional<Box> boxData = boxRepository.findById(id);
-        if(boxData.isPresent()){
-            Box box = validUpdate(boxData.get(), boxUpdate);
-            if(box != null) {
-                return boxRepository.save(box);
-            }else{
-                return null;
-            }
-        } else{
-            return null; //posteriormente tratar isso com exceção
-        }
+    public Mono<Box> update(Long id, Box boxUpdate)  throws ValidatorException{
+        return Mono.just(boxRepository.save(validUpdate(boxRepository.findById(id).get(), boxUpdate)));
     }
 
     public boolean delete(Long id){
